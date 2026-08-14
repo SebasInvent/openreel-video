@@ -10,6 +10,7 @@ import { registerServiceWorker } from "./services/service-worker";
 import { initCustomFonts } from "./components/editor/inspector/font-options";
 import { setEncoderBackendFactory } from "@openreel/core";
 import { NativeFFmpegBackend } from "./services/native-ffmpeg-backend";
+import { escucharTraspasos } from "./integrations/skynet/entrada";
 
 const DesktopApp = React.lazy(() =>
   import("./desktop/DesktopApp").then((module) => ({
@@ -37,6 +38,10 @@ registerServiceWorker().then((registration) => {
 });
 
 void initCustomFonts();
+
+// El punto de entrada de SkyNet. Sin `VITE_SKYNET_ORIGENES` queda registrado pero no acepta a
+// nadie: la lista de orígenes permitidos está vacía y no hay comodín. Ver `integrations/skynet`.
+escucharTraspasos();
 
 const root = document.getElementById("root")!;
 
