@@ -174,7 +174,12 @@ export function escucharTraspasos(origenes = origenesConfigurados()): () => void
     }
   };
 
-  window.addEventListener("message", alRecibir as EventListener);
+  // Sin `as EventListener`: la sobrecarga de `addEventListener` ya tipa `"message"` como
+  // `MessageEvent` (vía `WindowEventMap`), así que el cast no aportaba nada — y además NO COMPILA:
+  // `EventListener` recibe `Event`, y TypeScript se niega a convertir un manejador de `MessageEvent`
+  // porque `Event` no tiene `data` ni `origin`. Medido el 15-ago: `pnpm build` fallaba con dos
+  // TS2352 aquí, o sea que este archivo nunca se habia construido.
+  window.addEventListener("message", alRecibir);
 
   // Al padre y solo al padre, y solo si el editor está incrustado.
   if (window.parent !== window) {
@@ -183,5 +188,5 @@ export function escucharTraspasos(origenes = origenesConfigurados()): () => void
     }
   }
 
-  return () => window.removeEventListener("message", alRecibir as EventListener);
+  return () => window.removeEventListener("message", alRecibir);
 }
