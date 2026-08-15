@@ -70,6 +70,19 @@ async function conseguirBytes(traspaso: TraspasoAlEditor): Promise<Blob | null> 
 }
 
 /**
+ * La ruta del editor, en el formato que entiende `hooks/use-router.ts`.
+ *
+ * Se escribe el hash a pelo en vez de usar `useRouter()` porque esto no es un componente de React:
+ * el router lee `window.location.hash` y escucha `hashchange`, así que asignarlo produce
+ * exactamente el mismo efecto que `navigate("editor")` desde dentro del árbol.
+ */
+export const RUTA_EDITOR = '#/editor';
+
+function irAlEditor(): void {
+  if (window.location.hash !== RUTA_EDITOR) window.location.hash = RUTA_EDITOR;
+}
+
+/**
  * Aplica un traspaso ya validado. Separada del `listener` para poder probarla sin `postMessage`.
  */
 export async function aplicarTraspaso(traspaso: TraspasoAlEditor): Promise<ResultadoDelTraspaso> {
@@ -112,6 +125,14 @@ export async function aplicarTraspaso(traspaso: TraspasoAlEditor): Promise<Resul
 
   const proyecto = montarProyecto(traspaso, media, despues.project);
   despues.loadProject(proyecto);
+
+  // ABRIR EL EDITOR. Sin esto el montaje entra en la tienda y **no se ve**: la raíz de esta app es
+  // la pantalla de bienvenida («From idea to export»), no la línea de tiempo, y `App.tsx` decide
+  // cuál pinta a partir de la ruta del hash. O sea que sin esta línea el usuario acepta sus cortes,
+  // se le dice «el editor lo montó» y se queda mirando una pantalla de inicio — que es exactamente
+  // lo que se reportó el 15-ago. Va DESPUÉS de `loadProject` para que la línea de tiempo se monte
+  // con el proyecto ya puesto y no con el anterior.
+  irAlEditor();
 
   const { duracion } = montarLineaDeTiempo(traspaso.segmentos, media.id);
   return { ok: true, resumen: resumenDelMontaje(traspaso, duracion) };
