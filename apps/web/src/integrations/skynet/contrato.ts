@@ -40,6 +40,37 @@ export const MENSAJE_LISTO = "skynet:editor:listo";
 /** Cómo le fue al traspaso. El padre lo enseña: un traspaso que falla en silencio parece colgado. */
 export const MENSAJE_RESULTADO = "skynet:editor:resultado";
 
+/**
+ * EL ENCARGO: lo que la persona escribe DENTRO del editor y sube a SkyNet.
+ *
+ * Este mensaje es el que vuelve el canal de dos vías, y existe por una razón que no es comodidad
+ * sino seguridad: **la llave del modelo no puede bajar aquí**. Este editor es una app estática en
+ * una URL pública — lo que se hornee en su bundle se lee abriendo devtools. Así que el editor no
+ * llama al modelo: se lo pide a SkyNet, que tiene la llave del lado del servidor y que además ya
+ * sabe cobrarle el gasto a la organización correcta, con su cupo.
+ */
+export const MENSAJE_ENCARGO = "skynet:editor:encargo";
+
+/** Lo que SkyNet contesta: PROPUESTAS. Nunca cortes ya aplicados — quien decide es la persona. */
+export const MENSAJE_PROPUESTAS = "skynet:estudio:propuestas";
+
+/** Lo que sube con el encargo. El material NO viaja: ya está aquí. */
+export interface EncargoAlEstudio {
+  version: number;
+  /** Lo que la persona escribió, en español. */
+  texto: string;
+  /** Carril de edición elegido en SkyNet. Se devuelve tal cual para que el criterio no se pierda. */
+  carril: string;
+  /** Duración del material íntegro, en milisegundos. */
+  duracionMs: number;
+  /** Los silencios ya medidos, para que el modelo razone sobre datos y no sobre el vacío. */
+  silencios: SegmentoDelTraspaso[];
+}
+
+export type RespuestaDeEncargo =
+  | { ok: true; decisiones: DecisionDelTraspaso[]; aviso?: string }
+  | { ok: false; detalle: string };
+
 export type FuenteDelMaterial =
   | { clase: "url"; url: string }
   | { clase: "bytes"; datos: Blob };

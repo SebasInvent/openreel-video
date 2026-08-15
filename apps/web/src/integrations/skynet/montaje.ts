@@ -58,6 +58,50 @@ export interface LineaDeTiempoMontada {
 }
 
 /**
+ * Qué SOBREVIVE tras aplicar las decisiones aceptadas. **Gemela de la de SkyNet**, a conciencia.
+ *
+ * El contrato manda los segmentos ya resueltos justamente para que esta cuenta viviera en un solo
+ * sitio, y eso valía mientras SkyNet fuera quien editaba. Ahora el chat vive AQUÍ: aceptar o
+ * descartar tiene que redibujar la línea de tiempo al instante, y preguntarle a SkyNet en cada clic
+ * convertiría el gesto principal del producto en una ida y vuelta por la red.
+ *
+ * Así que la autoridad se mueve con la línea de tiempo — **quien la tiene, la calcula**. La copia
+ * se guarda con el MISMO vector de prueba que la de SkyNet: si una de las dos deriva, una de las
+ * dos suites se cae.
+ */
+export function segmentosConservados(
+  duracionMs: number,
+  decisiones: readonly { desdeMs: number; hastaMs: number; estado: string }[],
+): SegmentoDelTraspaso[] {
+  if (duracionMs <= 0) return [];
+  const cortes = decisiones
+    .filter((d) => d.estado === "aceptada")
+    .map((d) => ({
+      desdeMs: Math.max(0, Math.min(d.desdeMs, duracionMs)),
+      hastaMs: Math.max(0, Math.min(d.hastaMs, duracionMs)),
+    }))
+    .filter((t) => t.hastaMs > t.desdeMs)
+    .sort((a, b) => a.desdeMs - b.desdeMs);
+
+  // Fusionar solapes: dos cortes encimados no pueden restar dos veces el mismo tiempo.
+  const fusionados: SegmentoDelTraspaso[] = [];
+  for (const c of cortes) {
+    const ultimo = fusionados[fusionados.length - 1];
+    if (ultimo && c.desdeMs <= ultimo.hastaMs) ultimo.hastaMs = Math.max(ultimo.hastaMs, c.hastaMs);
+    else fusionados.push({ ...c });
+  }
+
+  const conservados: SegmentoDelTraspaso[] = [];
+  let cursor = 0;
+  for (const c of fusionados) {
+    if (c.desdeMs > cursor) conservados.push({ desdeMs: cursor, hastaMs: c.desdeMs });
+    cursor = Math.max(cursor, c.hastaMs);
+  }
+  if (cursor < duracionMs) conservados.push({ desdeMs: cursor, hastaMs: duracionMs });
+  return conservados;
+}
+
+/**
  * Convierte los segmentos en clips pegados uno detrás de otro.
  *
  * Cada segmento es un trozo del material que SOBREVIVIÓ a las decisiones. Se colocan sin huecos:

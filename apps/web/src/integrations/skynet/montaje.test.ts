@@ -14,7 +14,12 @@
 
 import { describe, expect, it } from "vitest";
 import { leerTraspaso, origenPermitido, VERSION, type TraspasoAlEditor } from "./contrato";
-import { ajustesDesdeMaterial, montarLineaDeTiempo, resumenDelMontaje } from "./montaje";
+import {
+  ajustesDesdeMaterial,
+  montarLineaDeTiempo,
+  resumenDelMontaje,
+  segmentosConservados,
+} from "./montaje";
 
 const DUR = 60_000;
 
@@ -206,5 +211,52 @@ describe("el resumen que vuelve a SkyNet", () => {
       aceptadas: 1,
       descartadas: 0,
     });
+  });
+});
+
+describe("segmentosConservados: la GEMELA de la de SkyNet", () => {
+  // Vector IDÉNTICO al de `tests/unit/traspasoAlEditor.test.ts` y `aterrizaje.test.ts`. Si una de
+  // las dos copias deriva, una de las dos suites se cae — que es todo el propósito de duplicarlo.
+  const dec = (desdeMs: number, hastaMs: number, estado = "aceptada") => ({
+    desdeMs,
+    hastaMs,
+    estado,
+  });
+
+  it("resta lo aceptado y deja los tres trozos que sobreviven", () => {
+    expect(segmentosConservados(20_000, [dec(6_000, 9_000), dec(15_000, 17_000)])).toEqual([
+      { desdeMs: 0, hastaMs: 6_000 },
+      { desdeMs: 9_000, hastaMs: 15_000 },
+      { desdeMs: 17_000, hastaMs: 20_000 },
+    ]);
+  });
+
+  it("una propuesta sin resolver no recorta nada todavía", () => {
+    expect(segmentosConservados(20_000, [dec(6_000, 9_000, "propuesta")])).toEqual([
+      { desdeMs: 0, hastaMs: 20_000 },
+    ]);
+  });
+
+  it("lo descartado tampoco toca el resultado", () => {
+    expect(segmentosConservados(20_000, [dec(6_000, 9_000, "descartada")])).toEqual([
+      { desdeMs: 0, hastaMs: 20_000 },
+    ]);
+  });
+
+  it("dos cortes encimados no restan dos veces el mismo tiempo", () => {
+    expect(segmentosConservados(20_000, [dec(5_000, 12_000), dec(8_000, 15_000)])).toEqual([
+      { desdeMs: 0, hastaMs: 5_000 },
+      { desdeMs: 15_000, hastaMs: 20_000 },
+    ]);
+  });
+
+  it("un corte que se pasa del final se recorta al material", () => {
+    expect(segmentosConservados(20_000, [dec(18_000, 99_000)])).toEqual([
+      { desdeMs: 0, hastaMs: 18_000 },
+    ]);
+  });
+
+  it("sin material no hay nada que conservar", () => {
+    expect(segmentosConservados(0, [])).toEqual([]);
   });
 });

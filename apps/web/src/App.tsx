@@ -4,6 +4,7 @@ import { ScriptViewDialog } from "./components/editor/ScriptViewDialog";
 import { SearchModal } from "./components/editor/SearchModal";
 import { MobileBlocker } from "./components/MobileBlocker";
 import { WelcomeScreen } from "./components/welcome";
+import { PanelSkynet } from "./integrations/skynet/PanelSkynet";
 import { RecoveryDialog } from "./components/welcome/RecoveryDialog";
 import { SharePage } from "./pages/SharePage";
 import { useUIStore } from "./stores/ui-store";
@@ -162,6 +163,13 @@ function App() {
           <EditorInterface />
         </Suspense>
       )}
+      {/* El chat de SkyNet. Se pinta SOLO si llegó un traspaso —si no, el panel devuelve null—, así
+          que el editor abierto por su cuenta queda exactamente como estaba. Va en un carril fijo a
+          la derecha para no reacomodar la interfaz: superponer es reversible, tocarle el layout al
+          editor es una deuda con cada actualización de upstream. */}
+      <div className="fixed right-0 top-0 z-40 h-screen w-[22rem] max-w-[92vw] overflow-hidden border-l border-white/10 bg-background shadow-2xl empty:hidden">
+        <PanelSkynet />
+      </div>
       <ToastContainer />
       <ScriptViewDialog
         isOpen={activeModal === "scriptView"}

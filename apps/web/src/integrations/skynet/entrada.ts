@@ -29,13 +29,16 @@
 import { useProjectStore } from "../../stores/project-store";
 import {
   MENSAJE_LISTO,
+  MENSAJE_PROPUESTAS,
   MENSAJE_RESULTADO,
   MENSAJE_TRASPASO,
   leerTraspaso,
   origenPermitido,
   type MotivoInvalido,
+  type RespuestaDeEncargo,
   type TraspasoAlEditor,
 } from "./contrato";
+import { useEstadoSkynet } from "./estadoSkynet";
 import { montarLineaDeTiempo, montarProyecto, resumenDelMontaje } from "./montaje";
 
 export type MotivoDeFallo = MotivoInvalido | "sin-bytes" | "no-se-importo" | "ocupado";
@@ -85,7 +88,11 @@ function irAlEditor(): void {
 /**
  * Aplica un traspaso ya validado. Separada del `listener` para poder probarla sin `postMessage`.
  */
-export async function aplicarTraspaso(traspaso: TraspasoAlEditor): Promise<ResultadoDelTraspaso> {
+export async function aplicarTraspaso(
+  traspaso: TraspasoAlEditor,
+  /** De dónde vino. Con él se siembra el chat: es a quien le va a contestar. */
+  origen?: string,
+): Promise<ResultadoDelTraspaso> {
   const bytes = await conseguirBytes(traspaso);
   if (!bytes) {
     return {
@@ -134,6 +141,10 @@ export async function aplicarTraspaso(traspaso: TraspasoAlEditor): Promise<Resul
   // con el proyecto ya puesto y no con el anterior.
   irAlEditor();
 
+  // El chat hereda las decisiones que vinieron con el montaje: la conversación no empieza en
+  // blanco, empieza donde la dejaste en SkyNet.
+  if (origen) useEstadoSkynet.getState().sembrar(traspaso, media.id, origen);
+
   const { duracion } = montarLineaDeTiempo(traspaso.segmentos, media.id);
   return { ok: true, resumen: resumenDelMontaje(traspaso, duracion) };
 }
@@ -154,8 +165,11 @@ export function escucharTraspasos(origenes = origenesConfigurados()): () => void
   const alRecibir = async (evento: MessageEvent) => {
     // 1 · La puerta. Antes de mirar el contenido.
     if (!origenPermitido(evento.origin, origenes)) return;
+    // Dos mensajes entran por aquí: el TRASPASO (montaje nuevo) y las PROPUESTAS (respuesta a un
+    // encargo escrito en el chat). Cualquier otro se ignora sin ruido: en una pestaña cualquiera
+    // manda mensajes, y contestarlos sería convertir el editor en un oráculo.
     const datos = evento.data as { tipo?: string; traspaso?: unknown } | null;
-    if (!datos || datos.tipo !== MENSAJE_TRASPASO) return;
+    if (!datos || (datos.tipo !== MENSAJE_TRASPASO && datos.tipo !== MENSAJE_PROPUESTAS)) return;
 
     const responder = (resultado: ResultadoDelTraspaso) => {
       // Se responde al origen concreto, nunca a `"*"`: la respuesta dice qué material se montó.
@@ -164,6 +178,22 @@ export function escucharTraspasos(origenes = origenesConfigurados()): () => void
         { targetOrigin: evento.origin },
       );
     };
+
+    // LAS PROPUESTAS QUE VUELVEN. Es la otra mitad del canal: el editor preguntó y SkyNet
+    // contesta. Nunca llegan aplicadas — entran a la lista como propuestas y decide la persona.
+    if (datos.tipo === MENSAJE_PROPUESTAS) {
+      const r = (datos as { respuesta?: RespuestaDeEncargo }).respuesta;
+      const est = useEstadoSkynet.getState();
+      est.setPensando(false);
+      if (!r) return;
+      if (r.ok) {
+        est.agregar(r.decisiones);
+        if (r.aviso) est.setAviso(r.aviso);
+      } else {
+        est.setAviso(r.detalle);
+      }
+      return;
+    }
 
     if (enCurso) {
       responder({
@@ -183,7 +213,7 @@ export function escucharTraspasos(origenes = origenesConfigurados()): () => void
 
     enCurso = true;
     try {
-      responder(await aplicarTraspaso(lectura.traspaso));
+      responder(await aplicarTraspaso(lectura.traspaso, evento.origin));
     } catch (e) {
       responder({
         ok: false,

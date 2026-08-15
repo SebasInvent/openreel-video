@@ -92,3 +92,5 @@ xcuserdata/
 # Signing certs — never commit
 *.p12
 *.pfx
+.vercel
+.env*
