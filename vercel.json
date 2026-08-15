@@ -1,0 +1,24 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+
+  "//": [
+    "Despliegue del editor en Vercel. El upstream publica en Cloudflare Pages (`pnpm deploy` →",
+    "wrangler), y ese camino se deja intacto: esto es ADEMÁS, no en vez de.",
+    "",
+    "Es un monorepo pnpm, así que se construye desde la RAÍZ con --filter: si se apunta Vercel a",
+    "`apps/web` como raíz, el install no ve el workspace y los paquetes de `packages/` no resuelven.",
+    "",
+    "NO se ponen cabeceras COOP/COEP. Harían falta para `SharedArrayBuffer` (ffmpeg-core-mt), pero",
+    "la superficie que SkyNet usa es el traspaso por IFRAME, y COEP cambia las reglas de lo que se",
+    "puede incrustar. Añadirlas sin medir el efecto sobre el iframe es meter un riesgo en el camino",
+    "que sí se usa, para ganar uno que hoy no se ejercita. Cuando la exportación con hilos haga",
+    "falta, entra con su propia comprobación."
+  ],
+
+  "buildCommand": "pnpm --filter @openreel/web build",
+  "installCommand": "pnpm install --no-frozen-lockfile",
+  "outputDirectory": "apps/web/dist",
+  "framework": null,
+
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
