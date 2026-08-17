@@ -5,6 +5,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import {
   Undo2,
   Redo2,
@@ -1001,7 +1002,7 @@ export const Timeline: React.FC = () => {
           menuWidth={192}
           hasChevron
           button={{
-            label: "Add track",
+            label: t("Add track"),
             size: "sm",
             variant: "ghost",
             icon: <Plus size={16} aria-hidden />,
@@ -1477,7 +1478,7 @@ export const Timeline: React.FC = () => {
                 type="button"
                 onClick={() => addTrack("video")}
                 className="mx-3 my-1 h-7 flex items-center justify-center gap-1.5 rounded-[7px] border border-dashed border-border-strong text-fg-muted hover:text-fg-2 hover:border-fg-3 transition-colors"
-                aria-label="Add track"
+                aria-label={t("Add track")}
               >
                 <Plus size={16} aria-hidden />
               </button>

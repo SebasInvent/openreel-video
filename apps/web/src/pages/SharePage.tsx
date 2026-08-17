@@ -214,9 +214,9 @@ export const SharePage: React.FC<SharePageProps> = ({ shareId }) => {
 
         <div className="text-center">
           <Text type="supporting" color="secondary" className="text-xs text-text-muted">
-            Made with{" "}
+            Hecho con{" "}
             <Link href="#/editor" className="text-primary hover:underline">
-              Open Reel Video
+              Estudio · SkyNet
             </Link>
           </Text>
         </div>

@@ -1,4 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import {
   Image as ImageIcon, Film, Music, Plus, Upload, Trash2,
   Square, Circle, Triangle, Star, ArrowRight, Hexagon, FileCode, AlertTriangle,
@@ -604,13 +605,13 @@ const EmptyState: React.FC<{ onImport: () => void }> = ({ onImport }) => (
       <Upload size={24} className="text-fg-muted" />
     </div>
     <Text type="body" color="secondary" weight="bold" display="block" className="mb-2 text-sm text-fg">
-      No media imported
+      {t("No media imported")}
     </Text>
     <Text type="supporting" color="secondary" display="block" className="mb-6 text-xs text-fg-3">
-      Drag files here or click to import
+      {t("Drag files here or click to import")}
     </Text>
     <Button
-      label="Import Media"
+      label={t("Import Media")}
       variant="ghost"
       onClick={onImport}
       className="px-4 py-2 bg-bg-2 hover:bg-bg-3 border border-border text-fg-2 text-xs font-medium rounded-lg transition-all hover:border-accent/50"
@@ -1004,7 +1005,7 @@ export const AssetsPanel: React.FC = () => {
         return (
           <div className="flex min-h-0 flex-1 flex-col">
             <div className="px-4 pt-[18px] shrink-0">
-              <div className="font-bold text-[18px] text-fg mb-[14px]">Media</div>
+              <div className="font-bold text-[18px] text-fg mb-[14px]">{t("Media")}</div>
               <div className="flex gap-2 mb-[18px]">
                 <button
                   type="button"
@@ -1029,7 +1030,7 @@ export const AssetsPanel: React.FC = () => {
                 </button>
                 <button
                   type="button"
-                  aria-label="Record"
+                  aria-label={t("Record")}
                   onClick={() => openModal("recorder")}
                   className="flex-1 flex items-center justify-center gap-[7px] bg-bg border border-border rounded-[9px] p-[10px] font-medium text-[13px] text-fg-2"
                 >
@@ -1110,7 +1111,7 @@ export const AssetsPanel: React.FC = () => {
               <div className="px-4 pb-[18px] relative">
                 {filteredItems.length > 0 && (
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-[13px] font-semibold text-fg-2">Project Media</span>
+                    <span className="text-[13px] font-semibold text-fg-2">{t("Project Media")}</span>
                     <span className="text-[12px] font-medium text-fg-muted">{filteredItems.length}</span>
                   </div>
                 )}
@@ -1564,9 +1565,9 @@ export const AssetsPanel: React.FC = () => {
             <button
               key={tab.value}
               type="button"
-              aria-label={tab.label}
+              aria-label={t(tab.label)}
               aria-pressed={isActive}
-              title={tab.label}
+              title={t(tab.label)}
               onClick={() => setActiveTab(tab.value)}
               className={`group flex h-16 w-[68px] shrink-0 flex-col items-center justify-center gap-1 rounded-[10px] px-1 py-2 text-[10px] leading-tight tracking-tight transition-colors ${
                 isActive
@@ -1575,8 +1576,11 @@ export const AssetsPanel: React.FC = () => {
               }`}
             >
               <Icon size={20} strokeWidth={isActive ? 1.8 : 1.7} />
+              {/* Traducido al pintar y no en `ASSETS_TABS`: el arreglo es la identidad de cada
+                  pestaña (`value` manda) y traducir el dato haría que un `merge upstream` que
+                  toque la lista pisara la traducción sin avisar. */}
               <span className="block max-w-full text-center leading-[11px]">
-                {tab.label}
+                {t(tab.label)}
               </span>
             </button>
           );

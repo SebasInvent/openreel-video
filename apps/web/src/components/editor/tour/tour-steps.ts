@@ -7,74 +7,87 @@ export interface TourStep {
   position: "center" | "top" | "bottom" | "left" | "right";
 }
 
+/**
+ * El recorrido de bienvenida, en español.
+ *
+ * Se traduce AQUÍ y no con `t()` a propósito: esto no son etiquetas sueltas, es copy — párrafos que
+ * hay que escribir, no palabras que sustituir. Pasarlo por el diccionario obligaría a usar frases
+ * largas como clave y a mantenerlas idénticas carácter a carácter; a la primera coma que cambie
+ * upstream, el paso entero volvería al inglés sin que nadie lo note.
+ *
+ * El precio: un `merge upstream/main` que reescriba el tour dará conflicto en este archivo. Es lo
+ * correcto — un conflicto se ve y se resuelve; una traducción que deja de aplicar, no.
+ *
+ * Tuteo rolo, nunca voseo.
+ */
 export const TOUR_STEPS: TourStep[] = [
   {
     id: "welcome",
     target: null,
-    title: "Welcome to OpenReel",
+    title: "Bienvenido al Estudio",
     description:
-      "A quick map of the current editor layout: tools on the left, playback in the center, timeline below, and properties on the right.",
+      "Un mapa rápido del editor: las herramientas a la izquierda, la reproducción en el centro, la línea de tiempo abajo y las propiedades a la derecha.",
     position: "center",
   },
   {
     id: "assets",
     target: "[data-tour='assets']",
-    title: "Media and Creative Tools",
+    title: "Material y herramientas",
     description:
-      "This left panel changes with the tool rail: import media, add text, graphics, effects, and transitions from here.",
+      "Este panel cambia según la herramienta que elijas en el riel: acá importas material y añades texto, gráficos, efectos y transiciones.",
     tips: [
-      "Media holds imported videos, audio, and images",
-      "Use the left rail to switch to Text, Graphics, Effects, or Transitions",
-      "Drag assets from this panel onto the timeline",
-      "The import and record controls live at the top of this panel",
+      "En Material están los videos, audios e imágenes que importaste",
+      "Usa el riel de la izquierda para pasar a Texto, Gráficos, Efectos o Transiciones",
+      "Arrastra cualquier cosa de este panel a la línea de tiempo",
+      "Importar y grabar están arriba del panel",
     ],
     position: "right",
   },
   {
     id: "timeline",
     target: "[data-tour='timeline']",
-    title: "Timeline",
+    title: "Línea de tiempo",
     description:
-      "Arrange clips on tracks, trim edges, split selections, and use the zoom controls on the right side of the timeline bar.",
+      "Acomoda los clips en pistas, recorta sus bordes, parte lo que sobra y usa el zoom que está a la derecha de la barra.",
     tips: [
-      "Press S to split the selected clip",
-      "Drag clip edges to trim",
-      "Use Add track when you need another video or audio lane",
+      "Pulsa S para partir el clip seleccionado",
+      "Arrastra el borde de un clip para recortarlo",
+      "Añade pista cuando necesites otro carril de video o audio",
     ],
     position: "top",
   },
   {
     id: "preview",
     target: "[data-tour='preview']",
-    title: "Player",
+    title: "Reproductor",
     description:
-      "The center player shows the current frame and playback controls. Crop, fit, and review changes here before export.",
+      "El reproductor del centro muestra el cuadro actual y los controles. Acá recortas, ajustas el encuadre y revisas antes de exportar.",
     tips: [
-      "Use playback controls under the canvas",
-      "The green dot means live preview is active",
-      "Fullscreen and fit tools are in the player controls",
+      "Los controles de reproducción están bajo el lienzo",
+      "El punto verde significa que la vista previa está activa",
+      "Pantalla completa y ajuste están en los controles del reproductor",
     ],
     position: "left",
   },
   {
     id: "inspector",
     target: "[data-tour='inspector']",
-    title: "Inspector",
+    title: "Propiedades",
     description:
-      "Select a clip to edit its properties. Transform, color, effects, speed, and animation controls appear here.",
+      "Elige un clip para editarlo. Acá aparecen transformación, color, efectos, velocidad y animación.",
     tips: [
-      "Use the top tabs to switch between property groups",
-      "Color grading and effects are clip-specific",
-      "Keyframe-capable controls show animation options when a clip is selected",
+      "Las pestañas de arriba cambian entre grupos de propiedades",
+      "El color y los efectos son de cada clip, no de todo el video",
+      "Los controles que admiten animación muestran sus opciones al elegir un clip",
     ],
     position: "left",
   },
   {
     id: "complete",
     target: null,
-    title: "You're Ready",
+    title: "Listo",
     description:
-      "You now know where the main tools live. Use the action rail on the far left to reopen tours, settings, and project utilities.",
+      "Ya sabes dónde está cada cosa. En el riel del extremo izquierdo puedes volver a abrir este recorrido, los ajustes y las utilidades del proyecto.",
     position: "center",
   },
 ];

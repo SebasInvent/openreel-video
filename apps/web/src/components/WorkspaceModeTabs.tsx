@@ -1,4 +1,5 @@
 import type { JSX } from "react";
+import { t } from "@/integrations/skynet/idioma";
 
 export type WorkspaceMode = "video" | "motion";
 
@@ -6,8 +7,8 @@ const MODES: Array<{
   id: WorkspaceMode;
   label: string;
 }> = [
-  { id: "video", label: "Video Editor" },
-  { id: "motion", label: "Motion Design" },
+  { id: "video", label: t("Video Editor") },
+  { id: "motion", label: t("Motion Design") },
 ];
 
 export function WorkspaceModeTabs({

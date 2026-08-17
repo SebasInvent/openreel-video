@@ -27,8 +27,12 @@ const calculateIsDark = (mode: ThemeMode): boolean => {
 export const useThemeStore = create<ThemeState>()(
   persist(
     (set, get) => ({
-      mode: "light",
-      isDark: false,
+      // OSCURO POR DEFECTO. El editor se abre incrustado dentro de SkyNet, que es oscuro: arrancar
+      // en claro hacía que se leyera como otra aplicación pegada con cinta — fue lo primero que se
+      // reportó al verlo. Sigue siendo una preferencia (`light | dark | auto`) y se persiste, así
+      // que quien la cambie manda; lo que cambia es de dónde parte quien nunca la tocó.
+      mode: "dark",
+      isDark: true,
 
       setMode: (mode: ThemeMode) => {
         const isDark = calculateIsDark(mode);

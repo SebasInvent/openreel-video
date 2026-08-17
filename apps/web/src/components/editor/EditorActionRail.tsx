@@ -5,6 +5,7 @@ import {
   ToolcraftTooltip as Tooltip,
 } from "@openreel/ui";
 import { Icon } from "@/icons/Icon";
+import { t } from "@/integrations/skynet/idioma";
 import {
   House,
   Sun,
@@ -36,9 +37,14 @@ const RailButton: React.FC<{
   onClick: () => void;
   active?: boolean;
 }> = ({ label, icon, onClick, active = false }) => (
-  <Tooltip content={label} placement="end">
+  // La traducción se aplica EN LA FRONTERA del componente, no en cada sitio que lo usa: con una
+  // línea quedan traducidos los ~14 botones del riel, y si upstream añade uno nuevo entra
+  // traducido solo — o en inglés si la frase todavía no está en el diccionario, nunca vacío.
+  // Editar cada `label="..."` daría el mismo resultado con veinte veces más diff que resolver en
+  // el próximo `merge upstream/main`.
+  <Tooltip content={t(label)} placement="end">
     <IconButton
-      label={label}
+      label={t(label)}
       icon={<Icon name={icon} size={16} ariaHidden />}
       size="sm"
       variant={active ? "secondary" : "ghost"}

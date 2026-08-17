@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { Captions, Shuffle } from "@/icons/lucide-compat";
 import { useProjectStore } from "../../stores/project-store";
 import { useTimelineStore } from "../../stores/timeline-store";
@@ -108,10 +109,10 @@ const rgbaFromHex = (hex: string, alpha: string): string => {
 const EmptyState: React.FC = () => (
   <div className="flex-1 flex flex-col items-center justify-center p-10 text-center">
     <Text type="body" weight="semibold" display="block" className="mb-1.5 text-sm text-fg">
-      No selection
+      {t("No selection")}
     </Text>
     <Text type="supporting" display="block" className="text-xs text-fg-muted">
-      Select a clip to view its properties
+      {t("Select a clip to view its properties")}
     </Text>
   </div>
 );

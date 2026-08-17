@@ -1,4 +1,5 @@
 import React, { useCallback, useState, useEffect } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import {
   X,
   Settings,
@@ -483,7 +484,7 @@ export const Toolbar: React.FC = () => {
               onClick={() => handleExport("mp4")}
               className="rounded-l-[8px] rounded-r-none bg-accent px-[18px] py-[9px] text-[13px] font-semibold text-white"
             >
-              Export
+              {t("Export")}
             </button>
             <DropdownMenu
               isMenuOpen={isExportOpen}
