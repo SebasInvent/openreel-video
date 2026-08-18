@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import {
   PARTICLE_PRESETS,
   type ParticlePreset,
@@ -115,13 +116,13 @@ export const ParticleEffectsSection: React.FC<ParticleEffectsSectionProps> = ({
     <div className="space-y-4">
       <div className="flex gap-2">
         <Selector
-          label="Particle effect preset"
+          label={t("Particle effect preset")}
           isLabelHidden
           size="sm"
           width="100%"
           value={selectedPreset}
           onChange={setSelectedPreset}
-          placeholder="Select effect preset..."
+          placeholder={t("Select effect preset...")}
           options={Object.entries(groupedPresets).flatMap(([type, presets]) =>
             presets.map((preset) => ({
               label: `${type} / ${preset.name}`,
@@ -130,7 +131,7 @@ export const ParticleEffectsSection: React.FC<ParticleEffectsSectionProps> = ({
           )}
         />
         <Button
-          label="Add"
+          label={t("Add")}
           variant="primary"
           size="sm"
           onClick={handleAddEffect}
@@ -139,7 +140,7 @@ export const ParticleEffectsSection: React.FC<ParticleEffectsSectionProps> = ({
         />
       </div>
 
-      <div className="grid grid-cols-2 gap-2" aria-label="Particle preset previews">
+      <div className="grid grid-cols-2 gap-2" aria-label={t("Particle preset previews")}>
         {PARTICLE_PRESETS.map((preset) => (
           <ParticlePresetCard
             key={preset.id}
@@ -153,12 +154,8 @@ export const ParticleEffectsSection: React.FC<ParticleEffectsSectionProps> = ({
       {effects.length === 0 ? (
         <div className="text-center py-6 text-fg-3 text-xs">
           <Sparkles size={24} className="mx-auto mb-2 opacity-50" />
-          <Text type="supporting" color="secondary" className="block text-xs">
-            No particle effects added
-          </Text>
-          <Text type="supporting" color="secondary" className="block mt-1 text-[10px]">
-            Select a preset above to add effects
-          </Text>
+          <Text type="supporting" color="secondary" className="block text-xs">{t("No particle effects added")}</Text>
+          <Text type="supporting" color="secondary" className="block mt-1 text-[10px]">{t("Select a preset above to add effects")}</Text>
         </div>
       ) : (
         <div className="max-h-[400px] overflow-y-auto">
@@ -197,7 +194,7 @@ export const ParticleEffectsSection: React.FC<ParticleEffectsSectionProps> = ({
 
                     {onPreviewEffect && (
                       <IconButton
-                        label="Preview effect"
+                        label={t("Preview effect")}
                         onClick={() => onPreviewEffect(effect.id)}
                         variant="ghost"
                         size="sm"
@@ -220,7 +217,7 @@ export const ParticleEffectsSection: React.FC<ParticleEffectsSectionProps> = ({
                     />
 
                     <IconButton
-                      label="Remove effect"
+                      label={t("Remove effect")}
                       onClick={() => onRemoveEffect(effect.id)}
                       variant="ghost"
                       size="sm"
@@ -233,7 +230,7 @@ export const ParticleEffectsSection: React.FC<ParticleEffectsSectionProps> = ({
                     <div className="px-3 pb-3 space-y-3 border-t border-border/50 pt-3">
                       <div className="grid grid-cols-2 gap-3">
                         <ToolcraftNumberInputControl
-                          label="Start Time"
+                          label={t("Start Time")}
                           size="sm"
                           value={Number(relativeStartTime.toFixed(1))}
                           onChange={(val) => {
@@ -247,7 +244,7 @@ export const ParticleEffectsSection: React.FC<ParticleEffectsSectionProps> = ({
                           units="s"
                         />
                         <ToolcraftNumberInputControl
-                          label="Duration"
+                          label={t("Duration")}
                           size="sm"
                           value={Number(effect.duration.toFixed(1))}
                           onChange={(val) => {
@@ -264,14 +261,12 @@ export const ParticleEffectsSection: React.FC<ParticleEffectsSectionProps> = ({
                       <Collapsible
                         defaultIsOpen={false}
                         trigger={
-                          <Text type="supporting" color="secondary" className="text-[10px]">
-                            Particle Settings
-                          </Text>
+                          <Text type="supporting" color="secondary" className="text-[10px]">{t("Particle Settings")}</Text>
                         }
                       >
                         <div className="pt-2 space-y-3">
                           <PropertySlider
-                            label="Particle Count"
+                            label={t("Particle Count")}
                             value={effect.config.particleCount}
                             onChange={(v: number) =>
                               handleConfigChange(effect.id, "particleCount", v)
@@ -283,7 +278,7 @@ export const ParticleEffectsSection: React.FC<ParticleEffectsSectionProps> = ({
                           />
 
                           <PropertySlider
-                            label="Speed"
+                            label={t("Speed")}
                             value={effect.config.speed}
                             onChange={(v: number) =>
                               handleConfigChange(effect.id, "speed", v)
@@ -295,7 +290,7 @@ export const ParticleEffectsSection: React.FC<ParticleEffectsSectionProps> = ({
                           />
 
                           <PropertySlider
-                            label="Gravity"
+                            label={t("Gravity")}
                             value={effect.config.gravity}
                             onChange={(v: number) =>
                               handleConfigChange(effect.id, "gravity", v)
@@ -307,7 +302,7 @@ export const ParticleEffectsSection: React.FC<ParticleEffectsSectionProps> = ({
                           />
 
                           <PropertySlider
-                            label="Emission Rate"
+                            label={t("Emission Rate")}
                             value={effect.config.emissionRate}
                             onChange={(v: number) =>
                               handleConfigChange(effect.id, "emissionRate", v)
@@ -320,7 +315,7 @@ export const ParticleEffectsSection: React.FC<ParticleEffectsSectionProps> = ({
 
                           <div className="grid grid-cols-2 gap-2">
                             <PropertySlider
-                              label="Min Size"
+                              label={t("Min Size")}
                               value={effect.config.size.min}
                               onChange={(v: number) =>
                                 handleConfigChange(effect.id, "size", {
@@ -334,7 +329,7 @@ export const ParticleEffectsSection: React.FC<ParticleEffectsSectionProps> = ({
                               formatValue={(value) => String(value)}
                             />
                             <PropertySlider
-                              label="Max Size"
+                              label={t("Max Size")}
                               value={effect.config.size.max}
                               onChange={(v: number) =>
                                 handleConfigChange(effect.id, "size", {
@@ -350,7 +345,7 @@ export const ParticleEffectsSection: React.FC<ParticleEffectsSectionProps> = ({
                           </div>
 
                           <PropertySlider
-                            label="Turbulence"
+                            label={t("Turbulence")}
                             value={effect.config.turbulence}
                             onChange={(v: number) =>
                               handleConfigChange(effect.id, "turbulence", v)
@@ -362,7 +357,7 @@ export const ParticleEffectsSection: React.FC<ParticleEffectsSectionProps> = ({
                           />
 
                           <Selector
-                            label="Blend Mode"
+                            label={t("Blend Mode")}
                             size="sm"
                             width="100%"
                             value={effect.config.blendMode}
@@ -409,7 +404,7 @@ export const ParticleEffectsSection: React.FC<ParticleEffectsSectionProps> = ({
                               />
                             ))}
                             <IconButton
-                              label="Add color"
+                              label={t("Add color")}
                               onClick={() => {
                                 const newColors = [...effect.config.colors, "#ffffff"];
                                 handleConfigChange(effect.id, "colors", newColors);
@@ -559,7 +554,7 @@ const ColorSwatch: React.FC<ColorSwatchProps> = ({ color, onChange, onRemove }) 
       />
       {onRemove && (
         <IconButton
-          label="Remove color"
+          label={t("Remove color")}
           onClick={onRemove}
           variant="ghost"
           size="sm"

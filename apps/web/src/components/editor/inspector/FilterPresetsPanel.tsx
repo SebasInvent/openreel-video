@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useMemo } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftCard as Card } from "@openreel/ui";
 import { ToolcraftClickableCard as ClickableCard } from "@openreel/ui";
@@ -145,9 +146,7 @@ export const FilterPresetsPanel: React.FC<FilterPresetsPanelProps> = ({
     return (
       <div className="p-4 text-center">
         <Palette size={24} className="mx-auto mb-2 text-fg-3" />
-        <Text type="supporting" color="secondary">
-          Select a video clip to apply filters
-        </Text>
+        <Text type="supporting" color="secondary">{t("Select a video clip to apply filters")}</Text>
       </div>
     );
   }
@@ -157,12 +156,8 @@ export const FilterPresetsPanel: React.FC<FilterPresetsPanelProps> = ({
       <div className="flex items-center gap-2 p-2 bg-primary/10 rounded-lg border border-primary/30">
         <Palette size={16} className="text-primary" />
         <div className="flex flex-col gap-0.5">
-          <Text type="supporting" color="primary" weight="medium" display="block">
-            Filter Presets
-          </Text>
-          <Text type="supporting" color="secondary" display="block" className="text-[9px]">
-            One-click color grades
-          </Text>
+          <Text type="supporting" color="primary" weight="medium" display="block">{t("Filter Presets")}</Text>
+          <Text type="supporting" color="secondary" display="block" className="text-[9px]">{t("One-click color grades")}</Text>
         </div>
       </div>
 
@@ -201,7 +196,7 @@ export const FilterPresetsPanel: React.FC<FilterPresetsPanelProps> = ({
       {appliedPresetId && (
         <Card variant="muted" padding={3} className="space-y-3">
           <PropertySlider
-            label="Intensity"
+            label={t("Intensity")}
             min={0}
             max={100}
             step={1}
@@ -210,7 +205,7 @@ export const FilterPresetsPanel: React.FC<FilterPresetsPanelProps> = ({
             formatValue={(value) => `${value}%`}
           />
           <Button
-            label="Remove All Effects"
+            label={t("Remove All Effects")}
             size="sm"
             variant="destructive"
             onClick={handleClearEffects}

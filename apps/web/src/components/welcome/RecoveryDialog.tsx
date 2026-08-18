@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { RotateCcw, Clock, FileVideo, ChevronDown, Trash2 } from "@/icons/lucide-compat";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftClickableCard as ClickableCard } from "@openreel/ui";
@@ -75,8 +76,8 @@ export const RecoveryDialog: React.FC<RecoveryDialogProps> = ({
       <Layout
         header={
           <DialogHeader
-            title="Recover Your Work"
-            subtitle="We found an unsaved project"
+            title={t("Recover Your Work")}
+            subtitle={t("We found an unsaved project")}
             onOpenChange={(open) => !open && onDismiss()}
             startContent={<RotateCcw className="w-5 h-5 text-primary" aria-hidden />}
           />
@@ -125,7 +126,7 @@ export const RecoveryDialog: React.FC<RecoveryDialogProps> = ({
                 />
                 {onClearAll && (
                   <IconButton
-                    label="Clear all saved projects"
+                    label={t("Clear all saved projects")}
                     onClick={handleClearAll}
                     isDisabled={isClearing}
                     icon={<Trash2 className="w-4 h-4" aria-hidden />}
@@ -173,7 +174,7 @@ export const RecoveryDialog: React.FC<RecoveryDialogProps> = ({
           <LayoutFooter>
             <div className="flex w-full gap-2">
               <Button
-                label="Start Fresh"
+                label={t("Start Fresh")}
                 variant="secondary"
                 onClick={onDismiss}
                 className="flex-1"

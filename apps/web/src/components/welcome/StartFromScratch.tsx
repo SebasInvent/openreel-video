@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import {
   Smartphone,
   Monitor,
@@ -107,23 +108,19 @@ export const StartFromScratch: React.FC<StartFromScratchProps> = ({
   return (
     <div className="space-y-6">
       <div>
-        <Text type="label" color="primary" weight="medium" className="text-sm text-text-primary mb-2 block">
-          Project Name
-        </Text>
+        <Text type="label" color="primary" weight="medium" className="text-sm text-text-primary mb-2 block">{t("Project Name")}</Text>
         <ToolcraftTextInputControl
-          label="Project Name"
+          label={t("Project Name")}
           isLabelHidden
           value={projectName}
           onChange={setProjectName}
-          placeholder="My Awesome Video"
+          placeholder={t("My Awesome Video")}
           className="max-w-md bg-background-tertiary border-border text-text-primary"
         />
       </div>
 
       <div>
-        <Text type="label" color="primary" weight="medium" className="text-sm text-text-primary mb-4">
-          Select Format
-        </Text>
+        <Text type="label" color="primary" weight="medium" className="text-sm text-text-primary mb-4">{t("Select Format")}</Text>
 
         <div className="grid md:grid-cols-2 gap-6">
           {PRESET_GROUPS.map((group) => {

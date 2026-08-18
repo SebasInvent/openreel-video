@@ -1,4 +1,5 @@
 import React from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftText as Text } from "@openreel/ui";
 
@@ -43,14 +44,12 @@ export class ErrorBoundary extends React.Component<
 
       return (
         <div className="flex flex-col items-center justify-center p-8 text-center bg-background-secondary/50 rounded-lg m-2">
-          <Text type="supporting" weight="medium" className="text-red-400 text-sm mb-2">
-            Something went wrong
-          </Text>
+          <Text type="supporting" weight="medium" className="text-red-400 text-sm mb-2">{t("Something went wrong")}</Text>
           <Text type="supporting" color="secondary" className="text-text-muted text-xs mb-4 max-w-xs">
             {this.state.error?.message || "An unexpected error occurred"}
           </Text>
           <Button
-            label="Retry"
+            label={t("Retry")}
             variant="ghost"
             size="sm"
             onClick={this.handleRetry}

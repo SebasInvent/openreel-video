@@ -1,4 +1,5 @@
 import type { JSX } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { useMemo, useState } from "react";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftText as Text } from "@openreel/ui";
@@ -56,7 +57,7 @@ export function AIPanel({ clipTypeFilter = null, embedded = false }: AIPanelProp
   };
 
   if (!isGpuAvailable()) {
-    return <div className="p-3 text-[11px] text-text-muted">AI cloud jobs are unavailable in this environment.</div>;
+    return <div className="p-3 text-[11px] text-text-muted">{t("AI cloud jobs are unavailable in this environment.")}</div>;
   }
 
   return (

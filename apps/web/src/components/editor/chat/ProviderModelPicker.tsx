@@ -1,4 +1,5 @@
 import type { JSX } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftSelectControl as Selector } from "@openreel/ui";
 import {
   useSettingsStore,
@@ -31,7 +32,7 @@ export function ProviderModelPicker({
   return (
     <div className="flex items-center gap-1.5">
       <Selector
-        label="LLM provider"
+        label={t("LLM provider")}
         isLabelHidden
         size="sm"
         width="9rem"
@@ -45,7 +46,7 @@ export function ProviderModelPicker({
         }}
       />
       <Selector
-        label="LLM model"
+        label={t("LLM model")}
         isLabelHidden
         size="sm"
         width="9rem"

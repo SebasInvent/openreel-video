@@ -1,4 +1,5 @@
 import React, { useCallback, useRef, useMemo } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftText as Text } from "@openreel/ui";
 import { RotateCcw } from "@/icons/lucide-compat";
@@ -160,7 +161,7 @@ const ColorWheel: React.FC<ColorWheelProps> = ({
         }}
         onMouseDown={handleMouseDown}
         onDoubleClick={handleDoubleClick}
-        title="Drag to adjust color. Double-click to reset."
+        title={t("Drag to adjust color. Double-click to reset.")}
       >
         {/* Center gradient overlay for saturation falloff */}
         <div
@@ -264,7 +265,7 @@ export const ColorWheelsControl: React.FC<ColorWheelsControlProps> = ({
       {onReset && (
         <div className="flex justify-end">
           <Button
-            label="Reset"
+            label={t("Reset")}
             icon={<RotateCcw size={10} />}
             variant="ghost"
             size="sm"
@@ -277,19 +278,19 @@ export const ColorWheelsControl: React.FC<ColorWheelsControlProps> = ({
       {/* Color Wheels Row */}
       <div className="flex justify-around items-start">
         <ColorWheel
-          label="Shadows"
+          label={t("Shadows")}
           color={values.shadows}
           onChange={handleShadowsChange}
           onReset={resetShadows}
         />
         <ColorWheel
-          label="Midtones"
+          label={t("Midtones")}
           color={values.midtones}
           onChange={handleMidtonesChange}
           onReset={resetMidtones}
         />
         <ColorWheel
-          label="Highlights"
+          label={t("Highlights")}
           color={values.highlights}
           onChange={handleHighlightsChange}
           onReset={resetHighlights}
@@ -299,7 +300,7 @@ export const ColorWheelsControl: React.FC<ColorWheelsControlProps> = ({
       {/* Lift/Gamma/Gain Sliders */}
       <div className="space-y-2 pt-2 border-t border-border">
         <LGGSlider
-          label="Lift (Shadows)"
+          label={t("Lift (Shadows)")}
           value={values.shadowsLift}
           onChange={handleLiftChange}
           min={-1}
@@ -307,7 +308,7 @@ export const ColorWheelsControl: React.FC<ColorWheelsControlProps> = ({
           defaultValue={0}
         />
         <LGGSlider
-          label="Gamma (Midtones)"
+          label={t("Gamma (Midtones)")}
           value={values.midtonesGamma}
           onChange={handleGammaChange}
           min={0.1}
@@ -315,7 +316,7 @@ export const ColorWheelsControl: React.FC<ColorWheelsControlProps> = ({
           defaultValue={1}
         />
         <LGGSlider
-          label="Gain (Highlights)"
+          label={t("Gain (Highlights)")}
           value={values.highlightsGain}
           onChange={handleGainChange}
           min={0}

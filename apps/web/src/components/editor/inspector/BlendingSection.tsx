@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftText as Text } from "@openreel/ui";
 import { MockSlider } from "./shell/InspectorControls";
 import { useProjectStore } from "../../../stores/project-store";
@@ -71,21 +72,17 @@ export const BlendingSection: React.FC<BlendingSectionProps> = ({ clipId }) => {
         type="supporting"
         color="secondary"
         className="py-8 text-center text-xs"
-      >
-        No clip selected
-      </Text>
+      >{t("No clip selected")}</Text>
     );
   }
 
   return (
     <div className="space-y-3">
       <div className="flex items-center">
-        <span className="w-[90px] flex-none text-[14px] font-semibold text-fg">
-          Blending
-        </span>
+        <span className="w-[90px] flex-none text-[14px] font-semibold text-fg">{t("Blending")}</span>
         <div className="relative flex-1">
           <select
-            aria-label="Blend mode"
+            aria-label={t("Blend mode")}
             value={blendMode}
             onChange={(event) =>
               handleBlendModeChange(event.target.value as BlendMode)
@@ -115,9 +112,7 @@ export const BlendingSection: React.FC<BlendingSectionProps> = ({ clipId }) => {
 
       {blendMode !== "normal" && (
         <div className="flex items-center">
-          <span className="w-[90px] flex-none text-[13px] font-medium text-fg-3">
-            Blend Opacity
-          </span>
+          <span className="w-[90px] flex-none text-[13px] font-medium text-fg-3">{t("Blend Opacity")}</span>
           <MockSlider
             className="flex-1"
             value={blendOpacity}

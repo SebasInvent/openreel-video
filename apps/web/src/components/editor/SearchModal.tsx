@@ -5,6 +5,7 @@ import React, {
   useEffect,
   useRef,
 } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import {
   Search,
   X,
@@ -465,7 +466,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
       <Layout
         header={
           <DialogHeader
-            title="Search Effects"
+            title={t("Search Effects")}
             subtitle={
               selectedClipType
                 ? `Find tools for the selected ${selectedClipType} clip.`
@@ -482,7 +483,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                 <div className="min-w-0 flex-1">
                   <ToolcraftTextInputControl
                     ref={inputRef}
-                    label="Search effects"
+                    label={t("Search effects")}
                     isLabelHidden
                     type="text"
                     value={query}
@@ -499,7 +500,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                 </div>
                 {query && (
                   <IconButton
-                    label="Clear search"
+                    label={t("Clear search")}
                     onClick={() => setQuery("")}
                     variant="ghost"
                     size="sm"
@@ -528,7 +529,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
               <div ref={listRef} className="max-h-[50vh] overflow-y-auto">
                 {filteredEffects.length === 0 ? (
                   <EmptyState
-                    title="No effects found"
+                    title={t("No effects found")}
                     description="Try a different search term or category."
                     icon={<Search size={32} className="text-text-muted opacity-50" aria-hidden />}
                     isCompact
@@ -610,13 +611,9 @@ export const SearchModal: React.FC<SearchModalProps> = ({
               <div className="flex items-center gap-2">
                 <Kbd keys="up" />
                 <Kbd keys="down" />
-                <Text type="supporting" color="secondary" className="text-[10px]">
-                  Navigate
-                </Text>
+                <Text type="supporting" color="secondary" className="text-[10px]">{t("Navigate")}</Text>
                 <Kbd keys="enter" />
-                <Text type="supporting" color="secondary" className="text-[10px]">
-                  Select
-                </Text>
+                <Text type="supporting" color="secondary" className="text-[10px]">{t("Select")}</Text>
               </div>
             </div>
           </LayoutFooter>

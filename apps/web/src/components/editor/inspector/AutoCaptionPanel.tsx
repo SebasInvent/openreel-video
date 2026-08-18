@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useMemo } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftCard as Card } from "@openreel/ui";
 import { ToolcraftSelectControl as Selector } from "@openreel/ui";
@@ -125,9 +126,7 @@ export const AutoCaptionPanel: React.FC = () => {
       <div className="p-4 space-y-3">
         <div className="flex items-center gap-2 text-status-warning">
           <AlertCircle size={16} />
-          <Text type="supporting" className="text-[11px] font-medium">
-            Browser Not Supported
-          </Text>
+          <Text type="supporting" className="text-[11px] font-medium">{t("Browser Not Supported")}</Text>
         </div>
         <Text type="supporting" color="secondary" className="text-[10px]">
           Auto-captions require Chrome or Edge browser with Speech Recognition
@@ -142,12 +141,8 @@ export const AutoCaptionPanel: React.FC = () => {
       <Card variant="muted" padding={2} className="flex items-center gap-2 border border-primary/30 bg-primary/10">
         <Mic size={16} className="text-primary" />
         <div className="flex flex-col gap-0.5">
-          <Text type="supporting" color="primary" className="block text-[11px] font-medium">
-            Auto-Caption
-          </Text>
-          <Text type="supporting" color="secondary" className="block text-[9px]">
-            Generate captions from speech
-          </Text>
+          <Text type="supporting" color="primary" className="block text-[11px] font-medium">{t("Auto-Caption")}</Text>
+          <Text type="supporting" color="secondary" className="block text-[9px]">{t("Generate captions from speech")}</Text>
         </div>
       </Card>
 
@@ -155,12 +150,10 @@ export const AutoCaptionPanel: React.FC = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Languages size={14} className="text-fg-2" />
-            <Text type="supporting" color="secondary" className="text-[10px]">
-              Language
-            </Text>
+            <Text type="supporting" color="secondary" className="text-[10px]">{t("Language")}</Text>
           </div>
           <Selector
-            label="Language"
+            label={t("Language")}
             isLabelHidden
             size="sm"
             width={140}
@@ -175,11 +168,9 @@ export const AutoCaptionPanel: React.FC = () => {
         </div>
 
         <div className="flex items-center justify-between">
-          <Text type="supporting" color="secondary" className="text-[10px]">
-            Caption Style
-          </Text>
+          <Text type="supporting" color="secondary" className="text-[10px]">{t("Caption Style")}</Text>
           <Selector
-            label="Caption Style"
+            label={t("Caption Style")}
             isLabelHidden
             size="sm"
             width={140}
@@ -206,20 +197,14 @@ export const AutoCaptionPanel: React.FC = () => {
       {isTranscribing && progress && (
         <Card variant="muted" padding={3} className="space-y-2">
           <div className="flex items-center justify-between">
-            <Text type="supporting" color="secondary" className="text-[10px]">
-              Status
-            </Text>
+            <Text type="supporting" color="secondary" className="text-[10px]">{t("Status")}</Text>
             <div className="flex items-center gap-1">
               <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-              <Text type="supporting" className="text-[10px] text-red-400">
-                Recording
-              </Text>
+              <Text type="supporting" className="text-[10px] text-red-400">{t("Recording")}</Text>
             </div>
           </div>
           <div className="flex items-center justify-between">
-            <Text type="supporting" color="secondary" className="text-[10px]">
-              Segments Found
-            </Text>
+            <Text type="supporting" color="secondary" className="text-[10px]">{t("Segments Found")}</Text>
             <Text type="supporting" color="primary" className="font-mono text-[10px]">
               {progress.segmentsFound}
             </Text>
@@ -235,7 +220,7 @@ export const AutoCaptionPanel: React.FC = () => {
               detected
             </Text>
             <Button
-              label="Add to Timeline"
+              label={t("Add to Timeline")}
               variant="primary"
               size="sm"
               onClick={handleApplySegments}
@@ -266,7 +251,7 @@ export const AutoCaptionPanel: React.FC = () => {
       <div className="flex gap-2">
         {!isTranscribing ? (
           <Button
-            label="Start Recording"
+            label={t("Start Recording")}
             icon={<Mic size={16} />}
             variant="primary"
             size="md"
@@ -275,7 +260,7 @@ export const AutoCaptionPanel: React.FC = () => {
           />
         ) : (
           <Button
-            label="Stop Recording"
+            label={t("Stop Recording")}
             icon={<MicOff size={16} />}
             variant="primary"
             size="md"

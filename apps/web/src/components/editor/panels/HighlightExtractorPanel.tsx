@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftIconButton as IconButton } from "@openreel/ui";
 import { ToolcraftNumberInputControl } from "@openreel/ui";
@@ -142,9 +143,9 @@ export const HighlightExtractorPanel: React.FC<HighlightExtractorPanelProps> = (
     <div className="space-y-3">
       <div className="space-y-2">
         <div className="flex items-center gap-2">
-          <Text type="label" color="secondary" className="text-[10px] text-text-secondary">Clips</Text>
+          <Text type="label" color="secondary" className="text-[10px] text-text-secondary">{t("Clips")}</Text>
           <ToolcraftNumberInputControl
-            label="Clips"
+            label={t("Clips")}
             isLabelHidden
             size="sm"
             width={48}
@@ -158,7 +159,7 @@ export const HighlightExtractorPanel: React.FC<HighlightExtractorPanelProps> = (
           />
           <Text type="label" color="secondary" className="text-[10px] text-text-secondary">Max</Text>
           <ToolcraftNumberInputControl
-            label="Max duration"
+            label={t("Max duration")}
             isLabelHidden
             size="sm"
             width={48}
@@ -227,7 +228,7 @@ export const HighlightExtractorPanel: React.FC<HighlightExtractorPanelProps> = (
                 </div>
                 <div className="flex items-center gap-1">
                   <IconButton
-                    label="Preview highlight"
+                    label={t("Preview highlight")}
                     icon={<Play size={10} className="text-text-muted" aria-hidden />}
                     variant="ghost"
                     size="sm"

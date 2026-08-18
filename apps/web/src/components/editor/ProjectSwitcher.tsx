@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import {
   ChevronDown,
   Plus,
@@ -160,14 +161,12 @@ export const ProjectSwitcher: React.FC = () => {
               type="supporting"
               color="secondary"
               className="mb-2 text-xs font-medium uppercase tracking-wider"
-            >
-              Current Project
-            </Text>
+            >{t("Current Project")}</Text>
             {isEditing ? (
               <div className="flex items-center gap-2">
                 <ToolcraftTextInputControl
                   ref={inputRef}
-                  label="Project name"
+                  label={t("Project name")}
                   isLabelHidden
                   size="sm"
                   width="100%"
@@ -178,7 +177,7 @@ export const ProjectSwitcher: React.FC = () => {
                   className="flex-1 bg-background-secondary border-primary text-text-primary"
                 />
                 <IconButton
-                  label="Save project name"
+                  label={t("Save project name")}
                   onClick={handleSaveName}
                   variant="secondary"
                   size="sm"
@@ -201,7 +200,7 @@ export const ProjectSwitcher: React.FC = () => {
                   {project.name}
                 </Text>
                 <IconButton
-                  label="Rename project"
+                  label={t("Rename project")}
                   onClick={() => setIsEditing(true)}
                   variant="ghost"
                   size="sm"
@@ -214,7 +213,7 @@ export const ProjectSwitcher: React.FC = () => {
 
           <div className="p-2">
             <ClickableCard
-              label="New Project"
+              label={t("New Project")}
               onClick={handleNewProject}
               padding={3}
               variant="transparent"
@@ -224,12 +223,8 @@ export const ProjectSwitcher: React.FC = () => {
                 <Plus className="w-4 h-4" />
               </div>
               <div className="flex-1">
-                <Text type="supporting" color="primary" className="text-sm font-medium">
-                  New Project
-                </Text>
-                <Text type="supporting" color="secondary" className="text-xs">
-                  Start fresh with a new canvas
-                </Text>
+                <Text type="supporting" color="primary" className="text-sm font-medium">{t("New Project")}</Text>
+                <Text type="supporting" color="secondary" className="text-xs">{t("Start fresh with a new canvas")}</Text>
               </div>
             </ClickableCard>
           </div>
@@ -243,9 +238,7 @@ export const ProjectSwitcher: React.FC = () => {
                     type="supporting"
                     color="secondary"
                     className="text-xs font-medium uppercase tracking-wider"
-                  >
-                  Recent Projects
-                  </Text>
+                  >{t("Recent Projects")}</Text>
                 </div>
               </div>
               <div className="max-h-64 overflow-y-auto px-2 pb-2">

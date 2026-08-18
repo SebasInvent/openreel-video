@@ -1,4 +1,5 @@
 import { ToolcraftButton as Button } from "@openreel/ui";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftSelectControl as Selector } from "@openreel/ui";
 import { ToolcraftSliderControl } from "@openreel/ui";
 import { ToolcraftText as Text } from "@openreel/ui";
@@ -18,11 +19,11 @@ export function QwenForm({ value, onChange, onSubmit, isLoading }: Props) {
   return (
     <div className="space-y-4">
       <ToolcraftTextAreaControl
-        label="Prompt"
+        label={t("Prompt")}
         isRequired
         value={value.prompt}
         onChange={(prompt) => onChange({ ...value, prompt })}
-        placeholder="Describe the image you want to generate..."
+        placeholder={t("Describe the image you want to generate...")}
         maxLength={2000}
         rows={4}
         width="100%"
@@ -36,7 +37,7 @@ export function QwenForm({ value, onChange, onSubmit, isLoading }: Props) {
           </Text>
         </Text>
         <ToolcraftSliderControl
-          label="Strength"
+          label={t("Strength")}
           isLabelHidden
           min={0}
           max={1}
@@ -48,18 +49,14 @@ export function QwenForm({ value, onChange, onSubmit, isLoading }: Props) {
           valueDisplay="none"
         />
         <div className="flex justify-between">
-          <Text type="supporting" color="secondary" className="text-[10px]">
-            Preserve
-          </Text>
-          <Text type="supporting" color="secondary" className="text-[10px]">
-            Remake
-          </Text>
+          <Text type="supporting" color="secondary" className="text-[10px]">{t("Preserve")}</Text>
+          <Text type="supporting" color="secondary" className="text-[10px]">{t("Remake")}</Text>
         </div>
       </div>
 
       <div className="grid grid-cols-2 gap-3">
         <Selector
-          label="Format"
+          label={t("Format")}
           value={value.output_format ?? "png"}
           onChange={(output_format) =>
             onChange({ ...value, output_format: output_format as QwenInput["output_format"] })
@@ -73,7 +70,7 @@ export function QwenForm({ value, onChange, onSubmit, isLoading }: Props) {
         />
 
         <Selector
-          label="Acceleration"
+          label={t("Acceleration")}
           value={value.acceleration ?? "regular"}
           onChange={(acceleration) =>
             onChange({ ...value, acceleration: acceleration as QwenInput["acceleration"] })
@@ -89,12 +86,12 @@ export function QwenForm({ value, onChange, onSubmit, isLoading }: Props) {
       </div>
 
       <ToolcraftTextAreaControl
-        label="Negative Prompt (optional)"
+        label={t("Negative Prompt (optional)")}
         value={value.negative_prompt ?? ""}
         onChange={(negative_prompt) =>
           onChange({ ...value, negative_prompt: negative_prompt || undefined })
         }
-        placeholder="Describe what you don't want in the result..."
+        placeholder={t("Describe what you don't want in the result...")}
         maxLength={500}
         rows={2}
         width="100%"

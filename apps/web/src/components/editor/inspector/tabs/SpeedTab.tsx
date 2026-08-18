@@ -1,4 +1,5 @@
 import React from "react";
+import { t } from "@/integrations/skynet/idioma";
 import type { Clip } from "@openreel/core";
 import { SpeedSection, StabilizationSection, SpeedRampSection } from "../";
 import { InspectorSection } from "../shell/InspectorSection";
@@ -27,7 +28,7 @@ export const SpeedTab: React.FC<SpeedTabProps> = ({
         !selectedClip.mediaId.startsWith("sticker-") && (
           <>
             <InspectorSection
-              title="Speed & Direction"
+              title={t("Speed & Direction")}
               sectionId="speed"
               defaultOpen={false}
             >
@@ -42,7 +43,7 @@ export const SpeedTab: React.FC<SpeedTabProps> = ({
         !selectedClip.mediaId.startsWith("svg-") &&
         !selectedClip.mediaId.startsWith("sticker-") && (
           <InspectorSection
-            title="Stabilization"
+            title={t("Stabilization")}
             sectionId="stabilization"
             defaultOpen={false}
           >
@@ -56,7 +57,7 @@ export const SpeedTab: React.FC<SpeedTabProps> = ({
         !selectedClip.mediaId.startsWith("svg-") &&
         !selectedClip.mediaId.startsWith("sticker-") && (
           <InspectorSection
-            title="Speed Curves"
+            title={t("Speed Curves")}
             sectionId="speed-curves"
             defaultOpen={false}
           >

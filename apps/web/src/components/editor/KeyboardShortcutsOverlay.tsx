@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { Keyboard, Search, RotateCcw, ChevronDown } from "@/icons/lucide-compat";
 import { ToolcraftSegmentedControl } from "@openreel/ui";
 import { ToolcraftButton as Button } from "@openreel/ui";
@@ -135,7 +136,7 @@ export const KeyboardShortcutsOverlay: React.FC<
 
   const categories = keyboardShortcuts.getCategories();
   const categoryOptions: Array<{ label: string; value: ShortcutCategory | "all" }> = [
-    { value: "all", label: "All" },
+    { value: "all", label: t("All") },
     ...categories.map((category) => ({
       value: category,
       label: keyboardShortcuts.getCategoryName(category),
@@ -155,7 +156,7 @@ export const KeyboardShortcutsOverlay: React.FC<
       <Layout
         header={
           <DialogHeader
-            title="Keyboard Shortcuts"
+            title={t("Keyboard Shortcuts")}
             onOpenChange={(open) => !open && onClose()}
             startContent={<Keyboard size={20} className="text-primary" aria-hidden />}
           />
@@ -166,12 +167,12 @@ export const KeyboardShortcutsOverlay: React.FC<
         <div className="flex items-center gap-3">
           <div className="min-w-0 flex-1">
             <ToolcraftTextInputControl
-              label="Search shortcuts"
+              label={t("Search shortcuts")}
               isLabelHidden
               type="text"
               value={searchQuery}
               onChange={setSearchQuery}
-              placeholder="Search shortcuts..."
+              placeholder={t("Search shortcuts...")}
               startIcon={<Search size={16} aria-hidden />}
               width="100%"
             />
@@ -211,7 +212,7 @@ export const KeyboardShortcutsOverlay: React.FC<
           </div>
 
           <Button
-            label="Reset All"
+            label={t("Reset All")}
             onClick={handleResetAll}
             variant="ghost"
             icon={<RotateCcw size={14} aria-hidden />}
@@ -269,7 +270,7 @@ export const KeyboardShortcutsOverlay: React.FC<
                             onKeyDown={(e) =>
                               handleShortcutCapture(e, shortcut.id)
                             }
-                            placeholder="Press keys..."
+                            placeholder={t("Press keys...")}
                             hasAutoFocus
                             width={128}
                             size="sm"
@@ -285,7 +286,7 @@ export const KeyboardShortcutsOverlay: React.FC<
                         )}
                         {shortcut.currentKey !== shortcut.defaultKey && (
                           <IconButton
-                            label="Reset to default"
+                            label={t("Reset to default")}
                             onClick={() => handleResetShortcut(shortcut.id)}
                             variant="ghost"
                             size="sm"
@@ -303,7 +304,7 @@ export const KeyboardShortcutsOverlay: React.FC<
 
           {filteredShortcuts.length === 0 && (
             <EmptyState
-              title="No shortcuts found"
+              title={t("No shortcuts found")}
               icon={<Keyboard size={32} className="text-text-muted opacity-30" aria-hidden />}
               isCompact
             />

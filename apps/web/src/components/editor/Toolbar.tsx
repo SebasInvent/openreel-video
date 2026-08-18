@@ -427,7 +427,7 @@ export const Toolbar: React.FC = () => {
       {/* ─── Center: project name ─────────────────────────────── */}
       <div className="flex flex-1 min-w-0 items-center justify-center gap-1.5">
         <ToolcraftTextInputControl
-          label="Project name"
+          label={t("Project name")}
           isLabelHidden
           value={projectNameDraft}
           onChange={setProjectNameDraft}
@@ -474,9 +474,7 @@ export const Toolbar: React.FC = () => {
             disabled
             className="flex items-center gap-1.5 rounded-[8px] bg-bg-3 px-[18px] py-[9px] text-[13px] font-semibold text-fg-2"
           >
-            <Icon name="checkmark" size={13} ariaHidden />
-            Saved!
-          </button>
+            <Icon name="checkmark" size={13} ariaHidden />{t("Saved!")}</button>
         ) : (
           <div className="flex items-stretch">
             <button
@@ -538,9 +536,7 @@ export const Toolbar: React.FC = () => {
                             {option.label}
                           </Text>
                           {option.recommended && (
-                            <Text type="supporting" className="rounded bg-accent-soft px-1.5 py-0.5 text-[10px] text-accent">
-                              Best match
-                            </Text>
+                            <Text type="supporting" className="rounded bg-accent-soft px-1.5 py-0.5 text-[10px] text-accent">{t("Best match")}</Text>
                           )}
                         </div>
                       }
@@ -565,14 +561,14 @@ export const Toolbar: React.FC = () => {
                 <div className="my-1 border-t border-border" />
                 <DropdownMenuItem
                   icon={<Settings size={18} aria-hidden />}
-                  label="Custom export..."
+                  label={t("Custom export...")}
                   description="Full settings with AI upscaling"
                   endContent={<MoreHorizontal size={14} className="text-fg-muted" aria-hidden />}
                   onClick={() => setIsExportDialogOpen(true)}
                 />
                 <DropdownMenuItem
                   icon={<Video size={18} aria-hidden />}
-                  label="Compress video..."
+                  label={t("Compress video...")}
                   description="Shrink any video to a target size"
                   onClick={() => setIsCompressOpen(true)}
                 />
@@ -618,11 +614,9 @@ export const Toolbar: React.FC = () => {
           />
           <div className="fixed top-topbar right-0 bottom-0 w-80 bg-bg-1 border-l border-border z-50 shadow-lg animate-in slide-in-from-right duration-200">
             <div className="flex items-center justify-between p-3 border-b border-border">
-              <Text type="body" weight="bold" className="text-sm text-fg">
-                Action history
-              </Text>
+              <Text type="body" weight="bold" className="text-sm text-fg">{t("Action history")}</Text>
               <ToolcraftIconButton
-                label="Close action history"
+                label={t("Close action history")}
                 icon={<X size={14} aria-hidden />}
                 size="sm"
                 variant="ghost"

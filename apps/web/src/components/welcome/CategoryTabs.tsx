@@ -1,4 +1,5 @@
 import React from "react";
+import { t } from "@/integrations/skynet/idioma";
 import {
   Smartphone,
   Monitor,
@@ -80,7 +81,7 @@ export const CategoryTabs: React.FC<CategoryTabsProps> = ({
     <div className="space-y-3">
       <div className="flex items-center gap-2 overflow-x-auto pb-1">
         <Button
-          label="All"
+          label={t("All")}
           onClick={() => {
             onSelectCategory("all");
             setExpandedPlatform(null);

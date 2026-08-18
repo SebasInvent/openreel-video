@@ -1,4 +1,5 @@
 import { ToolcraftButton as Button } from "@openreel/ui";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftText as Text } from "@openreel/ui";
 import { ChevronRight } from "@/icons/lucide-compat";
 import { IMAGE_MODELS, type ImageModelId } from "../../../services/kieai/image-generation";
@@ -56,7 +57,7 @@ interface Props {
 export function ModelPicker({ onSelect }: Props) {
   return (
     <div className="space-y-3">
-      <Text type="supporting" color="secondary" className="text-xs text-text-muted">Select a model to generate a new image from your source.</Text>
+      <Text type="supporting" color="secondary" className="text-xs text-text-muted">{t("Select a model to generate a new image from your source.")}</Text>
       <div className="grid grid-cols-1 gap-2">
         {MODELS.map((m) => (
           <Button

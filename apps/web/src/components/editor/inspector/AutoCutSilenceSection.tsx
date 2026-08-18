@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftCard as Card } from "@openreel/ui";
 import { ToolcraftText as Text } from "@openreel/ui";
@@ -143,7 +144,7 @@ export const AutoCutSilenceSection: React.FC<AutoCutSilenceSectionProps> = ({
     <div className="space-y-3">
       <div className="space-y-3">
         <SilenceSlider
-          label="Silence Threshold"
+          label={t("Silence Threshold")}
           min={-80}
           max={-20}
           step={1}
@@ -154,7 +155,7 @@ export const AutoCutSilenceSection: React.FC<AutoCutSilenceSectionProps> = ({
         />
 
         <SilenceSlider
-          label="Min Duration"
+          label={t("Min Duration")}
           min={0.1}
           max={2.0}
           step={0.1}
@@ -168,7 +169,7 @@ export const AutoCutSilenceSection: React.FC<AutoCutSilenceSectionProps> = ({
 
         <div className="grid grid-cols-2 gap-2">
           <SilenceSlider
-            label="Pad Before"
+            label={t("Pad Before")}
             min={0}
             max={2}
             step={0.05}
@@ -177,7 +178,7 @@ export const AutoCutSilenceSection: React.FC<AutoCutSilenceSectionProps> = ({
             unit="s"
           />
           <SilenceSlider
-            label="Pad After"
+            label={t("Pad After")}
             min={0}
             max={2}
             step={0.05}
@@ -190,17 +191,13 @@ export const AutoCutSilenceSection: React.FC<AutoCutSilenceSectionProps> = ({
         {analysisResult && (
           <Card variant="muted" padding={3}>
             <div className="flex items-center justify-between mb-1">
-              <Text type="supporting" color="secondary">
-                Silent Sections Found
-              </Text>
+              <Text type="supporting" color="secondary">{t("Silent Sections Found")}</Text>
               <Text type="body" color="primary" weight="bold">
                 {analysisResult.silentRegions.length}
               </Text>
             </div>
             <div className="flex items-center justify-between">
-              <Text type="supporting" color="secondary">
-                Total Silence
-              </Text>
+              <Text type="supporting" color="secondary">{t("Total Silence")}</Text>
               <Text type="supporting" color="primary">
                 {analysisResult.totalSilenceDuration.toFixed(1)}s of{" "}
                 {analysisResult.clipDuration.toFixed(1)}s (

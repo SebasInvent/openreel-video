@@ -1,4 +1,5 @@
 import type { JSX } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { useRef, useState } from "react";
 import type { BBox, MaskTool, NormPoint } from "./object-removal-params";
 
@@ -92,7 +93,7 @@ export function SelectionCanvas({
       >
         <img
           src={imageUrl}
-          alt="Selected photo"
+          alt={t("Selected photo")}
           draggable={false}
           className="block max-h-[58vh] max-w-full rounded"
         />

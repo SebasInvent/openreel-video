@@ -1,4 +1,5 @@
 import { ToolcraftButton as Button } from "@openreel/ui";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftCard as Card } from "@openreel/ui";
 import { ToolcraftText as Text } from "@openreel/ui";
 import { ToolcraftTextAreaControl } from "@openreel/ui";
@@ -22,10 +23,10 @@ export function GrokForm({ value, onChange, onSubmit, isLoading }: Props) {
       </Card>
 
       <ToolcraftTextAreaControl
-        label="Prompt (optional)"
+        label={t("Prompt (optional)")}
         value={value.prompt ?? ""}
         onChange={(prompt) => onChange({ ...value, prompt: prompt || undefined })}
-        placeholder="Optional: describe what you want to change or emphasize..."
+        placeholder={t("Optional: describe what you want to change or emphasize...")}
         maxLength={1000}
         rows={3}
         width="100%"

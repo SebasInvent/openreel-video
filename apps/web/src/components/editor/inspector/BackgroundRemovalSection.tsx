@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftCard as Card } from "@openreel/ui";
 import { ToolcraftClickableCard as ClickableCard } from "@openreel/ui";
@@ -33,8 +34,8 @@ const BACKGROUND_MODES: {
   label: string;
   icon: React.ElementType;
 }[] = [
-  { value: "blur", label: "Blur", icon: Droplets },
-  { value: "color", label: "Color", icon: Palette },
+  { value: "blur", label: t("Blur"), icon: Droplets },
+  { value: "color", label: t("Color"), icon: Palette },
   { value: "image", label: "Image", icon: ImageIcon },
   { value: "transparent", label: "Transparent", icon: User },
 ];
@@ -174,9 +175,7 @@ export const BackgroundRemovalSection: React.FC<
       {settings.enabled && (
         <Card variant="muted" padding={3} className="space-y-3">
           <div>
-            <Text type="supporting" color="secondary" className="mb-2 block text-[10px]">
-              Background Mode
-            </Text>
+            <Text type="supporting" color="secondary" className="mb-2 block text-[10px]">{t("Background Mode")}</Text>
             <div className="grid grid-cols-4 gap-1">
               {BACKGROUND_MODES.map((mode) => {
                 const ModeIcon = mode.icon;
@@ -203,7 +202,7 @@ export const BackgroundRemovalSection: React.FC<
 
           {settings.mode === "blur" && (
             <PropertySlider
-              label="Blur Amount"
+              label={t("Blur Amount")}
               min={0}
               max={50}
               step={1}
@@ -215,9 +214,7 @@ export const BackgroundRemovalSection: React.FC<
 
           {settings.mode === "color" && (
             <div>
-              <Text type="supporting" color="secondary" className="mb-2 block text-[10px]">
-                Background Color
-              </Text>
+              <Text type="supporting" color="secondary" className="mb-2 block text-[10px]">{t("Background Color")}</Text>
               <div className="grid grid-cols-8 gap-1 mb-2">
                 {PRESET_COLORS.map((color) => (
                   <ClickableCard
@@ -236,18 +233,16 @@ export const BackgroundRemovalSection: React.FC<
               <ColorSelector
                 value={settings.backgroundColor}
                 onChange={(value) => updateSettings({ backgroundColor: value })}
-                label="Select replacement background color"
+                label={t("Select replacement background color")}
               />
             </div>
           )}
 
           {settings.mode === "image" && (
             <div>
-              <Text type="supporting" color="secondary" className="mb-2 block text-[10px]">
-                Background Image
-              </Text>
+              <Text type="supporting" color="secondary" className="mb-2 block text-[10px]">{t("Background Image")}</Text>
               <Button
-                label="Choose Image"
+                label={t("Choose Image")}
                 icon={<ImageIcon size={14} />}
                 variant="secondary"
                 size="sm"
@@ -271,15 +266,13 @@ export const BackgroundRemovalSection: React.FC<
                 className="w-full justify-center"
               />
               {settings.backgroundImageUrl && (
-                <Text type="supporting" color="secondary" className="mt-2 truncate text-[9px]">
-                  Image loaded
-                </Text>
+                <Text type="supporting" color="secondary" className="mt-2 truncate text-[9px]">{t("Image loaded")}</Text>
               )}
             </div>
           )}
 
           <PropertySlider
-            label="Edge Smoothing"
+            label={t("Edge Smoothing")}
             min={0}
             max={10}
             step={1}
@@ -289,7 +282,7 @@ export const BackgroundRemovalSection: React.FC<
           />
 
           <PropertySlider
-            label="Detection Threshold"
+            label={t("Detection Threshold")}
             min={0}
             max={100}
             step={1}

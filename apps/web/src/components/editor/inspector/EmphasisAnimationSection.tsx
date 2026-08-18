@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftClickableCard as ClickableCard } from "@openreel/ui";
 import { ToolcraftText as Text } from "@openreel/ui";
@@ -282,7 +283,7 @@ export const EmphasisAnimationSection: React.FC<
     <div className="space-y-4">
       <div className="grid grid-cols-2 gap-2">
         <Button
-          label="None"
+          label={t("None")}
           variant={currentAnimation.type === "none" ? "primary" : "secondary"}
           size="sm"
           onClick={() => handleTypeChange("none")}
@@ -293,7 +294,7 @@ export const EmphasisAnimationSection: React.FC<
           }`}
         />
         <Button
-          label="Reset"
+          label={t("Reset")}
           icon={<RotateCcw size={10} />}
           variant="secondary"
           size="sm"
@@ -337,9 +338,7 @@ export const EmphasisAnimationSection: React.FC<
 
             <div className="space-y-1">
               <div className="flex items-center justify-between">
-                <Text type="supporting" color="secondary" className="text-[10px]">
-                  Speed
-                </Text>
+                <Text type="supporting" color="secondary" className="text-[10px]">{t("Speed")}</Text>
                 <ValueText>
                   {currentAnimation.speed.toFixed(1)}x
                 </ValueText>
@@ -357,9 +356,7 @@ export const EmphasisAnimationSection: React.FC<
 
             <div className="space-y-1">
               <div className="flex items-center justify-between">
-                <Text type="supporting" color="secondary" className="text-[10px]">
-                  Intensity
-                </Text>
+                <Text type="supporting" color="secondary" className="text-[10px]">{t("Intensity")}</Text>
                 <ValueText>
                   {Math.round(currentAnimation.intensity * 100)}%
                 </ValueText>
@@ -378,9 +375,7 @@ export const EmphasisAnimationSection: React.FC<
             </div>
 
             <div className="flex items-center justify-between">
-              <Text type="supporting" color="secondary" className="text-[10px]">
-                Loop Animation
-              </Text>
+              <Text type="supporting" color="secondary" className="text-[10px]">{t("Loop Animation")}</Text>
               <MockToggle
                 ariaLabel="Loop Animation"
                 checked={currentAnimation.loop}
@@ -394,9 +389,7 @@ export const EmphasisAnimationSection: React.FC<
           <div className="pt-3 border-t border-border space-y-3">
             <div className="flex items-center gap-2 text-primary">
               <Clock size={12} />
-              <Text type="supporting" className="text-[10px] font-medium text-primary">
-                Timing
-              </Text>
+              <Text type="supporting" className="text-[10px] font-medium text-primary">{t("Timing")}</Text>
               <Text type="supporting" color="secondary" className="ml-auto text-[9px]">
                 Clip: {formatTime(clipDuration)}
               </Text>
@@ -404,9 +397,7 @@ export const EmphasisAnimationSection: React.FC<
 
             <div className="space-y-1">
               <div className="flex items-center justify-between">
-                <Text type="supporting" color="secondary" className="text-[10px]">
-                  Start Time
-                </Text>
+                <Text type="supporting" color="secondary" className="text-[10px]">{t("Start Time")}</Text>
                 <ValueText>
                   {formatTime(currentAnimation.startTime ?? 0)}
                 </ValueText>
@@ -426,9 +417,7 @@ export const EmphasisAnimationSection: React.FC<
 
             <div className="space-y-1">
               <div className="flex items-center justify-between">
-                <Text type="supporting" color="secondary" className="text-[10px]">
-                  Duration
-                </Text>
+                <Text type="supporting" color="secondary" className="text-[10px]">{t("Duration")}</Text>
                 <ValueText>
                   {currentAnimation.animationDuration
                     ? formatTime(currentAnimation.animationDuration)
@@ -455,7 +444,7 @@ export const EmphasisAnimationSection: React.FC<
                   0s
                 </Text>
                 <Button
-                  label="Reset to full clip"
+                  label={t("Reset to full clip")}
                   variant="ghost"
                   size="sm"
                   onClick={() =>
@@ -477,16 +466,12 @@ export const EmphasisAnimationSection: React.FC<
             <div className="pt-3 border-t border-border space-y-3">
             <div className="flex items-center gap-2 text-primary">
               <Target size={12} />
-              <Text type="supporting" className="text-[10px] font-medium text-primary">
-                Focus Zoom Settings
-              </Text>
+              <Text type="supporting" className="text-[10px] font-medium text-primary">{t("Focus Zoom Settings")}</Text>
             </div>
 
             <div className="space-y-1">
               <div className="flex items-center justify-between">
-                  <Text type="supporting" color="secondary" className="text-[10px]">
-                    Zoom Scale
-                  </Text>
+                  <Text type="supporting" color="secondary" className="text-[10px]">{t("Zoom Scale")}</Text>
                   <ValueText>
                     {(currentAnimation.zoomScale || 1.5).toFixed(1)}x
                   </ValueText>
@@ -506,9 +491,7 @@ export const EmphasisAnimationSection: React.FC<
 
               <div className="space-y-1">
                 <div className="flex items-center justify-between">
-                  <Text type="supporting" color="secondary" className="text-[10px]">
-                    Hold Duration
-                  </Text>
+                  <Text type="supporting" color="secondary" className="text-[10px]">{t("Hold Duration")}</Text>
                   <ValueText>
                     {((currentAnimation.holdDuration || 0.3) * 100).toFixed(0)}%
                   </ValueText>
@@ -527,14 +510,10 @@ export const EmphasisAnimationSection: React.FC<
               </div>
 
               <div className="space-y-2">
-                <Text type="supporting" color="secondary" className="text-[10px]">
-                  Focus Point
-                </Text>
+                <Text type="supporting" color="secondary" className="text-[10px]">{t("Focus Point")}</Text>
                 <div className="grid grid-cols-2 gap-2">
                   <div className="space-y-1">
-                    <Text type="supporting" color="secondary" className="text-[9px]">
-                      X Position
-                    </Text>
+                    <Text type="supporting" color="secondary" className="text-[9px]">{t("X Position")}</Text>
                     <Slider
                       min={0}
                       max={1}
@@ -551,9 +530,7 @@ export const EmphasisAnimationSection: React.FC<
                     />
                   </div>
                   <div className="space-y-1">
-                    <Text type="supporting" color="secondary" className="text-[9px]">
-                      Y Position
-                    </Text>
+                    <Text type="supporting" color="secondary" className="text-[9px]">{t("Y Position")}</Text>
                     <Slider
                       min={0}
                       max={1}

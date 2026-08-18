@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import {
   History,
   Undo2,
@@ -134,9 +135,7 @@ export const HistoryPanel: React.FC = () => {
       <div className="flex items-center justify-between p-3 border-b border-border">
         <div className="flex items-center gap-2">
           <History size={14} className="text-primary" aria-hidden />
-          <Text type="body" color="primary" weight="bold" className="text-sm">
-            History
-          </Text>
+          <Text type="body" color="primary" weight="bold" className="text-sm">{t("History")}</Text>
         </div>
         <div className="flex items-center gap-1">
           <IconButton
@@ -182,9 +181,7 @@ export const HistoryPanel: React.FC = () => {
         {showSnapshots && (
           <div className="px-2 pb-2">
             {snapshots.length === 0 && !isCreatingSnapshot && (
-              <Text type="supporting" color="secondary" className="block text-[10px] py-2 text-center">
-                No snapshots saved
-              </Text>
+              <Text type="supporting" color="secondary" className="block text-[10px] py-2 text-center">{t("No snapshots saved")}</Text>
             )}
 
             {snapshots.map((snapshot) => (
@@ -219,7 +216,7 @@ export const HistoryPanel: React.FC = () => {
             {isCreatingSnapshot ? (
               <div className="flex items-center gap-2 p-2">
                 <ToolcraftTextInputControl
-                  label="Snapshot name"
+                  label={t("Snapshot name")}
                   isLabelHidden
                   size="sm"
                   width="100%"
@@ -229,11 +226,11 @@ export const HistoryPanel: React.FC = () => {
                     if (e.key === "Enter") handleCreateSnapshot();
                     if (e.key === "Escape") setIsCreatingSnapshot(false);
                   }}
-                  placeholder="Snapshot name..."
+                  placeholder={t("Snapshot name...")}
                   hasAutoFocus
                 />
                 <Button
-                  label="Save"
+                  label={t("Save")}
                   variant="primary"
                   size="sm"
                   onClick={handleCreateSnapshot}
@@ -241,7 +238,7 @@ export const HistoryPanel: React.FC = () => {
               </div>
             ) : (
               <Button
-                label="Create Snapshot"
+                label={t("Create Snapshot")}
                 icon={<BookmarkPlus size={12} aria-hidden />}
                 variant="secondary"
                 size="sm"
@@ -257,9 +254,7 @@ export const HistoryPanel: React.FC = () => {
         {combinedHistory.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full text-fg-3">
             <History size={24} className="mb-2 opacity-30" aria-hidden />
-            <Text type="supporting" color="secondary" className="text-xs">
-              No actions yet
-            </Text>
+            <Text type="supporting" color="secondary" className="text-xs">{t("No actions yet")}</Text>
           </div>
         ) : (
           <div className="p-2 space-y-0.5">

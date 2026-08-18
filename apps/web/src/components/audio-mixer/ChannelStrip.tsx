@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import type { ChannelStripState } from "./types";
 import { volumeToDb, formatDb, formatPan } from "./types";
 import { ToolcraftButton as Button } from "@openreel/ui";
@@ -81,7 +82,7 @@ const Fader: React.FC<{
         {formatDb(dbValue)} dB
       </span>
       <Slider
-        label="Volume fader"
+        label={t("Volume fader")}
         isLabelHidden
         min={0}
         max={4}
@@ -126,7 +127,7 @@ const PanKnob: React.FC<{
         {formatPan(value)}
       </span>
       <Slider
-        label="Pan control"
+        label={t("Pan control")}
         isLabelHidden
         min={-1}
         max={1}

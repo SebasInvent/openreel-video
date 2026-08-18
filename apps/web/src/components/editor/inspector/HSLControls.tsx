@@ -1,4 +1,5 @@
 import React, { useCallback, useState, useMemo } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftClickableCard as ClickableCard } from "@openreel/ui";
 import { ToolcraftText as Text } from "@openreel/ui";
@@ -196,7 +197,7 @@ export const HSLControls: React.FC<HSLControlsProps> = ({
       {onReset && (
         <div className="flex justify-end">
           <Button
-            label="Reset All"
+            label={t("Reset All")}
             icon={<RotateCcw size={10} />}
             variant="ghost"
             size="sm"
@@ -231,7 +232,7 @@ export const HSLControls: React.FC<HSLControlsProps> = ({
         </div>
         {hasAdjustments && (
           <Button
-            label="Reset"
+            label={t("Reset")}
             variant="ghost"
             size="sm"
             onClick={handleResetColor}
@@ -243,7 +244,7 @@ export const HSLControls: React.FC<HSLControlsProps> = ({
       {/* HSL Sliders */}
       <div className="space-y-3">
         <HSLSlider
-          label="Hue"
+          label={t("Hue")}
           value={currentHue}
           onChange={handleHueChange}
           min={-180}
@@ -252,7 +253,7 @@ export const HSLControls: React.FC<HSLControlsProps> = ({
           color={activeColor.color}
         />
         <HSLSlider
-          label="Saturation"
+          label={t("Saturation")}
           value={currentSaturation}
           onChange={handleSaturationChange}
           min={-100}
@@ -261,7 +262,7 @@ export const HSLControls: React.FC<HSLControlsProps> = ({
           color={activeColor.color}
         />
         <HSLSlider
-          label="Luminance"
+          label={t("Luminance")}
           value={currentLuminance}
           onChange={handleLuminanceChange}
           min={-100}

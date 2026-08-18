@@ -1,4 +1,5 @@
 import React, { useMemo, useCallback } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import type { Keyframe, Clip } from "@openreel/core";
 import { KeyframeMarker } from "./KeyframeMarker";
 import { EasingCurve } from "./EasingCurve";
@@ -82,9 +83,7 @@ export const KeyframeTrack: React.FC<KeyframeTrackProps> = ({
 
   if (propertyGroups.length === 0) {
     return (
-      <div className="h-8 flex items-center justify-center text-[9px] text-text-muted">
-        No keyframes
-      </div>
+      <div className="h-8 flex items-center justify-center text-[9px] text-text-muted">{t("No keyframes")}</div>
     );
   }
 

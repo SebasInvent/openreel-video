@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { Settings, Key, Plug } from "@/icons/lucide-compat";
 import { Tabs, TabsList, TabsTrigger } from "@openreel/ui";
 import { ToolcraftDialog as Dialog, ToolcraftDialogHeader as DialogHeader } from "@openreel/ui";
@@ -36,8 +37,8 @@ export const SettingsDialog: React.FC = () => {
       <Layout
         header={
           <DialogHeader
-            title="Settings"
-            subtitle="Configure preferences and manage API keys for external services."
+            title={t("Settings")}
+            subtitle={t("Configure preferences and manage API keys for external services.")}
             onOpenChange={(open) => !open && closeSettings()}
             startContent={<Settings size={18} className="text-primary" aria-hidden />}
           />
@@ -50,7 +51,7 @@ export const SettingsDialog: React.FC = () => {
               className="w-full"
             >
               <TabsList
-                aria-label="Settings"
+                aria-label={t("Settings")}
                 className="grid h-auto w-full gap-0.5 rounded-[7px] border border-border bg-bg-1 p-0.5"
                 layoutId="settings-tabs"
                 style={{

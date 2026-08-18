@@ -1,4 +1,5 @@
 import type { JSX } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { useEffect, useState } from "react";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftCard as Card } from "@openreel/ui";
@@ -130,7 +131,7 @@ export function ObjectTrackingEditor({ onClose }: ObjectTrackingEditorProps): JS
         header={
           <DialogHeader
             title="Object Tracking"
-            subtitle="Draw a box around the object to track across the clip."
+            subtitle={t("Draw a box around the object to track across the clip.")}
             onOpenChange={(open) => !open && onClose()}
           />
         }
@@ -144,7 +145,7 @@ export function ObjectTrackingEditor({ onClose }: ObjectTrackingEditorProps): JS
               </Card>
             ) : !imageUrl ? (
               <EmptyState
-                title="Loading frame..."
+                title={t("Loading frame...")}
                 icon={<Spinner size="md" />}
                 isCompact
               />
@@ -177,7 +178,7 @@ export function ObjectTrackingEditor({ onClose }: ObjectTrackingEditorProps): JS
           <LayoutFooter hasDivider>
             <div className="flex justify-end gap-2">
               <Button
-                label="Cancel"
+                label={t("Cancel")}
                 variant="ghost"
                 onClick={onClose}
                 isDisabled={busy}

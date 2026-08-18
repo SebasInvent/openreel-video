@@ -1,4 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { createPortal } from "react-dom";
 import type { TransitionType } from "@openreel/core";
 import type { ResolvedTransitionHandle } from "./transition-handles";
@@ -136,17 +137,13 @@ export const TransitionHandle: React.FC<TransitionHandleProps> = ({
               onMouseDown={(e) => e.stopPropagation()}
             >
               <div className="py-1 max-h-72 overflow-y-auto">
-                <div className="px-3 py-1.5 text-[11px] font-semibold text-fg-muted uppercase tracking-wide">
-                  Transition
-                </div>
+                <div className="px-3 py-1.5 text-[11px] font-semibold text-fg-muted uppercase tracking-wide">{t("Transition")}</div>
                 {transition && (
                   <button
                     type="button"
                     onClick={handleRemove}
                     className="w-full flex items-center px-3 py-2 text-[12px] font-medium text-destructive hover:bg-hover transition-colors text-left"
-                  >
-                    Remove transition
-                  </button>
+                  >{t("Remove transition")}</button>
                 )}
                 {types.map((t) => (
                   <button

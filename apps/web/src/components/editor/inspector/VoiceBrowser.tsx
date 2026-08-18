@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef, useMemo } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import {
   Play,
   Pause,
@@ -119,9 +120,7 @@ export const VoiceBrowser: React.FC<VoiceBrowserProps> = ({
   if (provider === "piper") {
     return (
       <div className="space-y-2">
-        <Text type="label" color="secondary" weight="medium" className="text-[10px] text-fg-2">
-          Voice
-        </Text>
+        <Text type="label" color="secondary" weight="medium" className="text-[10px] text-fg-2">{t("Voice")}</Text>
         <div className="flex flex-wrap gap-1.5">
           {PIPER_VOICES.map((voice) => (
             <SelectableCard
@@ -150,15 +149,12 @@ export const VoiceBrowser: React.FC<VoiceBrowserProps> = ({
 
   return (
     <div className="space-y-2">
-      <Text type="label" color="secondary" weight="medium" className="text-[10px] text-fg-2">
-        Voice
-      </Text>
+      <Text type="label" color="secondary" weight="medium" className="text-[10px] text-fg-2">{t("Voice")}</Text>
       <div className="space-y-2">
         {favoriteVoices.length > 0 && (
           <div className="space-y-1.5">
             <span className="text-[9px] text-fg-3 flex items-center gap-1">
-              <Star size={9} className="text-amber-400 fill-amber-400" /> Favorites
-            </span>
+              <Star size={9} className="text-amber-400 fill-amber-400" />{t("Favorites")}</span>
             <div className="flex flex-wrap gap-1.5">
               {favoriteVoices.map((fav) => (
                 <SelectableCard
@@ -179,7 +175,7 @@ export const VoiceBrowser: React.FC<VoiceBrowserProps> = ({
                   <span>{fav.name}</span>
                   {fav.previewUrl && (
                     <IconButton
-                      label="Preview voice"
+                      label={t("Preview voice")}
                       icon={
                         previewingVoice === fav.voiceId ? (
                           <Pause size={8} />
@@ -218,11 +214,11 @@ export const VoiceBrowser: React.FC<VoiceBrowserProps> = ({
             <div className="flex items-center gap-2 px-2 py-1.5 border-b border-border bg-bg-1">
               <Search size={12} className="text-fg-3 shrink-0" />
               <ToolcraftTextInputControl
-                label="Search voices"
+                label={t("Search voices")}
                 isLabelHidden
                 value={voiceSearch}
                 onChange={setVoiceSearch}
-                placeholder="Search by name, accent, gender..."
+                placeholder={t("Search by name, accent, gender...")}
                 className="flex-1 bg-transparent text-[10px] text-fg placeholder:text-fg-3 focus:outline-none"
                 hasAutoFocus
               />
@@ -234,7 +230,7 @@ export const VoiceBrowser: React.FC<VoiceBrowserProps> = ({
                 <div className="p-3 text-center text-[10px] text-fg-3">
                   {isLoadingVoices ? "Loading voices..." : allVoices.length === 0 ? (
                     <Button
-                      label="Unlock session to browse voices"
+                      label={t("Unlock session to browse voices")}
                       variant="ghost"
                       icon={<Settings size={12} />}
                       onClick={() => openSettings("api-keys")}
@@ -265,9 +261,7 @@ export const VoiceBrowser: React.FC<VoiceBrowserProps> = ({
                             {voice.name}
                           </span>
                           {voice.category === "cloned" && (
-                            <span className="text-[8px] px-1 py-0.5 rounded bg-primary/20 text-primary">
-                              Cloned
-                            </span>
+                            <span className="text-[8px] px-1 py-0.5 rounded bg-primary/20 text-primary">{t("Cloned")}</span>
                           )}
                         </div>
                         <div className="text-[8px] text-fg-3">
@@ -278,7 +272,7 @@ export const VoiceBrowser: React.FC<VoiceBrowserProps> = ({
                       <div className="flex items-center gap-1 shrink-0">
                         {voice.preview_url && (
                           <IconButton
-                            label="Preview"
+                            label={t("Preview")}
                             icon={
                               previewingVoice === voice.voice_id ? (
                                 <Pause size={10} />

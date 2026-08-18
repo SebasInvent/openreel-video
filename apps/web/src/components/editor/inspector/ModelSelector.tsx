@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftCard as Card } from "@openreel/ui";
 import { ToolcraftClickableCard as ClickableCard } from "@openreel/ui";
 import { ToolcraftIconButton as IconButton } from "@openreel/ui";
@@ -55,9 +56,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
 
   return (
     <div className="space-y-2">
-      <Text type="supporting" color="secondary" className="text-[10px] font-medium">
-        Model
-      </Text>
+      <Text type="supporting" color="secondary" className="text-[10px] font-medium">{t("Model")}</Text>
 
       {favoriteModels.length > 0 && (
         <div className="space-y-1.5">
@@ -93,7 +92,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
 
       <div className="flex items-center gap-2">
         <ClickableCard
-          label="Toggle model list"
+          label={t("Toggle model list")}
           className="flex-1 h-8 px-2 rounded-lg border border-border bg-bg-2 text-[10px] text-fg flex items-center justify-between cursor-pointer hover:border-primary/50 transition-colors"
           onClick={() => setShowAllModels(!showAllModels)}
         >

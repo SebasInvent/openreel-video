@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, CheckCircle2, XCircle, AlertTriangle, Info } from "@/icons/lucide-compat";
 import {
@@ -185,7 +186,7 @@ const ToastItem = React.forwardRef<HTMLDivElement, ToastItemProps>(
                   : "hover:bg-black/5 text-zinc-400 hover:text-zinc-600"
               }
             `}
-            aria-label="Dismiss notification"
+            aria-label={t("Dismiss notification")}
           >
             <X size={16} />
           </motion.button>
@@ -215,7 +216,7 @@ export const ToastContainer: React.FC = () => {
     <div
       className="fixed top-4 right-4 z-[9999] flex flex-col gap-3"
       role="region"
-      aria-label="Notifications"
+      aria-label={t("Notifications")}
     >
       <AnimatePresence mode="popLayout">
         {notifications.map((notification) => (

@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useState } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftCard as Card } from "@openreel/ui";
 import { ToolcraftClickableCard as ClickableCard } from "@openreel/ui";
@@ -152,9 +153,7 @@ export const MotionPathSection: React.FC<MotionPathSectionProps> = ({
 
   if (!clip) {
     return (
-      <Text type="supporting" color="secondary" className="py-8 text-center text-xs">
-        No clip selected
-      </Text>
+      <Text type="supporting" color="secondary" className="py-8 text-center text-xs">{t("No clip selected")}</Text>
     );
   }
 
@@ -169,9 +168,7 @@ export const MotionPathSection: React.FC<MotionPathSectionProps> = ({
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Route size={14} className="text-primary" />
-          <Text type="supporting" color="primary" className="text-xs font-medium">
-            Motion Path
-          </Text>
+          <Text type="supporting" color="primary" className="text-xs font-medium">{t("Motion Path")}</Text>
         </div>
         <MockToggle
           ariaLabel="Enable motion path"
@@ -184,9 +181,7 @@ export const MotionPathSection: React.FC<MotionPathSectionProps> = ({
         <>
           <Card variant="muted" padding={3} className="space-y-3">
             <div className="flex items-center justify-between">
-              <Text type="supporting" color="secondary" className="text-[10px]">
-                Show Path
-              </Text>
+              <Text type="supporting" color="secondary" className="text-[10px]">{t("Show Path")}</Text>
               <div className="flex items-center gap-2">
                 <IconButton
                   label={showPath ? "Hide path" : "Show path"}
@@ -204,9 +199,7 @@ export const MotionPathSection: React.FC<MotionPathSectionProps> = ({
             </div>
 
             <div className="flex items-center justify-between">
-              <Text type="supporting" color="secondary" className="text-[10px]">
-                Auto Orient
-              </Text>
+              <Text type="supporting" color="secondary" className="text-[10px]">{t("Auto Orient")}</Text>
               <MockToggle
                 ariaLabel="Auto Orient"
                 checked={autoOrient}
@@ -215,9 +208,7 @@ export const MotionPathSection: React.FC<MotionPathSectionProps> = ({
             </div>
 
             <div className="space-y-1">
-              <Text type="supporting" color="secondary" className="text-[10px]">
-                Path Type
-              </Text>
+              <Text type="supporting" color="secondary" className="text-[10px]">{t("Path Type")}</Text>
               <div className="grid grid-cols-3 gap-1">
                 {(["linear", "bezier", "catmull-rom"] as const).map((type) => (
                   <ClickableCard
@@ -239,16 +230,14 @@ export const MotionPathSection: React.FC<MotionPathSectionProps> = ({
 
           <Card variant="muted" padding={3} className="flex items-center justify-between">
             <div className="flex flex-col gap-0.5">
-              <Text type="supporting" color="secondary" className="text-[10px]">
-                Path Points
-              </Text>
+              <Text type="supporting" color="secondary" className="text-[10px]">{t("Path Points")}</Text>
               <Text type="body" color="primary" className="text-sm font-medium">
                 {pointCount} points
               </Text>
             </div>
             <div className="flex items-center gap-1">
               <IconButton
-                label="Add point"
+                label={t("Add point")}
                 icon={<Plus size={12} />}
                 variant="primary"
                 size="sm"
@@ -256,7 +245,7 @@ export const MotionPathSection: React.FC<MotionPathSectionProps> = ({
                 className="p-1.5 rounded bg-primary/20 text-primary hover:bg-primary/30 transition-colors"
               />
               <IconButton
-                label="Clear path"
+                label={t("Clear path")}
                 icon={<Trash2 size={12} />}
                 variant="secondary"
                 size="sm"

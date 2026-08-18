@@ -1,4 +1,5 @@
 import React from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { Maximize2 } from "@/icons/lucide-compat";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftCard as Card } from "@openreel/ui";
@@ -38,7 +39,7 @@ export const AspectRatioMatchDialog: React.FC<AspectRatioMatchDialogProps> = ({
       <Layout
         header={
           <DialogHeader
-            title="Match Video Dimensions?"
+            title={t("Match Video Dimensions?")}
             subtitle="The video you're adding has different dimensions than your current project settings."
             onOpenChange={(open) => !open && onCancel()}
             startContent={<Maximize2 size={20} className="text-primary" aria-hidden />}
@@ -50,9 +51,7 @@ export const AspectRatioMatchDialog: React.FC<AspectRatioMatchDialogProps> = ({
           <div className="space-y-3">
             <Card variant="muted" padding={3}>
               <div>
-                <Text type="supporting" color="secondary" display="block" className="mb-1">
-                  Video Dimensions
-                </Text>
+                <Text type="supporting" color="secondary" display="block" className="mb-1">{t("Video Dimensions")}</Text>
                 <Text type="label" weight="bold" display="block">
                   {videoWidth} x {videoHeight}
                 </Text>
@@ -64,9 +63,7 @@ export const AspectRatioMatchDialog: React.FC<AspectRatioMatchDialogProps> = ({
 
             <Card variant="default" padding={3} className="border border-border/50">
               <div>
-                <Text type="supporting" color="secondary" display="block" className="mb-1">
-                  Current Project
-                </Text>
+                <Text type="supporting" color="secondary" display="block" className="mb-1">{t("Current Project")}</Text>
                 <Text type="label" weight="bold" display="block">
                   {currentWidth} x {currentHeight}
                 </Text>
@@ -89,13 +86,13 @@ export const AspectRatioMatchDialog: React.FC<AspectRatioMatchDialogProps> = ({
           <LayoutFooter hasDivider>
             <div className="flex gap-3">
               <Button
-                label="Keep Current"
+                label={t("Keep Current")}
                 variant="secondary"
                 className="flex-1"
                 onClick={onCancel}
               />
               <Button
-                label="Match Video"
+                label={t("Match Video")}
                 variant="primary"
                 className="flex-1"
                 onClick={onConfirm}

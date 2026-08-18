@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useMemo, useEffect } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import {
   Settings2,
   Type,
@@ -73,7 +74,7 @@ const TextPlaceholderInput: React.FC<PlaceholderInputProps> = ({
         </div>
         {isModified && (
           <IconButton
-            label="Reset to default"
+            label={t("Reset to default")}
             icon={<Undo2 size={10} />}
             variant="ghost"
             size="sm"
@@ -165,7 +166,7 @@ const MediaPlaceholderInput: React.FC<PlaceholderInputProps> = ({
         </div>
         {isModified && (
           <IconButton
-            label="Reset"
+            label={t("Reset")}
             icon={<Undo2 size={10} />}
             variant="ghost"
             size="sm"
@@ -184,12 +185,8 @@ const MediaPlaceholderInput: React.FC<PlaceholderInputProps> = ({
       {availableMedia.length === 0 ? (
         <div className="p-4 border border-dashed border-border rounded-lg text-center">
           <Upload size={16} className="mx-auto mb-2 text-fg-3" />
-          <Text type="supporting" color="secondary" display="block" className="text-[10px]">
-            No media available
-          </Text>
-          <Text type="supporting" color="secondary" display="block" className="mt-1 text-[9px]">
-            Import media to use here
-          </Text>
+          <Text type="supporting" color="secondary" display="block" className="text-[10px]">{t("No media available")}</Text>
+          <Text type="supporting" color="secondary" display="block" className="mt-1 text-[9px]">{t("Import media to use here")}</Text>
         </div>
       ) : (
         <div className="grid grid-cols-3 gap-2 max-h-32 overflow-y-auto">
@@ -277,7 +274,7 @@ const SubtitlePlaceholderInput: React.FC<PlaceholderInputProps> = ({
         </div>
         {isModified && (
           <IconButton
-            label="Reset to default"
+            label={t("Reset to default")}
             icon={<Undo2 size={10} />}
             variant="ghost"
             size="sm"
@@ -386,9 +383,7 @@ export const TemplateVariablesPanel: React.FC<TemplateVariablesPanelProps> = ({
           size={24}
           className="mx-auto mb-2 text-fg-3 opacity-50"
         />
-        <Text type="supporting" color="secondary" display="block" className="text-[10px]">
-          Select a template to edit variables
-        </Text>
+        <Text type="supporting" color="secondary" display="block" className="text-[10px]">{t("Select a template to edit variables")}</Text>
       </div>
     );
   }
@@ -398,16 +393,14 @@ export const TemplateVariablesPanel: React.FC<TemplateVariablesPanelProps> = ({
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Settings2 size={14} className="text-primary" />
-          <span className="text-[11px] font-medium text-fg">
-            Template Variables
-          </span>
+          <span className="text-[11px] font-medium text-fg">{t("Template Variables")}</span>
           <span className="text-[9px] text-fg-3 bg-bg-2 px-1.5 py-0.5 rounded">
             {placeholders.length}
           </span>
         </div>
         {hasChanges && (
           <Button
-            label="Reset All"
+            label={t("Reset All")}
             variant="ghost"
             icon={<RotateCcw size={10} />}
             onClick={handleResetAll}
@@ -418,9 +411,7 @@ export const TemplateVariablesPanel: React.FC<TemplateVariablesPanelProps> = ({
 
       {placeholders.length === 0 ? (
         <div className="text-center py-6">
-          <Text type="supporting" color="secondary" display="block" className="text-[10px]">
-            This template has no editable variables
-          </Text>
+          <Text type="supporting" color="secondary" display="block" className="text-[10px]">{t("This template has no editable variables")}</Text>
         </div>
       ) : (
         <div className="space-y-4">
@@ -446,7 +437,7 @@ export const TemplateVariablesPanel: React.FC<TemplateVariablesPanelProps> = ({
 
       {onApply && (
         <Button
-          label="Apply Template"
+          label={t("Apply Template")}
           variant="primary"
           onClick={onApply}
           isDisabled={!canApply}

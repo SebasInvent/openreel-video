@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useMemo, useEffect } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import {
   Music,
   Zap,
@@ -245,18 +246,14 @@ export const MusicLibraryPanel: React.FC = () => {
       <Card variant="green" padding={2} className="flex items-center gap-2 border border-primary/30">
         <Music size={16} className="text-primary" aria-hidden />
         <div className="flex flex-col gap-0.5">
-          <Text type="body" color="primary" weight="bold" className="text-[11px]">
-            Music & SFX
-          </Text>
-          <Text type="supporting" color="secondary" className="text-[9px]">
-            Royalty-free sounds
-          </Text>
+          <Text type="body" color="primary" weight="bold" className="text-[11px]">{t("Music & SFX")}</Text>
+          <Text type="supporting" color="secondary" className="text-[9px]">{t("Royalty-free sounds")}</Text>
         </div>
       </Card>
 
       <div className="flex gap-1">
         <Button
-          label="Music"
+          label={t("Music")}
           icon={<Music size={12} aria-hidden />}
           variant={activeTab === "music" ? "primary" : "secondary"}
           size="sm"
@@ -264,7 +261,7 @@ export const MusicLibraryPanel: React.FC = () => {
           className="flex-1"
         />
         <Button
-          label="Sound FX"
+          label={t("Sound FX")}
           icon={<Zap size={12} aria-hidden />}
           variant={activeTab === "sfx" ? "primary" : "secondary"}
           size="sm"
@@ -275,11 +272,11 @@ export const MusicLibraryPanel: React.FC = () => {
 
       <div className="relative">
         <ToolcraftTextInputControl
-          label="Search sounds"
+          label={t("Search sounds")}
           isLabelHidden
           size="sm"
           width="100%"
-          placeholder="Search sounds..."
+          placeholder={t("Search sounds...")}
           value={searchQuery}
           onChange={setSearchQuery}
           startIcon={<Search size={14} aria-hidden />}
@@ -289,7 +286,7 @@ export const MusicLibraryPanel: React.FC = () => {
       {activeTab === "music" && (
         <div className="flex gap-1 overflow-x-auto pb-1">
           <Button
-            label="All"
+            label={t("All")}
             variant={selectedGenre === "all" ? "primary" : "secondary"}
             size="sm"
             onClick={() => setSelectedGenre("all")}
@@ -311,7 +308,7 @@ export const MusicLibraryPanel: React.FC = () => {
       {activeTab === "sfx" && (
         <div className="flex gap-1 overflow-x-auto pb-1">
           <Button
-            label="All"
+            label={t("All")}
             variant={selectedSfxCategory === "all" ? "primary" : "secondary"}
             size="sm"
             onClick={() => setSelectedSfxCategory("all")}
@@ -353,12 +350,8 @@ export const MusicLibraryPanel: React.FC = () => {
               className="mx-auto mb-2 text-fg-3 opacity-50"
               aria-hidden
             />
-            <Text type="supporting" color="secondary" className="block text-[10px]">
-              No sounds found
-            </Text>
-            <Text type="supporting" color="secondary" className="block text-[9px] mt-1">
-              Try adjusting filters
-            </Text>
+            <Text type="supporting" color="secondary" className="block text-[10px]">{t("No sounds found")}</Text>
+            <Text type="supporting" color="secondary" className="block text-[9px] mt-1">{t("Try adjusting filters")}</Text>
           </div>
         ) : (
           sounds.map((sound) => (

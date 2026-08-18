@@ -1,4 +1,5 @@
 import React from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftCard as Card } from "@openreel/ui";
 import { ToolcraftIconButton as IconButton } from "@openreel/ui";
@@ -59,7 +60,7 @@ export const AudioResult: React.FC<AudioResultProps> = ({
 
       <div className="flex gap-2">
         <Button
-          label="Save to Media"
+          label={t("Save to Media")}
           icon={<FolderPlus size={12} aria-hidden />}
           variant="primary"
           size="sm"
@@ -68,7 +69,7 @@ export const AudioResult: React.FC<AudioResultProps> = ({
           className="flex-1"
         />
         <IconButton
-          label="Add to Timeline"
+          label={t("Add to Timeline")}
           icon={<Plus size={12} aria-hidden />}
           variant="secondary"
           size="sm"
@@ -76,7 +77,7 @@ export const AudioResult: React.FC<AudioResultProps> = ({
           isDisabled={isGenerating}
         />
         <IconButton
-          label="Download"
+          label={t("Download")}
           icon={<Download size={12} aria-hidden />}
           variant="secondary"
           size="sm"

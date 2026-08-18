@@ -5,6 +5,7 @@ import React, {
   useState,
   useRef,
 } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { useProjectStore } from "../../stores/project-store";
 import { ChannelStrip } from "./ChannelStrip";
 import type { ChannelStripState } from "./types";
@@ -79,7 +80,7 @@ const MasterChannel: React.FC<{
           {formatDb(dbValue)} dB
         </span>
         <Slider
-          label="Master volume fader"
+          label={t("Master volume fader")}
           isLabelHidden
           min={0}
           max={4}
@@ -299,14 +300,14 @@ export const AudioMixer: React.FC<AudioMixerProps> = ({
       className="bg-gray-900 border-t border-gray-700 p-4"
       data-testid="audio-mixer"
       role="region"
-      aria-label="Audio Mixing Console"
+      aria-label={t("Audio Mixing Console")}
     >
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <Text type="body" weight="semibold" className="text-lg text-white">Audio Mixer</Text>
+        <Text type="body" weight="semibold" className="text-lg text-white">{t("Audio Mixer")}</Text>
         {onClose && (
           <IconButton
-            label="Close mixer"
+            label={t("Close mixer")}
             onClick={onClose}
             icon={<X size={16} aria-hidden />}
             variant="ghost"

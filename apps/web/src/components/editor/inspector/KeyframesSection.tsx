@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useState } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import {
   Key,
   Plus,
@@ -73,7 +74,7 @@ const ANIMATABLE_PROPERTIES: AnimatableProperty[] = [
   },
   {
     id: "rotation",
-    label: "Rotation",
+    label: t("Rotation"),
     category: "Transform",
     defaultValue: 0,
     min: -360,
@@ -81,7 +82,7 @@ const ANIMATABLE_PROPERTIES: AnimatableProperty[] = [
   },
   {
     id: "opacity",
-    label: "Opacity",
+    label: t("Opacity"),
     category: "Transform",
     defaultValue: 1,
     min: 0,
@@ -108,7 +109,7 @@ const ANIMATABLE_PROPERTIES: AnimatableProperty[] = [
   },
   {
     id: "effect.saturation",
-    label: "Saturation",
+    label: t("Saturation"),
     category: "Effects",
     defaultValue: 1,
     min: 0,
@@ -117,7 +118,7 @@ const ANIMATABLE_PROPERTIES: AnimatableProperty[] = [
   },
   {
     id: "effect.blur",
-    label: "Blur",
+    label: t("Blur"),
     category: "Effects",
     defaultValue: 0,
     min: 0,
@@ -125,7 +126,7 @@ const ANIMATABLE_PROPERTIES: AnimatableProperty[] = [
   },
   {
     id: "volume",
-    label: "Volume",
+    label: t("Volume"),
     category: "Audio",
     defaultValue: 1,
     min: 0,
@@ -173,7 +174,7 @@ const PropertySelector: React.FC<{
       placement="below"
       alignment="start"
       width="min(260px, 100vw - 32px)"
-      label="Animate property"
+      label={t("Animate property")}
       content={
         <div className="max-h-64 overflow-y-auto p-1.5">
           {categories.map((category) => (
@@ -373,7 +374,7 @@ const KeyframeItem: React.FC<{
             •
           </Text>
           <ToolcraftNumberInputControl
-            label="Keyframe value"
+            label={t("Keyframe value")}
             isLabelHidden
             value={typeof keyframe.value === "number" ? keyframe.value : 0}
             onChange={(value) => onUpdate({ value: value ?? 0 })}
@@ -387,7 +388,7 @@ const KeyframeItem: React.FC<{
       </div>
       <EasingSelector value={keyframe.easing} onChange={onEasingChange} />
       <IconButton
-        label="Delete keyframe"
+        label={t("Delete keyframe")}
         icon={<Trash2 size={12} aria-hidden />}
         variant="ghost"
         size="sm"
@@ -532,18 +533,14 @@ export const KeyframesSection: React.FC<KeyframesSectionProps> = ({
 
   if (!clip) {
     return (
-      <Text type="supporting" color="secondary" className="block text-center py-4">
-        No clip selected
-      </Text>
+      <Text type="supporting" color="secondary" className="block text-center py-4">{t("No clip selected")}</Text>
     );
   }
 
   return (
     <div className="space-y-4">
       <div className="space-y-2">
-        <Text type="supporting" color="secondary" weight="bold" className="block">
-          Animate Property
-        </Text>
+        <Text type="supporting" color="secondary" weight="bold" className="block">{t("Animate Property")}</Text>
         <PropertySelector
           selectedProperty={selectedProperty}
           onSelect={setSelectedProperty}
@@ -615,16 +612,12 @@ export const KeyframesSection: React.FC<KeyframesSectionProps> = ({
       {!selectedProperty && (
         <div className="text-center py-4">
           <Key size={24} className="mx-auto text-fg-3 mb-2" aria-hidden />
-          <Text type="supporting" color="secondary">
-            Select a property to animate
-          </Text>
+          <Text type="supporting" color="secondary">{t("Select a property to animate")}</Text>
         </div>
       )}
 
       {selectedProperty && propertyKeyframes.length === 0 && (
-        <Text type="supporting" color="secondary" className="block text-center py-2">
-          No keyframes for this property. Add one to start animating.
-        </Text>
+        <Text type="supporting" color="secondary" className="block text-center py-2">{t("No keyframes for this property. Add one to start animating.")}</Text>
       )}
     </div>
   );

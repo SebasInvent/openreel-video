@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useCallback, useRef, useEffect } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import type { Keyframe, Clip } from "@openreel/core";
 import { EASING_FUNCTIONS, type EasingName } from "@openreel/core";
 import { X, Copy, Clipboard, Trash2 } from "@/icons/lucide-compat";
@@ -374,9 +375,7 @@ export const KeyframeEditorPanel: React.FC<KeyframeEditorPanelProps> = ({
   if (!clip) {
     return (
       <div className="h-full flex items-center justify-center text-text-muted">
-        <Text type="body" color="secondary" className="text-sm">
-          Select a clip with keyframes to edit
-        </Text>
+        <Text type="body" color="secondary" className="text-sm">{t("Select a clip with keyframes to edit")}</Text>
       </div>
     );
   }
@@ -384,11 +383,9 @@ export const KeyframeEditorPanel: React.FC<KeyframeEditorPanelProps> = ({
   return (
     <div className="h-full flex flex-col bg-background-secondary border-l border-border">
       <div className="flex items-center justify-between px-4 py-3 border-b border-border">
-        <Text type="body" weight="bold" className="text-sm">
-          Keyframe Editor
-        </Text>
+        <Text type="body" weight="bold" className="text-sm">{t("Keyframe Editor")}</Text>
         <IconButton
-          label="Close keyframe editor"
+          label={t("Close keyframe editor")}
           icon={<X size={16} aria-hidden />}
           variant="ghost"
           size="sm"
@@ -399,7 +396,7 @@ export const KeyframeEditorPanel: React.FC<KeyframeEditorPanelProps> = ({
 
       <div className="flex items-center gap-2 px-4 py-2 border-b border-border bg-background-tertiary">
         <Selector
-          label="Property"
+          label={t("Property")}
           isLabelHidden
           value={activeProperty || ""}
           onChange={setActiveProperty}
@@ -414,7 +411,7 @@ export const KeyframeEditorPanel: React.FC<KeyframeEditorPanelProps> = ({
         <div className="flex-1" />
 
         <Button
-          label="Copy"
+          label={t("Copy")}
           variant="ghost"
           size="sm"
           icon={<Copy size={14} aria-hidden />}
@@ -423,7 +420,7 @@ export const KeyframeEditorPanel: React.FC<KeyframeEditorPanelProps> = ({
           className="h-8 px-2"
         />
         <Button
-          label="Paste"
+          label={t("Paste")}
           variant="ghost"
           size="sm"
           icon={<Clipboard size={14} aria-hidden />}
@@ -432,7 +429,7 @@ export const KeyframeEditorPanel: React.FC<KeyframeEditorPanelProps> = ({
           className="h-8 px-2"
         />
         <Button
-          label="Delete"
+          label={t("Delete")}
           variant="ghost"
           size="sm"
           icon={<Trash2 size={14} aria-hidden />}
@@ -462,7 +459,7 @@ export const KeyframeEditorPanel: React.FC<KeyframeEditorPanelProps> = ({
               Easing:
             </Text>
             <Selector
-              label="Easing"
+              label={t("Easing")}
               isLabelHidden
               value={selectedEasing}
               onChange={handleEasingChange}
@@ -490,9 +487,9 @@ export const KeyframeEditorPanel: React.FC<KeyframeEditorPanelProps> = ({
             <table className="w-full text-xs">
               <thead>
                 <tr className="text-text-muted">
-                  <th className="text-left py-1 px-2">Time</th>
-                  <th className="text-left py-1 px-2">Value</th>
-                  <th className="text-left py-1 px-2">Easing</th>
+                  <th className="text-left py-1 px-2">{t("Time")}</th>
+                  <th className="text-left py-1 px-2">{t("Value")}</th>
+                  <th className="text-left py-1 px-2">{t("Easing")}</th>
                 </tr>
               </thead>
               <tbody>

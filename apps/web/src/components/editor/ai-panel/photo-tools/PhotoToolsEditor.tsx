@@ -1,4 +1,5 @@
 import type { JSX } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { useEffect, useState } from "react";
 import { ToolcraftSegmentedControl } from "@openreel/ui";
 import { ToolcraftButton as Button } from "@openreel/ui";
@@ -131,9 +132,7 @@ export function PhotoToolsEditor({ onClose }: PhotoToolsEditorProps): JSX.Elemen
             {loadError}
           </Text>
         ) : !imageUrl ? (
-          <Text type="supporting" color="secondary" display="block" className="py-8 text-center">
-            Loading photo...
-          </Text>
+          <Text type="supporting" color="secondary" display="block" className="py-8 text-center">{t("Loading photo...")}</Text>
         ) : (
           <div className="space-y-3">
             {needsMask ? (
@@ -152,7 +151,7 @@ export function PhotoToolsEditor({ onClose }: PhotoToolsEditorProps): JSX.Elemen
                       { value: "points", label: "Points" },
                     ]}
                   />
-                  <Button label="Clear" variant="ghost" size="sm" onClick={clearSelection} />
+                  <Button label={t("Clear")} variant="ghost" size="sm" onClick={clearSelection} />
                 </div>
                 <SelectionCanvas
                   imageUrl={imageUrl}
@@ -175,20 +174,18 @@ export function PhotoToolsEditor({ onClose }: PhotoToolsEditorProps): JSX.Elemen
                     className="relative rounded border border-dashed border-primary/40 bg-primary/5"
                     style={{ padding: `${expand * 100}%` }}
                   >
-                    <img src={imageUrl} alt="Selected photo" className="block max-h-[46vh] max-w-full rounded" />
+                    <img src={imageUrl} alt={t("Selected photo")} className="block max-h-[46vh] max-w-full rounded" />
                   </div>
                 </div>
                 <div className="space-y-1">
                   <div className="flex justify-between">
-                    <Text type="supporting" color="secondary" className="text-[11px]">
-                      Expand each side
-                    </Text>
+                    <Text type="supporting" color="secondary" className="text-[11px]">{t("Expand each side")}</Text>
                     <Text type="supporting" color="secondary" className="text-[11px]">
                       {Math.round(expand * 100)}%
                     </Text>
                   </div>
                   <ToolcraftSliderControl
-                    label="Expand each side"
+                    label={t("Expand each side")}
                     isLabelHidden
                     value={expand}
                     onChange={(nextExpand: number) => setExpand(nextExpand)}
@@ -231,7 +228,7 @@ export function PhotoToolsEditor({ onClose }: PhotoToolsEditorProps): JSX.Elemen
           <LayoutFooter hasDivider>
             <div className="flex justify-end gap-2">
               <Button
-                label="Cancel"
+                label={t("Cancel")}
                 variant="ghost"
                 onClick={onClose}
                 isDisabled={busy}

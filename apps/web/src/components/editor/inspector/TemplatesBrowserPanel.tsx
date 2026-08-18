@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useMemo, useEffect } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import {
   FolderOpen,
   Video,
@@ -84,15 +85,11 @@ const TemplateCard: React.FC<TemplateCardProps> = ({
               {template.name}
             </span>
             {template.id.startsWith("builtin-") && (
-              <span className="px-1.5 py-0.5 text-[8px] bg-status-info/20 text-status-info rounded shrink-0">
-                Built-in
-              </span>
+              <span className="px-1.5 py-0.5 text-[8px] bg-status-info/20 text-status-info rounded shrink-0">{t("Built-in")}</span>
             )}
             {template.source === "cloud" && (
               <span className="px-1.5 py-0.5 text-[8px] bg-primary/20 text-primary rounded flex items-center gap-1 shrink-0">
-                <Cloud size={8} />
-                Cloud
-              </span>
+                <Cloud size={8} />{t("Cloud")}</span>
             )}
           </div>
           <div className="flex items-center gap-3 mt-1">
@@ -109,7 +106,7 @@ const TemplateCard: React.FC<TemplateCardProps> = ({
       </div>
       {isSelected && (
         <Button
-          label="Use This Template"
+          label={t("Use This Template")}
           variant="primary"
           onClick={(e) => {
             e.stopPropagation();
@@ -330,7 +327,7 @@ export const TemplatesBrowserPanel: React.FC<TemplatesBrowserPanelProps> = ({
     return (
       <div className="space-y-4 w-full min-w-0 max-w-full">
         <Button
-          label="Back to Templates"
+          label={t("Back to Templates")}
           variant="ghost"
           icon={<ChevronLeft size={12} />}
           onClick={handleBackToTemplates}
@@ -343,9 +340,7 @@ export const TemplatesBrowserPanel: React.FC<TemplatesBrowserPanelProps> = ({
             <span className="text-[11px] font-medium text-fg">
               {loadedTemplate.name}
             </span>
-            <Text type="supporting" color="secondary" display="block" className="text-[9px]">
-              Configure template variables
-            </Text>
+            <Text type="supporting" color="secondary" display="block" className="text-[9px]">{t("Configure template variables")}</Text>
           </div>
         </div>
 
@@ -372,18 +367,14 @@ export const TemplatesBrowserPanel: React.FC<TemplatesBrowserPanelProps> = ({
       <div className="flex items-center gap-2 p-2 bg-primary/10 rounded-lg border border-primary/30">
         <FolderOpen size={16} className="text-primary shrink-0" />
         <div className="min-w-0 flex-1">
-          <span className="text-[11px] font-medium text-fg">
-            Templates
-          </span>
-          <Text type="supporting" color="secondary" display="block" className="text-[9px]">
-            Start with a pre-made project
-          </Text>
+          <span className="text-[11px] font-medium text-fg">{t("Templates")}</span>
+          <Text type="supporting" color="secondary" display="block" className="text-[9px]">{t("Start with a pre-made project")}</Text>
         </div>
       </div>
 
       <div className="flex gap-1 overflow-x-auto pb-1 -mx-1 px-1">
         <SelectableCard
-          label="All"
+          label={t("All")}
           isSelected={selectedCategory === "all"}
           onChange={() => setSelectedCategory("all")}
           onClick={() => setSelectedCategory("all")}
@@ -394,9 +385,7 @@ export const TemplatesBrowserPanel: React.FC<TemplatesBrowserPanelProps> = ({
               ? "bg-primary text-white font-medium"
               : "bg-bg-2 text-fg-2 hover:text-fg"
           }`}
-        >
-          All
-        </SelectableCard>
+        >{t("All")}</SelectableCard>
         {TEMPLATE_CATEGORIES.map((category) => {
           const Icon = CATEGORY_ICONS[category.id] || FolderOpen;
           return (
@@ -436,9 +425,7 @@ export const TemplatesBrowserPanel: React.FC<TemplatesBrowserPanelProps> = ({
               size={24}
               className="mx-auto mb-2 text-fg-3 opacity-50"
             />
-            <Text type="supporting" color="secondary" display="block" className="text-[10px]">
-              No templates in this category
-            </Text>
+            <Text type="supporting" color="secondary" display="block" className="text-[10px]">{t("No templates in this category")}</Text>
           </div>
         ) : (
           filteredTemplates.map((template) => (
@@ -455,7 +442,7 @@ export const TemplatesBrowserPanel: React.FC<TemplatesBrowserPanelProps> = ({
 
       <div className="pt-2 border-t border-border">
         <Button
-          label="Save Current Project as Template"
+          label={t("Save Current Project as Template")}
           variant="ghost"
           icon={<Plus size={12} />}
           onClick={() => setIsSaveDialogOpen(true)}

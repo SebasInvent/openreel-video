@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import {
   Mic,
   Subtitles,
@@ -144,7 +145,7 @@ export const AIGenTab: React.FC = () => {
     return (
       <div className="flex-1 flex flex-col overflow-y-auto w-full min-w-0">
         <Button
-          label="Back to AI Tools"
+          label={t("Back to AI Tools")}
           onClick={() => navigateAway(null)}
           variant="ghost"
           icon={<ChevronRight size={14} className="rotate-180" aria-hidden />}
@@ -164,18 +165,14 @@ export const AIGenTab: React.FC = () => {
           <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 mb-3">
             <Wand2 size={24} className="text-primary" aria-hidden />
           </div>
-          <Text as="h2" type="label" weight="bold" display="block">
-            AI-Powered Tools
-          </Text>
-          <Text type="supporting" color="secondary" display="block" className="mt-1 text-[11px]">
-            Automate your editing with intelligent features
-          </Text>
+          <Text as="h2" type="label" weight="bold" display="block">{t("AI-Powered Tools")}</Text>
+          <Text type="supporting" color="secondary" display="block" className="mt-1 text-[11px]">{t("Automate your editing with intelligent features")}</Text>
         </div>
 
-        <FeatureSection title="Content Generation" icon={Wand2}>
+        <FeatureSection title={t("Content Generation")} icon={Wand2}>
           <FeatureCard
             icon={Mic}
-            title="Text to Speech"
+            title={t("Text to Speech")}
             description="Generate natural voiceovers from text"
             iconColor="text-blue-400"
             iconBg="bg-blue-500/20"
@@ -187,7 +184,7 @@ export const AIGenTab: React.FC = () => {
           />
           <FeatureCard
             icon={Subtitles}
-            title="Auto Captions"
+            title={t("Auto Captions")}
             description="Automatically generate subtitles from audio"
             iconColor="text-primary"
             iconBg="bg-primary/20"
@@ -199,10 +196,10 @@ export const AIGenTab: React.FC = () => {
           />
         </FeatureSection>
 
-        <FeatureSection title="Templates & Presets" icon={FileStack}>
+        <FeatureSection title={t("Templates & Presets")} icon={FileStack}>
           <FeatureCard
             icon={Layers}
-            title="Project Templates"
+            title={t("Project Templates")}
             description="Start with pre-built project structures"
             iconColor="text-green-400"
             iconBg="bg-green-500/20"
@@ -214,7 +211,7 @@ export const AIGenTab: React.FC = () => {
           />
           <FeatureCard
             icon={Palette}
-            title="Filter Presets"
+            title={t("Filter Presets")}
             description="Apply cinematic color grades instantly"
             iconColor="text-orange-400"
             iconBg="bg-orange-500/20"
@@ -226,10 +223,10 @@ export const AIGenTab: React.FC = () => {
           />
         </FeatureSection>
 
-        <FeatureSection title="Media Library" icon={Volume2}>
+        <FeatureSection title={t("Media Library")} icon={Volume2}>
           <FeatureCard
             icon={Music}
-            title="Music & Sound Effects"
+            title={t("Music & Sound Effects")}
             description="Browse royalty-free audio for your projects"
             iconColor="text-teal-400"
             iconBg="bg-teal-500/20"
@@ -241,10 +238,10 @@ export const AIGenTab: React.FC = () => {
           />
         </FeatureSection>
 
-        <FeatureSection title="Tools" icon={Video}>
+        <FeatureSection title={t("Tools")} icon={Video}>
           <FeatureCard
             icon={Video}
-            title="Multi-Camera Editing"
+            title={t("Multi-Camera Editing")}
             description="Sync and switch between multiple angles"
             iconColor="text-cyan-400"
             iconBg="bg-cyan-500/20"

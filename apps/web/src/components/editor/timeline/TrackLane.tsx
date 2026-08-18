@@ -1,4 +1,5 @@
 import React, { useRef, useCallback, useEffect, useState, useMemo } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import type {
   Track,
   TextClip,
@@ -331,9 +332,7 @@ export const TrackLane: React.FC<TrackLaneProps> = ({
           ))}
         {isDragOver && (
           <div className="absolute inset-0 border-2 border-dashed border-primary/50 rounded pointer-events-none flex items-center justify-center">
-            <span className="text-xs text-primary bg-background/80 px-2 py-1 rounded">
-              Drop to add clip
-            </span>
+            <span className="text-xs text-primary bg-background/80 px-2 py-1 rounded">{t("Drop to add clip")}</span>
           </div>
         )}
       </div>

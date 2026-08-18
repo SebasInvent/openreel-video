@@ -1,4 +1,5 @@
 import { ToolcraftButton as Button } from "@openreel/ui";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftSelectControl as Selector } from "@openreel/ui";
 import { ToolcraftTextAreaControl } from "@openreel/ui";
 import type { NanoBanana2Input } from "../../../../services/kieai/image-generation";
@@ -15,11 +16,11 @@ export function NanoBanana2Form({ value, onChange, onSubmit, isLoading }: Props)
   return (
     <div className="space-y-4">
       <ToolcraftTextAreaControl
-        label="Prompt"
+        label={t("Prompt")}
         isRequired
         value={value.prompt}
         onChange={(prompt) => onChange({ ...value, prompt })}
-        placeholder="Describe the image you want to generate..."
+        placeholder={t("Describe the image you want to generate...")}
         maxLength={2000}
         rows={4}
         width="100%"
@@ -27,7 +28,7 @@ export function NanoBanana2Form({ value, onChange, onSubmit, isLoading }: Props)
 
       <div className="grid grid-cols-3 gap-3">
         <Selector
-          label="Aspect Ratio"
+          label={t("Aspect Ratio")}
           value={value.aspect_ratio ?? "1:1"}
           onChange={(aspect_ratio) =>
             onChange({ ...value, aspect_ratio: aspect_ratio as NanoBanana2Input["aspect_ratio"] })
@@ -38,7 +39,7 @@ export function NanoBanana2Form({ value, onChange, onSubmit, isLoading }: Props)
         />
 
         <Selector
-          label="Resolution"
+          label={t("Resolution")}
           value={value.resolution ?? "2K"}
           onChange={(resolution) =>
             onChange({ ...value, resolution: resolution as NanoBanana2Input["resolution"] })
@@ -53,7 +54,7 @@ export function NanoBanana2Form({ value, onChange, onSubmit, isLoading }: Props)
         />
 
         <Selector
-          label="Format"
+          label={t("Format")}
           value={value.output_format ?? "png"}
           onChange={(output_format) =>
             onChange({ ...value, output_format: output_format as NanoBanana2Input["output_format"] })

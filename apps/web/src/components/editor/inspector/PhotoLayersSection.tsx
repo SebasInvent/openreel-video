@@ -1,4 +1,5 @@
 import React, { useCallback, useState, useMemo } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import {
   Layers,
   Eye,
@@ -31,9 +32,9 @@ const BLEND_MODES: { value: PhotoBlendMode; label: string }[] = [
   { value: "colorBurn", label: "Color Burn" },
   { value: "difference", label: "Difference" },
   { value: "exclusion", label: "Exclusion" },
-  { value: "hue", label: "Hue" },
-  { value: "saturation", label: "Saturation" },
-  { value: "color", label: "Color" },
+  { value: "hue", label: t("Hue") },
+  { value: "saturation", label: t("Saturation") },
+  { value: "color", label: t("Color") },
   { value: "luminosity", label: "Luminosity" },
 ];
 
@@ -46,14 +47,12 @@ const BlendModeSelector: React.FC<{
 
   return (
     <div className="flex items-center justify-between">
-      <Text type="supporting" color="secondary" className="text-[10px]">
-        Blend Mode
-      </Text>
+      <Text type="supporting" color="secondary" className="text-[10px]">{t("Blend Mode")}</Text>
       <Popover
         placement="below"
         alignment="end"
         width={180}
-        label="Blend mode"
+        label={t("Blend mode")}
         content={
           <div className="max-h-48 overflow-y-auto p-1.5">
           {BLEND_MODES.map((mode) => (
@@ -286,11 +285,9 @@ export const PhotoLayersSection: React.FC<PhotoLayersSectionProps> = ({
     return (
       <div className="p-4 text-center">
         <Layers size={24} className="mx-auto mb-2 text-fg-3" aria-hidden />
-        <Text type="supporting" color="secondary" className="text-[10px]">
-          No layers
-        </Text>
+        <Text type="supporting" color="secondary" className="text-[10px]">{t("No layers")}</Text>
         <Button
-          label="Add Layer"
+          label={t("Add Layer")}
           variant="primary"
           size="sm"
           onClick={onAddLayer}
@@ -308,7 +305,7 @@ export const PhotoLayersSection: React.FC<PhotoLayersSectionProps> = ({
           Layers ({layers.length})
         </Text>
         <IconButton
-          label="Add new layer"
+          label={t("Add new layer")}
           icon={<Plus size={14} aria-hidden />}
           variant="ghost"
           size="sm"
@@ -341,13 +338,11 @@ export const PhotoLayersSection: React.FC<PhotoLayersSectionProps> = ({
       {/* Selected Layer Properties */}
       {selectedLayer && (
         <div className="space-y-3 pt-3 border-t border-border">
-          <Text type="supporting" color="secondary" weight="bold" className="text-[10px]">
-            Layer Properties
-          </Text>
+          <Text type="supporting" color="secondary" weight="bold" className="text-[10px]">{t("Layer Properties")}</Text>
 
           {/* Opacity Slider */}
           <PropertySlider
-            label="Opacity"
+            label={t("Opacity")}
             value={selectedLayer.opacity * 100}
             onChange={(value: number) => onSetOpacity(selectedLayer.id, value / 100)}
             min={0}
@@ -364,7 +359,7 @@ export const PhotoLayersSection: React.FC<PhotoLayersSectionProps> = ({
           {/* Layer Actions */}
           <div className="flex items-center gap-2 pt-2">
             <Button
-              label="Duplicate"
+              label={t("Duplicate")}
               icon={<Copy size={12} aria-hidden />}
               variant="secondary"
               size="sm"
@@ -372,7 +367,7 @@ export const PhotoLayersSection: React.FC<PhotoLayersSectionProps> = ({
               className="flex-1"
             />
             <Button
-              label="Delete"
+              label={t("Delete")}
               icon={<Trash2 size={12} aria-hidden />}
               variant="secondary"
               size="sm"

@@ -1,4 +1,5 @@
 import React from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftIconButton as IconButton } from "@openreel/ui";
 import { Square, Pause, Play, X, Minimize2 } from "@/icons/lucide-compat";
@@ -64,7 +65,7 @@ export const RecordingControls: React.FC<RecordingControlsProps> = ({
         <div className="flex items-center gap-2">
           {isPaused ? (
             <IconButton
-              label="Resume recording"
+              label={t("Resume recording")}
               icon={<Play size={20} className="text-white" aria-hidden />}
               size="lg"
               variant="primary"
@@ -73,7 +74,7 @@ export const RecordingControls: React.FC<RecordingControlsProps> = ({
             />
           ) : (
             <IconButton
-              label="Pause recording"
+              label={t("Pause recording")}
               icon={<Pause size={20} className="text-warning" aria-hidden />}
               size="lg"
               variant="secondary"
@@ -83,7 +84,7 @@ export const RecordingControls: React.FC<RecordingControlsProps> = ({
           )}
 
           <IconButton
-            label="Stop recording"
+            label={t("Stop recording")}
             icon={<Square size={20} className="text-white fill-white" aria-hidden />}
             size="lg"
             variant="destructive"
@@ -92,7 +93,7 @@ export const RecordingControls: React.FC<RecordingControlsProps> = ({
           />
 
           <IconButton
-            label="Cancel recording"
+            label={t("Cancel recording")}
             icon={<X size={20} className="text-text-muted" aria-hidden />}
             size="lg"
             variant="ghost"
@@ -104,7 +105,7 @@ export const RecordingControls: React.FC<RecordingControlsProps> = ({
         <div className="w-px h-8 bg-border" />
 
         <IconButton
-          label="Minimize controls"
+          label={t("Minimize controls")}
           icon={<Minimize2 size={16} aria-hidden />}
           size="sm"
           variant="ghost"

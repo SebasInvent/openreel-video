@@ -1,4 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftCard as Card } from "@openreel/ui";
 import { ToolcraftFileDropControl as FileInput } from "@openreel/ui";
@@ -22,7 +23,7 @@ const IntensitySlider: React.FC<{
 
   return (
     <PropertySlider
-      label="Intensity"
+      label={t("Intensity")}
       min={0}
       max={100}
       step={1}
@@ -262,7 +263,7 @@ export const LUTLoader: React.FC<LUTLoaderProps> = ({
       {/* Hidden file input */}
       <FileInput
         ref={fileInputRef}
-        label="Load LUT file"
+        label={t("Load LUT file")}
         isLabelHidden
         value={null}
         accept=".cube,.3dl"
@@ -309,7 +310,7 @@ export const LUTLoader: React.FC<LUTLoaderProps> = ({
               </Text>
             </div>
             <IconButton
-              label="Remove LUT"
+              label={t("Remove LUT")}
               icon={<X size={14} />}
               variant="ghost"
               size="sm"
@@ -326,7 +327,7 @@ export const LUTLoader: React.FC<LUTLoaderProps> = ({
 
           {/* Load different LUT button */}
           <Button
-            label="Load Different LUT"
+            label={t("Load Different LUT")}
             variant="ghost"
             size="sm"
             onClick={handleLoadClick}

@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftCard as Card } from "@openreel/ui";
 import { ToolcraftClickableCard as ClickableCard } from "@openreel/ui";
@@ -147,12 +148,10 @@ const CloneSourceIndicator: React.FC<{
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Target size={14} className="text-primary" />
-          <Text type="supporting" color="primary">
-            Clone Source
-          </Text>
+          <Text type="supporting" color="primary">{t("Clone Source")}</Text>
         </div>
         <Button
-          label="Clear"
+          label={t("Clear")}
           size="sm"
           variant="ghost"
           onClick={onClear}
@@ -245,9 +244,7 @@ export const RetouchingSection: React.FC<RetouchingSectionProps> = ({
     <div className="space-y-4">
       {/* Tool Selection */}
       <div className="space-y-2">
-        <Text type="supporting" color="secondary" weight="medium">
-          Retouching Tools
-        </Text>
+        <Text type="supporting" color="secondary" weight="medium">{t("Retouching Tools")}</Text>
         <div className="space-y-2">
           {tools.map((tool) => (
             <ToolButton
@@ -266,9 +263,7 @@ export const RetouchingSection: React.FC<RetouchingSectionProps> = ({
       {/* Clone Source (only for clone stamp) */}
       {activeTool === "cloneStamp" && (
         <div className="space-y-2">
-          <Text type="supporting" color="secondary" weight="medium">
-            Clone Source
-          </Text>
+          <Text type="supporting" color="secondary" weight="medium">{t("Clone Source")}</Text>
           <CloneSourceIndicator
             source={cloneSource}
             onClear={onClearCloneSource}
@@ -279,16 +274,14 @@ export const RetouchingSection: React.FC<RetouchingSectionProps> = ({
       {/* Brush Settings */}
       <Card variant="muted" padding={3}>
         <div className="space-y-3">
-          <Text type="supporting" color="secondary" weight="medium">
-            Brush Settings
-          </Text>
+          <Text type="supporting" color="secondary" weight="medium">{t("Brush Settings")}</Text>
 
           {/* Brush Preview */}
           <BrushPreview size={brushConfig.size} hardness={brushConfig.hardness} />
 
           {/* Size Slider */}
           <BrushSlider
-            label="Size"
+            label={t("Size")}
             value={brushConfig.size}
             onChange={onBrushSizeChange}
             min={1}
@@ -299,7 +292,7 @@ export const RetouchingSection: React.FC<RetouchingSectionProps> = ({
 
           {/* Hardness Slider */}
           <BrushSlider
-            label="Hardness"
+            label={t("Hardness")}
             value={brushConfig.hardness * 100}
             onChange={(value) => onBrushHardnessChange(value / 100)}
             min={0}
@@ -310,7 +303,7 @@ export const RetouchingSection: React.FC<RetouchingSectionProps> = ({
 
           {/* Opacity Slider */}
           <BrushSlider
-            label="Opacity"
+            label={t("Opacity")}
             value={brushConfig.opacity * 100}
             onChange={(value) => onBrushOpacityChange(value / 100)}
             min={0}
@@ -322,7 +315,7 @@ export const RetouchingSection: React.FC<RetouchingSectionProps> = ({
           {/* Flow Slider (for spot healing and clone stamp) */}
           {(activeTool === "spotHeal" || activeTool === "cloneStamp") && (
             <BrushSlider
-              label="Flow"
+              label={t("Flow")}
               value={brushConfig.flow * 100}
               onChange={(value) => onBrushFlowChange(value / 100)}
               min={0}
@@ -339,9 +332,7 @@ export const RetouchingSection: React.FC<RetouchingSectionProps> = ({
         <div className="flex items-start gap-2">
           <MousePointer2 size={14} className="text-fg-3 mt-0.5" />
           <div className="flex flex-col gap-1">
-            <Text type="supporting" color="primary" weight="medium">
-              How to use
-            </Text>
+            <Text type="supporting" color="primary" weight="medium">{t("How to use")}</Text>
             <Text type="supporting" color="secondary" className="mt-1 text-[9px]">
               {activeTool === "spotHeal" &&
                 "Click and drag over blemishes to remove them. The tool samples surrounding pixels to blend seamlessly."}

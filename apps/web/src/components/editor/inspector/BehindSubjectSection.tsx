@@ -1,4 +1,5 @@
 import React, { useCallback, useState, useEffect } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftText as Text } from "@openreel/ui";
 import { Loader2 } from "@/icons/lucide-compat";
 import { MockToggle } from "./shell/InspectorControls";
@@ -69,12 +70,8 @@ export const BehindSubjectSection: React.FC<BehindSubjectSectionProps> = ({
     <div className="space-y-3">
       <div className="flex items-center justify-between">
         <div className="flex flex-1 flex-col gap-0.5">
-          <Text type="supporting" color="primary" className="block">
-            Place Behind Subject
-          </Text>
-          <Text type="supporting" color="secondary" className="block text-[9px]">
-            Text appears behind people in the video
-          </Text>
+          <Text type="supporting" color="primary" className="block">{t("Place Behind Subject")}</Text>
+          <Text type="supporting" color="secondary" className="block text-[9px]">{t("Text appears behind people in the video")}</Text>
         </div>
         {isLoading ? (
           <Loader2 size={14} className="animate-spin text-primary" />
@@ -87,9 +84,7 @@ export const BehindSubjectSection: React.FC<BehindSubjectSectionProps> = ({
         )}
       </div>
       {isLoading && (
-        <Text type="supporting" color="secondary" className="text-[9px]">
-          Loading AI model...
-        </Text>
+        <Text type="supporting" color="secondary" className="text-[9px]">{t("Loading AI model...")}</Text>
       )}
       {error && (
         <Text type="supporting" className="text-[9px] text-red-400">

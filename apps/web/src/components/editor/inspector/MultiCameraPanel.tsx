@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useMemo, useEffect } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import {
   Video,
   Camera,
@@ -55,7 +56,7 @@ const AngleCard: React.FC<{
         />
         {isEditing ? (
           <ToolcraftTextInputControl
-            label="Camera angle name"
+            label={t("Camera angle name")}
             isLabelHidden
             value={editName}
             onChange={setEditName}
@@ -78,7 +79,7 @@ const AngleCard: React.FC<{
         )}
         {isActive && <Check size={12} className="text-primary" />}
         <IconButton
-          label="Remove angle"
+          label={t("Remove angle")}
           icon={<Trash2 size={10} />}
           variant="ghost"
           size="sm"
@@ -92,7 +93,7 @@ const AngleCard: React.FC<{
       <div className="mt-1 flex items-center gap-1">
         <span className="text-[8px] text-fg-3">Offset:</span>
         <ToolcraftNumberInputControl
-          label="Angle offset"
+          label={t("Angle offset")}
           isLabelHidden
           size="sm"
           value={Number(angle.offset.toFixed(2))}
@@ -165,14 +166,14 @@ const GroupSection: React.FC<{
         </div>
         <div className="flex gap-1 pt-2 border-t border-border">
           <Button
-            label="Sync Audio"
+            label={t("Sync Audio")}
             variant="ghost"
             icon={<Link size={10} />}
             onClick={onSync}
             className="flex-1 flex items-center justify-center gap-1 py-1.5 text-[9px] text-fg-2 hover:text-fg bg-bg-2 rounded transition-colors"
           />
           <IconButton
-            label="Delete camera group"
+            label={t("Delete camera group")}
             icon={<Trash2 size={10} />}
             variant="ghost"
             size="sm"
@@ -339,20 +340,14 @@ export const MultiCameraPanel: React.FC<MultiCameraPanelProps> = () => {
       <div className="flex items-center gap-2 p-2 bg-primary/10 rounded-lg border border-primary/30">
         <Video size={16} className="text-primary" />
         <div className="flex-1 flex flex-col gap-0.5">
-          <span className="text-[11px] font-medium text-fg">
-            Multi-Camera Editing
-          </span>
-          <Text type="supporting" color="secondary" className="text-[9px] text-fg-3">
-            Sync and switch between camera angles
-          </Text>
+          <span className="text-[11px] font-medium text-fg">{t("Multi-Camera Editing")}</span>
+          <Text type="supporting" color="secondary" className="text-[9px] text-fg-3">{t("Sync and switch between camera angles")}</Text>
         </div>
       </div>
 
       {groups.length > 0 && (
         <div className="space-y-2">
-          <span className="text-[10px] font-medium text-fg-2">
-            Camera Groups
-          </span>
+          <span className="text-[10px] font-medium text-fg-2">{t("Camera Groups")}</span>
           {groups.map((group) => (
             <GroupSection
               key={group.id}
@@ -375,9 +370,7 @@ export const MultiCameraPanel: React.FC<MultiCameraPanelProps> = () => {
       )}
 
       <div className="space-y-2 pt-2 border-t border-border">
-        <span className="block text-[10px] font-medium text-fg-2">
-          Create New Group
-        </span>
+        <span className="block text-[10px] font-medium text-fg-2">{t("Create New Group")}</span>
         <Text type="supporting" color="secondary" className="block text-[9px] text-fg-3">
           Select 2+ video clips to create a multi-camera group
         </Text>
@@ -388,9 +381,7 @@ export const MultiCameraPanel: React.FC<MultiCameraPanelProps> = () => {
               size={24}
               className="mx-auto mb-2 text-fg-3 opacity-50"
             />
-            <Text type="supporting" color="secondary" className="text-[10px] text-fg-3">
-              Import video clips to use multi-camera editing
-            </Text>
+            <Text type="supporting" color="secondary" className="text-[10px] text-fg-3">{t("Import video clips to use multi-camera editing")}</Text>
           </div>
         ) : (
           <>
@@ -449,9 +440,7 @@ export const MultiCameraPanel: React.FC<MultiCameraPanelProps> = () => {
         )}
       </div>
 
-      <Text type="supporting" color="secondary" className="text-[9px] text-fg-3 text-center">
-        Switch angles during playback to create cuts
-      </Text>
+      <Text type="supporting" color="secondary" className="text-[9px] text-fg-3 text-center">{t("Switch angles during playback to create cuts")}</Text>
     </div>
   );
 };

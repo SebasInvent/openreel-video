@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import {
   CheckCircle2,
   Search,
@@ -200,9 +201,7 @@ export const RecipesTab: React.FC = () => {
           <Sparkles size={24} />
         </div>
         <div>
-          <Text type="body" weight="bold" display="block" className="text-sm">
-            Select a clip first
-          </Text>
+          <Text type="body" weight="bold" display="block" className="text-sm">{t("Select a clip first")}</Text>
           <Text type="supporting" color="secondary" display="block" className="mt-1.5 max-w-[240px] text-xs leading-relaxed mx-auto">
             Choose a video or image in the timeline to apply clip-scoped recipes, looks, and caption treatments.
           </Text>
@@ -233,11 +232,11 @@ export const RecipesTab: React.FC = () => {
         <div className="relative">
           <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted" />
           <ToolcraftTextInputControl
-            label="Search recipes"
+            label={t("Search recipes")}
             isLabelHidden
             value={searchQuery}
             onChange={setSearchQuery}
-            placeholder="Search recipes..."
+            placeholder={t("Search recipes...")}
             className="w-full h-9 pl-9 pr-3 rounded-lg border border-border bg-background-tertiary text-xs text-text-primary placeholder:text-text-muted outline-none focus:border-primary/50 transition-colors"
           />
         </div>
@@ -284,12 +283,8 @@ export const RecipesTab: React.FC = () => {
       <div className="flex-1 p-4 space-y-3">
         {filteredTemplates.length === 0 ? (
           <div className="py-12 text-center">
-            <Text type="body" color="secondary" weight="bold" display="block" className="text-sm">
-              No recipes match
-            </Text>
-            <Text type="supporting" color="secondary" display="block" className="mt-2 text-xs">
-              Try a different search or category.
-            </Text>
+            <Text type="body" color="secondary" weight="bold" display="block" className="text-sm">{t("No recipes match")}</Text>
+            <Text type="supporting" color="secondary" display="block" className="mt-2 text-xs">{t("Try a different search or category.")}</Text>
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-3">
@@ -339,7 +334,7 @@ export const RecipesTab: React.FC = () => {
                           <div className="flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
                             {template.controls && template.controls.length > 0 && (
                               <Button
-                                label="Edit recipe controls"
+                                label={t("Edit recipe controls")}
                                 variant="ghost"
                                 icon={<SlidersHorizontal size={10} />}
                                 onClick={() => handleExpand(template)}

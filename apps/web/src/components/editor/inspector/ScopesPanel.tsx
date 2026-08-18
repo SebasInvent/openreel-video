@@ -5,6 +5,7 @@ import React, {
   useState,
   useMemo,
 } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftCard as Card } from "@openreel/ui";
 import { ToolcraftText as Text } from "@openreel/ui";
@@ -483,17 +484,13 @@ export const ScopesPanel: React.FC<ScopesPanelProps> = ({
   const viewContent = useMemo(() => {
     if (isLoading) {
       return (
-        <Text type="supporting" color="secondary" className="flex h-40 items-center justify-center text-xs">
-          Generating scope data...
-        </Text>
+        <Text type="supporting" color="secondary" className="flex h-40 items-center justify-center text-xs">{t("Generating scope data...")}</Text>
       );
     }
 
     if (!frameImage) {
       return (
-        <Text type="supporting" color="secondary" className="flex h-40 items-center justify-center text-xs">
-          No frame to analyze
-        </Text>
+        <Text type="supporting" color="secondary" className="flex h-40 items-center justify-center text-xs">{t("No frame to analyze")}</Text>
       );
     }
 
@@ -541,19 +538,19 @@ export const ScopesPanel: React.FC<ScopesPanelProps> = ({
           active={activeView === "waveform"}
           onClick={() => handleViewChange("waveform")}
           icon={<Activity size={12} />}
-          label="Waveform"
+          label={t("Waveform")}
         />
         <ViewToggleButton
           active={activeView === "vectorscope"}
           onClick={() => handleViewChange("vectorscope")}
           icon={<Circle size={12} />}
-          label="Vectorscope"
+          label={t("Vectorscope")}
         />
         <ViewToggleButton
           active={activeView === "histogram"}
           onClick={() => handleViewChange("histogram")}
           icon={<BarChart3 size={12} />}
-          label="Histogram"
+          label={t("Histogram")}
         />
       </div>
 

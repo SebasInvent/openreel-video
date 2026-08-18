@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useState } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { Search } from "@/icons/lucide-compat";
 import { ToolcraftClickableCard as ClickableCard } from "@openreel/ui";
 import { ToolcraftText as Text } from "@openreel/ui";
@@ -57,7 +58,7 @@ export const EDITOR_EFFECT_PREVIEWS: EditorEffectPreviewDef[] = [
   },
   {
     type: "saturation",
-    label: "Saturation",
+    label: t("Saturation"),
     description: "Boost or mute color intensity",
     category: "Basic",
     previewStyle: (p) => ({ filter: `saturate(${lerp(0.5, 2.0, p)})` }),
@@ -94,7 +95,7 @@ export const EDITOR_EFFECT_PREVIEWS: EditorEffectPreviewDef[] = [
   },
   {
     type: "temperature",
-    label: "Temperature",
+    label: t("Temperature"),
     description: "Warm / cool color shift",
     category: "Color",
     previewStyle: (p) => ({
@@ -103,7 +104,7 @@ export const EDITOR_EFFECT_PREVIEWS: EditorEffectPreviewDef[] = [
   },
   {
     type: "tint",
-    label: "Tint",
+    label: t("Tint"),
     description: "Magenta / green color shift",
     category: "Color",
     previewStyle: (p) => ({
@@ -112,7 +113,7 @@ export const EDITOR_EFFECT_PREVIEWS: EditorEffectPreviewDef[] = [
   },
   {
     type: "hue",
-    label: "Hue",
+    label: t("Hue"),
     description: "Rotate the color wheel",
     category: "Color",
     previewStyle: (p) => ({
@@ -121,14 +122,14 @@ export const EDITOR_EFFECT_PREVIEWS: EditorEffectPreviewDef[] = [
   },
   {
     type: "blur",
-    label: "Blur",
+    label: t("Blur"),
     description: "Soft gaussian defocus",
     category: "Blur",
     previewStyle: (p) => ({ filter: `blur(${lerp(0, 6, p)}px)` }),
   },
   {
     type: "motion-blur",
-    label: "Motion Blur",
+    label: t("Motion Blur"),
     description: "Directional smear",
     category: "Blur",
     previewStyle: (p) => ({
@@ -1508,12 +1509,12 @@ export const EffectsPanel: React.FC = () => {
     <div className="flex flex-col h-full min-h-0">
       <div className="px-3 pt-3 pb-2 shrink-0">
         <ToolcraftTextInputControl
-          label="Search effects"
+          label={t("Search effects")}
           isLabelHidden
           type="text"
           value={query}
           onChange={setQuery}
-          placeholder="Search effects"
+          placeholder={t("Search effects")}
           startIcon={<Search size={13} aria-hidden />}
           size="sm"
           width="100%"
@@ -1521,7 +1522,7 @@ export const EffectsPanel: React.FC = () => {
         <div
           className="mt-2 flex gap-1 overflow-x-auto pb-0.5"
           role="group"
-          aria-label="Effect categories"
+          aria-label={t("Effect categories")}
         >
           {(["All", ...EDITOR_EFFECT_CATEGORIES] as const).map((category) => {
             const count =
@@ -1709,12 +1710,12 @@ export const TransitionsPanel: React.FC = () => {
     <div className="flex flex-col h-full min-h-0">
       <div className="px-3 pt-3 pb-2 shrink-0">
         <ToolcraftTextInputControl
-          label="Search transitions"
+          label={t("Search transitions")}
           isLabelHidden
           type="text"
           value={query}
           onChange={setQuery}
-          placeholder="Search transitions"
+          placeholder={t("Search transitions")}
           startIcon={<Search size={13} aria-hidden />}
           size="sm"
           width="100%"
@@ -1722,7 +1723,7 @@ export const TransitionsPanel: React.FC = () => {
         <div
           className="mt-2 flex gap-1 overflow-x-auto pb-0.5"
           role="group"
-          aria-label="Transition categories"
+          aria-label={t("Transition categories")}
         >
           {(["All", ...TRANSITION_CATEGORIES] as const).map((category) => {
             const count =

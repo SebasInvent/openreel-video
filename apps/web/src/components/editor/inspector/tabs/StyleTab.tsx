@@ -1,4 +1,5 @@
 import React from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { TextSection, ShapeSection, SVGSection } from "../";
 import { InspectorSection } from "../shell/InspectorSection";
 
@@ -18,17 +19,17 @@ export const StyleTab: React.FC<StyleTabProps> = ({
   return (
     <>
       {showTextSection && (
-        <InspectorSection title="Text Properties" sectionId="text-properties">
+        <InspectorSection title={t("Text Properties")} sectionId="text-properties">
           <TextSection clipId={clipId} />
         </InspectorSection>
       )}
       {showShapeSection && (
-        <InspectorSection title="Shape Properties" sectionId="shape-properties">
+        <InspectorSection title={t("Shape Properties")} sectionId="shape-properties">
           <ShapeSection clipId={clipId} />
         </InspectorSection>
       )}
       {showSVGSection && (
-        <InspectorSection title="SVG Properties">
+        <InspectorSection title={t("SVG Properties")}>
           <SVGSection clipId={clipId} />
         </InspectorSection>
       )}

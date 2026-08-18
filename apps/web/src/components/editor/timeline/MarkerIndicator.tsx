@@ -1,4 +1,5 @@
 import React from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftIconButton as IconButton } from "@openreel/ui";
 import { ToolcraftTextInputControl } from "@openreel/ui";
 import { Flag, X } from "@/icons/lucide-compat";
@@ -86,7 +87,7 @@ export const MarkerIndicator: React.FC<MarkerIndicatorProps> = ({
         <Flag size={10} />
         {isEditing ? (
           <ToolcraftTextInputControl
-            label="Marker label"
+            label={t("Marker label")}
             isLabelHidden
             size="sm"
             width={92}
@@ -105,7 +106,7 @@ export const MarkerIndicator: React.FC<MarkerIndicatorProps> = ({
         )}
         {isHovered && onRemove && (
           <IconButton
-            label="Remove marker"
+            label={t("Remove marker")}
             icon={<X size={10} aria-hidden />}
             size="sm"
             variant="ghost"

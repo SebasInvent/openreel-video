@@ -1,4 +1,5 @@
 import * as React from "react";
+import { t } from "@/integrations/skynet/idioma";
 
 interface Props {
   children: React.ReactNode;
@@ -18,9 +19,7 @@ export class InspectorTabErrorBoundary extends React.Component<Props, State> {
   render(): React.ReactNode {
     if (this.state.hasError) {
       return (
-        <div className="p-4 text-center text-xs text-fg-2">
-          This panel hit an error. Switch tabs and back to retry.
-        </div>
+        <div className="p-4 text-center text-xs text-fg-2">{t("This panel hit an error. Switch tabs and back to retry.")}</div>
       );
     }
     return this.props.children;

@@ -5,6 +5,7 @@ import React, {
   useEffect,
   useRef,
 } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftCard as Card } from "@openreel/ui";
 import { ToolcraftClickableCard as ClickableCard } from "@openreel/ui";
@@ -283,9 +284,7 @@ const PresetCard: React.FC<PresetCardProps> = ({
         )}
         {isHovered && !isApplied && (
           <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-            <Text type="supporting" className="text-[10px] text-white font-medium px-2 py-1 bg-primary rounded">
-              Apply
-            </Text>
+            <Text type="supporting" className="text-[10px] text-white font-medium px-2 py-1 bg-primary rounded">{t("Apply")}</Text>
           </div>
         )}
       </div>
@@ -523,9 +522,7 @@ export const MotionPresetsPanel: React.FC<MotionPresetsPanelProps> = ({
     return (
       <div className="p-4 text-center">
         <Zap size={24} className="mx-auto mb-2 text-fg-3" />
-        <Text type="supporting" color="secondary" className="text-[10px]">
-          Select a clip to apply motion presets
-        </Text>
+        <Text type="supporting" color="secondary" className="text-[10px]">{t("Select a clip to apply motion presets")}</Text>
       </div>
     );
   }
@@ -534,9 +531,7 @@ export const MotionPresetsPanel: React.FC<MotionPresetsPanelProps> = ({
     return (
       <div className="p-4 text-center">
         <Zap size={24} className="mx-auto mb-2 text-fg-3" />
-        <Text type="supporting" color="secondary" className="text-[10px]">
-          Clip not found
-        </Text>
+        <Text type="supporting" color="secondary" className="text-[10px]">{t("Clip not found")}</Text>
       </div>
     );
   }
@@ -547,13 +542,11 @@ export const MotionPresetsPanel: React.FC<MotionPresetsPanelProps> = ({
         appliedState.exit ||
         appliedState.emphasis) && (
         <Card variant="muted" padding={2} className="space-y-1 border border-border">
-          <Text type="supporting" color="secondary" className="text-[10px] font-medium">
-            Applied Animations
-          </Text>
+          <Text type="supporting" color="secondary" className="text-[10px] font-medium">{t("Applied Animations")}</Text>
           <div className="flex flex-wrap gap-1 mt-1">
             {appliedState.entrance && (
               <Button
-                label="Entry x"
+                label={t("Entry x")}
                 icon={<ArrowRight size={10} />}
                 variant="ghost"
                 size="sm"
@@ -563,7 +556,7 @@ export const MotionPresetsPanel: React.FC<MotionPresetsPanelProps> = ({
             )}
             {appliedState.exit && (
               <Button
-                label="Exit x"
+                label={t("Exit x")}
                 icon={<ArrowLeft size={10} />}
                 variant="ghost"
                 size="sm"
@@ -573,7 +566,7 @@ export const MotionPresetsPanel: React.FC<MotionPresetsPanelProps> = ({
             )}
             {appliedState.emphasis && (
               <Button
-                label="Emphasis x"
+                label={t("Emphasis x")}
                 icon={<Zap size={10} />}
                 variant="ghost"
                 size="sm"

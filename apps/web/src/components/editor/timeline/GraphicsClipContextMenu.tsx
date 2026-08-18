@@ -1,4 +1,5 @@
 import React from "react";
+import { t } from "@/integrations/skynet/idioma";
 import type { ToolcraftContextMenuOption as ContextMenuOption } from "@openreel/ui";
 import {
   Layers,
@@ -105,7 +106,7 @@ export function useGraphicsClipContextMenuItems({
   if (onDuplicate) {
     items.push(
       {
-        label: "Duplicate",
+        label: t("Duplicate"),
         icon: <Layers size={14} aria-hidden />,
         onClick: handleDuplicate,
       },
@@ -114,7 +115,7 @@ export function useGraphicsClipContextMenuItems({
   }
 
   items.push({
-    label: "Delete",
+    label: t("Delete"),
     icon: <Trash2 size={14} aria-hidden />,
     onClick: handleDelete,
   });

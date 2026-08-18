@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftSwitchControl } from "@openreel/ui";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftClickableCard as ClickableCard } from "@openreel/ui";
@@ -108,9 +109,7 @@ export const GeneralPanel: React.FC = () => {
       {/* Project Composition */}
       <div className="space-y-4">
         <div>
-          <Text type="body" color="primary" className="text-sm font-medium">
-            Project Composition
-          </Text>
+          <Text type="body" color="primary" className="text-sm font-medium">{t("Project Composition")}</Text>
           <Text type="supporting" color="secondary" className="mt-0.5 text-xs">
             Set the canvas dimensions for your project. Pick a preset for TikTok,
             Reels, YouTube, or enter custom values.
@@ -147,7 +146,7 @@ export const GeneralPanel: React.FC = () => {
 
         <div className="flex items-end gap-2">
           <ToolcraftNumberInputControl
-            label="Width"
+            label={t("Width")}
             size="md"
             width="100%"
             min={16}
@@ -156,7 +155,7 @@ export const GeneralPanel: React.FC = () => {
             onChange={(value) => setDraftWidth(String(value))}
           />
           <ToolcraftNumberInputControl
-            label="Height"
+            label={t("Height")}
             size="md"
             width="100%"
             min={16}
@@ -165,7 +164,7 @@ export const GeneralPanel: React.FC = () => {
             onChange={(value) => setDraftHeight(String(value))}
           />
           <Button
-            label="Apply"
+            label={t("Apply")}
             onClick={handleApplyCustom}
             variant="primary"
             size="md"
@@ -173,15 +172,13 @@ export const GeneralPanel: React.FC = () => {
         </div>
 
         <div className="space-y-2">
-          <Text type="supporting" color="secondary" className="text-xs font-medium">
-            Background fill
-          </Text>
+          <Text type="supporting" color="secondary" className="text-xs font-medium">{t("Background fill")}</Text>
           <Text type="supporting" color="secondary" className="text-[11px]">
             Fills the canvas around clips that don&apos;t match the aspect ratio.
           </Text>
           <div className="flex flex-wrap items-center gap-2">
             <ClickableCard
-              label="No background fill"
+              label={t("No background fill")}
               onClick={() => setCanvasBackground(undefined, undefined)}
               padding={2}
               variant={!backgroundFillMode ? "green" : "muted"}
@@ -190,11 +187,9 @@ export const GeneralPanel: React.FC = () => {
                   ? "border-primary bg-primary/10 text-text-primary"
                   : "border-border bg-background-tertiary text-text-secondary hover:text-text-primary"
               }`}
-            >
-              None
-            </ClickableCard>
+            >{t("None")}</ClickableCard>
             <ClickableCard
-              label="Blur background fill"
+              label={t("Blur background fill")}
               onClick={() =>
                 setCanvasBackground("blur", layoutBackgroundColor)
               }
@@ -205,9 +200,7 @@ export const GeneralPanel: React.FC = () => {
                   ? "border-primary bg-primary/10 text-text-primary"
                   : "border-border bg-background-tertiary text-text-secondary hover:text-text-primary"
               }`}
-            >
-              Blur
-            </ClickableCard>
+            >{t("Blur")}</ClickableCard>
             {BACKGROUND_SWATCHES.map((hex) => {
               const isActive =
                 backgroundFillMode === "color" &&
@@ -236,18 +229,12 @@ export const GeneralPanel: React.FC = () => {
 
       {/* Auto-save */}
       <div className="space-y-4">
-        <Text type="body" color="primary" className="text-sm font-medium">
-          Auto-Save
-        </Text>
+        <Text type="body" color="primary" className="text-sm font-medium">{t("Auto-Save")}</Text>
 
         <div className="flex items-center justify-between">
           <div>
-            <Text type="supporting" color="secondary" className="text-sm">
-              Enable auto-save
-            </Text>
-            <Text type="supporting" color="secondary" className="mt-0.5 text-xs">
-              Automatically save your project at regular intervals
-            </Text>
+            <Text type="supporting" color="secondary" className="text-sm">{t("Enable auto-save")}</Text>
+            <Text type="supporting" color="secondary" className="mt-0.5 text-xs">{t("Automatically save your project at regular intervals")}</Text>
           </div>
           <ToolcraftSwitchControl
             ariaLabel="Enable auto-save"
@@ -259,11 +246,9 @@ export const GeneralPanel: React.FC = () => {
 
         {autoSave && (
           <div className="flex items-center gap-3">
-            <Text type="supporting" color="secondary" className="whitespace-nowrap text-sm">
-              Save every
-            </Text>
+            <Text type="supporting" color="secondary" className="whitespace-nowrap text-sm">{t("Save every")}</Text>
             <Selector
-              label="Auto-save interval"
+              label={t("Auto-save interval")}
               isLabelHidden
               size="md"
               width={150}
@@ -286,9 +271,7 @@ export const GeneralPanel: React.FC = () => {
 
       {/* Default providers */}
       <div className="space-y-4">
-        <Text type="body" color="primary" className="text-sm font-medium">
-          Default AI Providers
-        </Text>
+        <Text type="body" color="primary" className="text-sm font-medium">{t("Default AI Providers")}</Text>
         <Text type="supporting" color="secondary" className="text-xs">
           Choose which service to use by default for AI features.
           Configure API keys in the &quot;API Keys&quot; tab first.
@@ -296,11 +279,9 @@ export const GeneralPanel: React.FC = () => {
 
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <Text type="supporting" color="secondary" className="text-sm">
-              Text to Speech/Voice To Speech/Sound Effects
-            </Text>
+            <Text type="supporting" color="secondary" className="text-sm">{t("Text to Speech/Voice To Speech/Sound Effects")}</Text>
             <Selector
-              label="Text to Speech provider"
+              label={t("Text to Speech provider")}
               isLabelHidden
               size="md"
               width={180}
@@ -311,11 +292,9 @@ export const GeneralPanel: React.FC = () => {
           </div>
 
           <div className="flex items-center justify-between">
-            <Text type="supporting" color="secondary" className="text-sm">
-              AI Assistant (LLM)
-            </Text>
+            <Text type="supporting" color="secondary" className="text-sm">{t("AI Assistant (LLM)")}</Text>
             <Selector
-              label="AI Assistant provider"
+              label={t("AI Assistant provider")}
               isLabelHidden
               size="md"
               width={180}
@@ -327,15 +306,11 @@ export const GeneralPanel: React.FC = () => {
 
           <div className="flex items-center justify-between">
             <div>
-              <Text type="supporting" color="secondary" className="text-sm">
-                AI Aggregator
-              </Text>
-              <Text type="supporting" color="secondary" className="mt-0.5 text-xs">
-                Video/image generation, upscaling, and creative AI tools
-              </Text>
+              <Text type="supporting" color="secondary" className="text-sm">{t("AI Aggregator")}</Text>
+              <Text type="supporting" color="secondary" className="mt-0.5 text-xs">{t("Video/image generation, upscaling, and creative AI tools")}</Text>
             </div>
             <Selector
-              label="AI Aggregator provider"
+              label={t("AI Aggregator provider")}
               isLabelHidden
               size="md"
               width={180}

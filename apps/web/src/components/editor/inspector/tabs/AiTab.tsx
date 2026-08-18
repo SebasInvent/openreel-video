@@ -1,4 +1,5 @@
 import React from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { Zap, Captions, Loader2, Upload } from "@/icons/lucide-compat";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftCard as Card } from "@openreel/ui";
@@ -85,7 +86,7 @@ export const AiTab: React.FC<AiTabProps> = ({
     <>
       {gpuClipMedia && (
         <InspectorSection
-          title="Cloud GPU Tools"
+          title={t("Cloud GPU Tools")}
           sectionId="cloud-gpu-tools"
           defaultOpen
         >
@@ -96,14 +97,14 @@ export const AiTab: React.FC<AiTabProps> = ({
       {clipType === "video" && (
         <>
           <InspectorSection
-            title="AI Auto-Captions"
+            title={t("AI Auto-Captions")}
             sectionId="auto-captions"
             defaultOpen={false}
           >
             <div className="space-y-3">
               <FileInput
                 ref={srtInputRef}
-                label="Import SRT file"
+                label={t("Import SRT file")}
                 isLabelHidden
                 value={null}
                 accept=".srt,text/srt,text/plain"
@@ -125,7 +126,7 @@ export const AiTab: React.FC<AiTabProps> = ({
                 <>
               <div className="space-y-1">
                 <Selector
-                  label="Animation Style"
+                  label={t("Animation Style")}
                   size="sm"
                   width="100%"
                   value={defaultAnimationStyle}
@@ -142,7 +143,7 @@ export const AiTab: React.FC<AiTabProps> = ({
 
               <div className="space-y-1">
                 <Selector
-                  label="Target Language"
+                  label={t("Target Language")}
                   size="sm"
                   width="100%"
                   value={targetLanguage}
@@ -182,7 +183,7 @@ export const AiTab: React.FC<AiTabProps> = ({
                     </Text>
                   </div>
                   <ProgressBar
-                    label="Caption generation progress"
+                    label={t("Caption generation progress")}
                     isLabelHidden
                     value={transcriptionProgress.progress}
                     max={100}
@@ -198,7 +199,7 @@ export const AiTab: React.FC<AiTabProps> = ({
                 </div>
               ) : (
                 <Button
-                  label="Generate Captions"
+                  label={t("Generate Captions")}
                   onClick={handleGenerateSubtitles}
                   isDisabled={isTranscribing}
                   variant="primary"
@@ -210,7 +211,7 @@ export const AiTab: React.FC<AiTabProps> = ({
                 </>
               )}
               <Button
-                label="Import SRT File"
+                label={t("Import SRT File")}
                 onClick={() => srtInputRef.current?.click()}
                 isDisabled={isTranscribing}
                 variant="secondary"
@@ -225,7 +226,7 @@ export const AiTab: React.FC<AiTabProps> = ({
 
       {clipType === "video" && (
         <InspectorSection
-          title="Auto Reframe"
+          title={t("Auto Reframe")}
           sectionId="auto-reframe"
           defaultOpen={false}
         >
@@ -235,7 +236,7 @@ export const AiTab: React.FC<AiTabProps> = ({
 
       {showAudioEffects && (
         <InspectorSection
-          title="Beat-Synced Auto-Edit"
+          title={t("Beat-Synced Auto-Edit")}
           sectionId="auto-edit"
           defaultOpen={false}
         >
@@ -245,7 +246,7 @@ export const AiTab: React.FC<AiTabProps> = ({
 
       {showAudioEffects && (
         <InspectorSection
-          title="AI Highlights"
+          title={t("AI Highlights")}
           sectionId="ai-highlights"
           defaultOpen={false}
         >
@@ -261,14 +262,12 @@ export const AiTab: React.FC<AiTabProps> = ({
         >
           <div className="flex items-center gap-2 text-primary mb-3">
             <Zap size={14} />
-            <Text type="supporting" color="active" className="text-xs font-bold">
-              Quick Actions
-            </Text>
+            <Text type="supporting" color="active" className="text-xs font-bold">{t("Quick Actions")}</Text>
           </div>
           <div className="space-y-2">
             {showVideoControls && (
               <Button
-                label="Remove Background"
+                label={t("Remove Background")}
                 onClick={handleRemoveBackground}
                 isDisabled={isApplyingSelectedClipEffect}
                 variant="secondary"

@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useMemo } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import {
   Film,
   ChevronLeft,
@@ -121,7 +122,7 @@ export const SceneNavigatorPanel: React.FC<SceneNavigatorPanelProps> = ({
     return (
       <div className="flex items-center gap-2">
         <IconButton
-          label="Previous scene"
+          label={t("Previous scene")}
           icon={<ChevronLeft size={16} className="text-fg-2" />}
           variant="ghost"
           size="sm"
@@ -141,7 +142,7 @@ export const SceneNavigatorPanel: React.FC<SceneNavigatorPanelProps> = ({
         </div>
 
         <IconButton
-          label="Next scene"
+          label={t("Next scene")}
           icon={<ChevronRight size={16} className="text-fg-2" />}
           variant="ghost"
           size="sm"
@@ -159,27 +160,23 @@ export const SceneNavigatorPanel: React.FC<SceneNavigatorPanelProps> = ({
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Film size={14} className="text-primary" />
-            <span className="text-[11px] font-medium text-fg">
-              Scenes
-            </span>
+            <span className="text-[11px] font-medium text-fg">{t("Scenes")}</span>
             <span className="text-[10px] text-fg-3">
               ({scenes.length})
             </span>
           </div>
           <Button
-            label="Add scene"
+            label={t("Add scene")}
             variant="primary"
             icon={<Plus size={10} />}
             onClick={handleAddScene}
             className="flex items-center gap-1 px-2 py-1 bg-primary hover:bg-primary/80 text-white rounded text-[10px] font-medium transition-colors"
-          >
-            Add
-          </Button>
+          >{t("Add")}</Button>
         </div>
 
         <div className="flex items-center gap-1">
           <IconButton
-            label="Previous scene"
+            label={t("Previous scene")}
             icon={<ChevronLeft size={14} />}
             variant="ghost"
             size="sm"
@@ -219,7 +216,7 @@ export const SceneNavigatorPanel: React.FC<SceneNavigatorPanelProps> = ({
           </div>
 
           <IconButton
-            label="Next scene"
+            label={t("Next scene")}
             icon={<ChevronRight size={14} />}
             variant="ghost"
             size="sm"
@@ -237,34 +234,26 @@ export const SceneNavigatorPanel: React.FC<SceneNavigatorPanelProps> = ({
       <div className="flex items-center gap-2 p-2 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 rounded-lg border border-emerald-500/30">
         <Layers size={16} className="text-emerald-500" />
         <div className="flex flex-col gap-0.5">
-          <span className="text-[11px] font-medium text-fg">
-            Scene Navigator
-          </span>
-          <Text type="supporting" color="secondary" className="text-[9px] text-fg-3">
-            Navigate between sections
-          </Text>
+          <span className="text-[11px] font-medium text-fg">{t("Scene Navigator")}</span>
+          <Text type="supporting" color="secondary" className="text-[9px] text-fg-3">{t("Navigate between sections")}</Text>
         </div>
       </div>
 
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Film size={14} className="text-fg-2" />
-          <span className="text-[11px] font-medium text-fg">
-            Scenes
-          </span>
+          <span className="text-[11px] font-medium text-fg">{t("Scenes")}</span>
           <span className="text-[10px] text-fg-3 bg-bg-2 px-1.5 py-0.5 rounded">
             {scenes.length}
           </span>
         </div>
         <Button
-          label="Add Scene"
+          label={t("Add Scene")}
           variant="primary"
           icon={<Plus size={10} />}
           onClick={handleAddScene}
           className="flex items-center gap-1 px-2 py-1 bg-primary hover:bg-primary/80 text-white rounded text-[10px] font-medium transition-colors"
-        >
-          Add Scene
-        </Button>
+        >{t("Add Scene")}</Button>
       </div>
 
       <div className="space-y-1 max-h-64 overflow-y-auto">
@@ -334,27 +323,23 @@ export const SceneNavigatorPanel: React.FC<SceneNavigatorPanelProps> = ({
 
       <div className="flex items-center justify-between pt-2 border-t border-border">
         <Button
-          label="Previous scene"
+          label={t("Previous scene")}
           variant="ghost"
           icon={<ChevronLeft size={12} />}
           onClick={handlePrevious}
           isDisabled={currentSceneIndex === 0}
           className="flex items-center gap-1 text-[10px] text-fg-3 hover:text-fg disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-        >
-          Previous
-        </Button>
+        >{t("Previous")}</Button>
         <span className="text-[9px] text-fg-3">
           Scene {currentSceneIndex + 1} of {scenes.length}
         </span>
         <Button
-          label="Next scene"
+          label={t("Next scene")}
           variant="ghost"
           onClick={handleNext}
           isDisabled={currentSceneIndex === scenes.length - 1}
           className="flex items-center gap-1 text-[10px] text-fg-3 hover:text-fg disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-        >
-          Next
-          <ChevronRight size={12} />
+        >{t("Next")}<ChevronRight size={12} />
         </Button>
       </div>
     </div>

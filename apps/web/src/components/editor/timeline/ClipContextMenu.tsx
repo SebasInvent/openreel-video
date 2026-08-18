@@ -1,4 +1,5 @@
 import React from "react";
+import { t } from "@/integrations/skynet/idioma";
 import type { ToolcraftContextMenuOption as ContextMenuOption } from "@openreel/ui";
 import {
   Copy,
@@ -148,7 +149,7 @@ export function useClipContextMenuItems({
       onClick: handleCopy,
     },
     {
-      label: "Duplicate",
+      label: t("Duplicate"),
       icon: <Layers size={14} aria-hidden />,
       onClick: handleDuplicate,
     },
@@ -170,7 +171,7 @@ export function useClipContextMenuItems({
   if (isVideo || isImage) {
     items.push({
       type: "section",
-      title: "Effects",
+      title: t("Effects"),
       items: [
         {
           label: "Copy Effects",
@@ -199,7 +200,7 @@ export function useClipContextMenuItems({
   if (isAudio) {
     items.push({
       type: "section",
-      title: "Audio",
+      title: t("Audio"),
       items: [
         {
           label: "Copy Audio Effects",
@@ -225,7 +226,7 @@ export function useClipContextMenuItems({
       onClick: handleRippleDelete,
     },
     {
-      label: "Delete",
+      label: t("Delete"),
       icon: <Trash2 size={14} aria-hidden />,
       onClick: handleDelete,
     },

@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useMemo, useEffect } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import {
   Layers,
   FolderOpen,
@@ -299,12 +300,8 @@ export const NestedSequenceSection: React.FC<NestedSequenceSectionProps> = ({
       <div className="flex items-center gap-2 p-2 bg-gradient-to-r bg-primary/10 rounded-lg border border-primary/30">
         <Layers size={16} className="text-primary" />
         <div className="flex-1 flex flex-col gap-0.5">
-          <span className="text-[11px] font-medium text-fg">
-            Nested Sequences
-          </span>
-          <Text type="supporting" color="secondary" className="text-[9px] text-fg-3">
-            Create compound clips from selections
-          </Text>
+          <span className="text-[11px] font-medium text-fg">{t("Nested Sequences")}</span>
+          <Text type="supporting" color="secondary" className="text-[9px] text-fg-3">{t("Create compound clips from selections")}</Text>
         </div>
       </div>
 
@@ -323,14 +320,14 @@ export const NestedSequenceSection: React.FC<NestedSequenceSectionProps> = ({
           </div>
           <div className="flex gap-2 pt-1">
             <Button
-              label="Flatten"
+              label={t("Flatten")}
               variant="ghost"
               icon={<Maximize2 size={10} />}
               onClick={handleFlatten}
               className="flex-1 flex items-center justify-center gap-1 py-1.5 bg-bg-2 rounded text-[10px] text-fg-2 hover:text-fg transition-colors"
             />
             <Button
-              label="Duplicate"
+              label={t("Duplicate")}
               variant="ghost"
               icon={<Copy size={10} />}
               onClick={() => handleDuplicate(currentCompound.id)}
@@ -342,15 +339,13 @@ export const NestedSequenceSection: React.FC<NestedSequenceSectionProps> = ({
 
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <span className="text-[10px] font-medium text-fg-2">
-            Create Compound Clip
-          </span>
+          <span className="text-[10px] font-medium text-fg-2">{t("Create Compound Clip")}</span>
           <span className="text-[9px] text-fg-3">
             {selectedClips.length} clips selected
           </span>
         </div>
         <Button
-          label="Create Compound Clip"
+          label={t("Create Compound Clip")}
           variant="ghost"
           icon={<Plus size={14} />}
           onClick={handleCreateCompound}
@@ -370,9 +365,7 @@ export const NestedSequenceSection: React.FC<NestedSequenceSectionProps> = ({
 
       {allCompoundClips.length > 0 && (
         <div className="space-y-2">
-          <span className="text-[10px] font-medium text-fg-2">
-            Compound Clips Library
-          </span>
+          <span className="text-[10px] font-medium text-fg-2">{t("Compound Clips Library")}</span>
           <div className="space-y-1.5">
             {allCompoundClips.map((compound) => {
               const instanceCount =
@@ -403,7 +396,7 @@ export const NestedSequenceSection: React.FC<NestedSequenceSectionProps> = ({
                     />
                     {isRenaming ? (
                       <ToolcraftTextInputControl
-                        label="Compound clip name"
+                        label={t("Compound clip name")}
                         isLabelHidden
                         value={renameValue}
                         onChange={setRenameValue}
@@ -439,7 +432,7 @@ export const NestedSequenceSection: React.FC<NestedSequenceSectionProps> = ({
                         {isRenaming ? (
                           <>
                             <IconButton
-                              label="Confirm rename"
+                              label={t("Confirm rename")}
                               icon={<Check size={10} />}
                               variant="ghost"
                               size="sm"
@@ -450,7 +443,7 @@ export const NestedSequenceSection: React.FC<NestedSequenceSectionProps> = ({
                               className="p-1.5 bg-green-500/20 rounded text-green-400 hover:bg-green-500/30 transition-colors"
                             />
                             <IconButton
-                              label="Cancel rename"
+                              label={t("Cancel rename")}
                               icon={<X size={10} />}
                               variant="ghost"
                               size="sm"
@@ -464,7 +457,7 @@ export const NestedSequenceSection: React.FC<NestedSequenceSectionProps> = ({
                         ) : (
                           <>
                             <IconButton
-                              label="Rename"
+                              label={t("Rename")}
                               icon={<Edit3 size={10} />}
                               variant="ghost"
                               size="sm"
@@ -475,7 +468,7 @@ export const NestedSequenceSection: React.FC<NestedSequenceSectionProps> = ({
                               className="p-1.5 bg-bg-1 rounded text-fg-3 hover:text-fg transition-colors"
                             />
                             <IconButton
-                              label="Duplicate"
+                              label={t("Duplicate")}
                               icon={<Copy size={10} />}
                               variant="ghost"
                               size="sm"
@@ -518,9 +511,7 @@ export const NestedSequenceSection: React.FC<NestedSequenceSectionProps> = ({
       )}
 
       <div className="pt-2 border-t border-border">
-        <Text type="supporting" color="secondary" className="text-[9px] text-fg-3 text-center">
-          Group clips into reusable compound clips
-        </Text>
+        <Text type="supporting" color="secondary" className="text-[9px] text-fg-3 text-center">{t("Group clips into reusable compound clips")}</Text>
       </div>
     </div>
   );

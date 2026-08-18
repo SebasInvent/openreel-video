@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import {
   Clock,
   Layers,
@@ -35,7 +36,7 @@ const FORMAT_OPTIONS: FormatOption[] = [
   {
     id: "vertical",
     preset: "tiktok",
-    label: "Vertical",
+    label: t("Vertical"),
     description: "TikTok, Reels, Shorts",
     dimensions: "1080 × 1920",
     icon: Smartphone,
@@ -44,7 +45,7 @@ const FORMAT_OPTIONS: FormatOption[] = [
   {
     id: "horizontal",
     preset: "youtube-video",
-    label: "Horizontal",
+    label: t("Horizontal"),
     description: "YouTube, Vimeo, Web",
     dimensions: "1920 × 1080",
     icon: Monitor,
@@ -203,13 +204,13 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ initialTab }) => {
       <div className="fixed inset-0 z-50 bg-background flex flex-col">
         <header className="flex items-center justify-between px-6 py-4 border-b border-border">
           <Button
-            label="Back"
+            label={t("Back")}
             variant="ghost"
             size="sm"
             icon={<ArrowRight className="rotate-180" size={16} aria-hidden />}
             onClick={() => setViewMode("home")}
           />
-          <Text type="label" color="primary" weight="medium" className="text-sm text-text-primary">Templates</Text>
+          <Text type="label" color="primary" weight="medium" className="text-sm text-text-primary">{t("Templates")}</Text>
           <div className="w-16" />
         </header>
         <div className="flex-1 overflow-y-auto p-6">
@@ -224,15 +225,13 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ initialTab }) => {
       <div className="fixed inset-0 z-50 bg-background flex flex-col">
         <header className="flex items-center justify-between px-6 py-4 border-b border-border">
           <Button
-            label="Back"
+            label={t("Back")}
             variant="ghost"
             size="sm"
             icon={<ArrowRight className="rotate-180" size={16} aria-hidden />}
             onClick={() => setViewMode("home")}
           />
-          <Text type="label" color="primary" weight="medium" className="text-sm text-text-primary">
-            Recent Projects
-          </Text>
+          <Text type="label" color="primary" weight="medium" className="text-sm text-text-primary">{t("Recent Projects")}</Text>
           <div className="w-16" />
         </header>
         <div className="flex-1 overflow-y-auto p-6">
@@ -259,15 +258,9 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ initialTab }) => {
               </Text>
             </div>
 
-            <Text type="body" color="primary" weight="bold" className="text-4xl sm:text-5xl text-text-primary tracking-tight mb-3">
-              From idea to export.
-            </Text>
-            <Text type="supporting" color="secondary" className="text-xl text-text-secondary mb-8">
-              In your browser.
-            </Text>
-            <Text type="supporting" color="secondary" className="text-base text-text-muted max-w-md">
-              Pick a format and start creating. You can change this anytime.
-            </Text>
+            <Text type="body" color="primary" weight="bold" className="text-4xl sm:text-5xl text-text-primary tracking-tight mb-3">{t("From idea to export.")}</Text>
+            <Text type="supporting" color="secondary" className="text-xl text-text-secondary mb-8">{t("In your browser.")}</Text>
+            <Text type="supporting" color="secondary" className="text-base text-text-muted max-w-md">{t("Pick a format and start creating. You can change this anytime.")}</Text>
           </div>
 
           <div className="grid grid-cols-3 gap-4 mb-10">
@@ -331,9 +324,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ initialTab }) => {
                     opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0
                     transition-all duration-200
                   `}
-                  >
-                    Start creating
-                    <ArrowRight size={14} />
+                  >{t("Start creating")}<ArrowRight size={14} />
                   </div>
                 </ClickableCard>
               );
@@ -342,21 +333,21 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ initialTab }) => {
 
           <div className="flex items-center justify-center gap-3">
             <Button
-              label="Browse templates"
+              label={t("Browse templates")}
               variant="secondary"
               icon={<Layers size={16} aria-hidden />}
               onClick={() => setViewMode("templates")}
               className="rounded-xl"
             />
             <Button
-              label="Recent projects"
+              label={t("Recent projects")}
               variant="secondary"
               icon={<Clock size={16} aria-hidden />}
               onClick={() => setViewMode("recent")}
               className="rounded-xl"
             />
             <Button
-              label="Open editor"
+              label={t("Open editor")}
               variant="secondary"
               icon={<FolderOpen size={16} aria-hidden />}
               onClick={() => navigate("editor")}
@@ -368,7 +359,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ initialTab }) => {
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-4">
           <div className="flex items-center gap-2">
             <ToolcraftSwitchControl
-              label="Skip on startup"
+              label={t("Skip on startup")}
               checked={skipWelcomeScreen}
               onCheckedChange={setSkipWelcomeScreen}
             />

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import {
   Key,
   Plus,
@@ -178,9 +179,7 @@ export const ApiKeysPanel: React.FC = () => {
         <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
           <Shield size={32} className="text-primary" aria-hidden />
         </div>
-        <Text as="h3" type="large" weight="bold" display="block" className="mb-2">
-          Secure API Key Storage
-        </Text>
+        <Text as="h3" type="large" weight="bold" display="block" className="mb-2">{t("Secure API Key Storage")}</Text>
         <Text as="p" type="supporting" color="secondary" display="block" className="mb-6 max-w-sm">
           Set up a master password to encrypt and store your API keys locally.
           Keys are encrypted with AES-256-GCM and never leave your browser.
@@ -211,14 +210,10 @@ export const ApiKeysPanel: React.FC = () => {
         <div className="w-16 h-16 rounded-full bg-amber-500/10 flex items-center justify-center mb-4">
           <Lock size={32} className="text-amber-500" aria-hidden />
         </div>
-        <Text as="h3" type="large" weight="bold" display="block" className="mb-2">
-          Session Locked
-        </Text>
-        <Text as="p" type="supporting" color="secondary" display="block" className="mb-6 max-w-sm">
-          Enter your master password to view and manage API keys.
-        </Text>
+        <Text as="h3" type="large" weight="bold" display="block" className="mb-2">{t("Session Locked")}</Text>
+        <Text as="p" type="supporting" color="secondary" display="block" className="mb-6 max-w-sm">{t("Enter your master password to view and manage API keys.")}</Text>
         <Button
-          label="Unlock"
+          label={t("Unlock")}
           onClick={() => setPasswordDialogMode("unlock")}
           variant="primary"
           icon={<Unlock size={16} aria-hidden />}
@@ -249,14 +244,14 @@ export const ApiKeysPanel: React.FC = () => {
         </div>
         <div className="flex items-center gap-2">
           <Button
-            label="Change Password"
+            label={t("Change Password")}
             variant="secondary"
             size="sm"
             onClick={() => setPasswordDialogMode("change")}
             icon={<Key size={14} aria-hidden />}
           />
           <Button
-            label="Lock"
+            label={t("Lock")}
             variant="secondary"
             size="sm"
             onClick={handleLock}
@@ -305,7 +300,7 @@ export const ApiKeysPanel: React.FC = () => {
                     icon={isRevealed ? <EyeOff size={14} aria-hidden /> : <Eye size={14} aria-hidden />}
                   />
                   <IconButton
-                    label="Delete key"
+                    label={t("Delete key")}
                     onClick={() => handleDeleteKey(stored.id)}
                     variant="destructive"
                     size="sm"
@@ -346,19 +341,19 @@ export const ApiKeysPanel: React.FC = () => {
             </Text>
           </div>
           <ToolcraftTextInputControl
-            label="API key"
+            label={t("API key")}
             isLabelHidden
             type="password"
             value={newKeyValue}
             onChange={setNewKeyValue}
-            placeholder="Paste your API key here"
+            placeholder={t("Paste your API key here")}
             hasAutoFocus
             width="100%"
             className="mb-3 font-mono text-xs"
           />
           <div className="flex justify-end gap-2">
             <Button
-              label="Cancel"
+              label={t("Cancel")}
               variant="secondary"
               size="sm"
               onClick={() => {
@@ -367,7 +362,7 @@ export const ApiKeysPanel: React.FC = () => {
               }}
             />
             <Button
-              label="Save Key"
+              label={t("Save Key")}
               variant="primary"
               size="sm"
               onClick={() => handleSaveKey(addingService)}
@@ -377,9 +372,7 @@ export const ApiKeysPanel: React.FC = () => {
         </Card>
       ) : availableServices.length > 0 ? (
         <div>
-          <Text as="h3" type="label" weight="bold" color="secondary" display="block" className="mb-3">
-            Add API Key
-          </Text>
+          <Text as="h3" type="label" weight="bold" color="secondary" display="block" className="mb-3">{t("Add API Key")}</Text>
           <div className="grid gap-2">
             {availableServices.map((service) => (
               <ClickableCard

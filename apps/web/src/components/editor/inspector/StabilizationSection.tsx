@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftCard as Card } from "@openreel/ui";
 import { ToolcraftText as Text } from "@openreel/ui";
@@ -142,9 +143,7 @@ export const StabilizationSection: React.FC<StabilizationSectionProps> = ({
     <div className="space-y-3">
       <div className="flex items-center justify-between">
         <Text type="body" color="primary" className="flex items-center gap-2 text-sm">
-          <Video className="h-4 w-4" />
-          Stabilize
-        </Text>
+          <Video className="h-4 w-4" />{t("Stabilize")}</Text>
         <MockToggle
           ariaLabel="Enable stabilization"
           checked={stabilization.enabled && isStabilized}
@@ -154,7 +153,7 @@ export const StabilizationSection: React.FC<StabilizationSectionProps> = ({
       </div>
 
       <PropertySlider
-        label="Strength"
+        label={t("Strength")}
         value={stabilization.strength}
         min={10}
         max={100}
@@ -206,7 +205,7 @@ export const StabilizationSection: React.FC<StabilizationSectionProps> = ({
 
       {isStabilized && !processing && (
         <Button
-          label="Re-stabilize"
+          label={t("Re-stabilize")}
           variant="secondary"
           size="sm"
           onClick={handleStabilize}

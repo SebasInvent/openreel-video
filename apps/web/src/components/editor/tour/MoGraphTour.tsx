@@ -1,4 +1,5 @@
 import React from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { motion, AnimatePresence } from "framer-motion";
 import { useMoGraphTour } from "./useMoGraphTour";
 import {
@@ -199,7 +200,7 @@ export const MoGraphTour: React.FC = () => {
               </Text>
             </div>
             <IconButton
-              label="Skip tour"
+              label={t("Skip tour")}
               icon={<X size={16} />}
               variant="ghost"
               size="sm"
@@ -217,7 +218,7 @@ export const MoGraphTour: React.FC = () => {
               <div className="bg-accent-soft rounded-lg p-3 mb-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Lightbulb size={14} className="text-accent" />
-                  <span className="text-accent text-xs font-medium">Pro Tips</span>
+                  <span className="text-accent text-xs font-medium">{t("Pro Tips")}</span>
                 </div>
                 <ul className="space-y-1.5">
                   {step.tips.map((tip, i) => (
@@ -252,22 +253,20 @@ export const MoGraphTour: React.FC = () => {
             <div className="grid grid-cols-[88px_1fr_108px] items-center gap-3">
               <button
                 type="button"
-                aria-label="Back"
+                aria-label={t("Back")}
                 onClick={prev}
                 disabled={isFirstStep}
                 className="inline-flex h-9 min-w-[88px] items-center justify-center gap-1.5 whitespace-nowrap rounded-lg bg-background-tertiary px-3 text-xs font-medium text-text-secondary transition-colors hover:text-text-primary disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <ChevronLeft size={14} className="shrink-0" aria-hidden />
-                <span>Back</span>
+                <span>{t("Back")}</span>
               </button>
               <button
                 type="button"
-                aria-label="Skip tour"
+                aria-label={t("Skip tour")}
                 onClick={skip}
                 className="mx-auto inline-flex h-9 items-center justify-center whitespace-nowrap rounded-lg px-3 text-xs font-medium text-text-muted transition-colors hover:bg-background-tertiary hover:text-text-secondary"
-              >
-                Skip Tour
-              </button>
+              >{t("Skip Tour")}</button>
               <button
                 type="button"
                 aria-label={isLastStep ? "Get Started" : "Next"}

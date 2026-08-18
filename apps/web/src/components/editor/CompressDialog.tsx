@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftSegmentedControl } from "@openreel/ui";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftCard as Card } from "@openreel/ui";
@@ -151,7 +152,7 @@ export function CompressDialog({ isOpen, onClose }: CompressDialogProps) {
       <Layout
         header={
           <DialogHeader
-            title="Compress Video"
+            title={t("Compress Video")}
             onOpenChange={(open) => {
               if (!open && !compressing) {
                 resetSource();
@@ -165,7 +166,7 @@ export function CompressDialog({ isOpen, onClose }: CompressDialogProps) {
           <LayoutContent>
         <div className="space-y-4">
           <FileInput
-            label="Video file"
+            label={t("Video file")}
             isLabelHidden
             value={file}
             onChange={(picked) => {
@@ -177,7 +178,7 @@ export function CompressDialog({ isOpen, onClose }: CompressDialogProps) {
             }}
             accept="video/*"
             mode="dropzone"
-            placeholder="Choose a video to compress..."
+            placeholder={t("Choose a video to compress...")}
             isDisabled={compressing}
             isLoading={probing}
             width="100%"
@@ -199,8 +200,8 @@ export function CompressDialog({ isOpen, onClose }: CompressDialogProps) {
                 value={mode}
                 onChange={setMode}
                 options={[
-                  { value: "quality", label: "Quality" },
-                  { value: "size", label: "Target size" },
+                  { value: "quality", label: t("Quality") },
+                  { value: "size", label: t("Target size") },
                 ]}
               />
 
@@ -246,20 +247,18 @@ export function CompressDialog({ isOpen, onClose }: CompressDialogProps) {
                   </div>
                   <div className="flex items-center gap-2">
                     <SelectableCard
-                      label="Custom target size"
+                      label={t("Custom target size")}
                       isSelected={sizePresetId === "custom"}
                       onChange={() => setSizePresetId("custom")}
                       padding={2}
                       variant={sizePresetId === "custom" ? "green" : "default"}
                     >
-                      <Text type="label" weight="bold">
-                        Custom
-                      </Text>
+                      <Text type="label" weight="bold">{t("Custom")}</Text>
                     </SelectableCard>
                     {sizePresetId === "custom" && (
                       <div className="flex-1">
                         <ToolcraftNumberInputControl
-                          label="Custom target size"
+                          label={t("Custom target size")}
                           isLabelHidden
                           min={1}
                           value={customMB ? Number(customMB) : null}
@@ -278,9 +277,7 @@ export function CompressDialog({ isOpen, onClose }: CompressDialogProps) {
               {plan && (
                 <Card variant="muted" padding={3} className="border border-border">
                   <div className="flex items-center justify-between">
-                    <Text type="supporting" color="secondary">
-                      Estimated output
-                    </Text>
+                    <Text type="supporting" color="secondary">{t("Estimated output")}</Text>
                     <Text type="label" weight="bold">
                       {plan.width}x{plan.height} - ~{formatBytes(estimated)}
                     </Text>
@@ -309,7 +306,7 @@ export function CompressDialog({ isOpen, onClose }: CompressDialogProps) {
                 </Text>
               </div>
               <ProgressBar
-                label="Compression progress"
+                label={t("Compression progress")}
                 isLabelHidden
                 value={Math.round(progress * 100)}
                 max={100}
@@ -333,14 +330,14 @@ export function CompressDialog({ isOpen, onClose }: CompressDialogProps) {
         <div className="flex justify-end gap-2">
           {compressing ? (
             <Button
-              label="Cancel"
+              label={t("Cancel")}
               variant="ghost"
               onClick={() => abortRef.current?.abort()}
             />
           ) : (
             <>
               <Button
-                label="Close"
+                label={t("Close")}
                 variant="ghost"
                 onClick={() => {
                   resetSource();
@@ -348,7 +345,7 @@ export function CompressDialog({ isOpen, onClose }: CompressDialogProps) {
                 }}
               />
               <Button
-                label="Compress"
+                label={t("Compress")}
                 variant="primary"
                 onClick={handleCompress}
                 isDisabled={!source || probing}

@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftSegmentedControl } from "@openreel/ui";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftCard as Card } from "@openreel/ui";
@@ -108,9 +109,7 @@ const StrokeStyleSelector: React.FC<{
 
   return (
     <div className="flex items-center justify-between">
-      <Text type="supporting" color="secondary">
-        Style
-      </Text>
+      <Text type="supporting" color="secondary">{t("Style")}</Text>
       <div className="flex gap-1">
         {styles.map((style, index) => (
           <Button
@@ -153,9 +152,7 @@ const ShapeTypeDisplay: React.FC<{
         <Text type="supporting" color="primary" weight="medium" className="capitalize">
           {shapeType}
         </Text>
-        <Text type="supporting" color="secondary" className="text-[9px]">
-          Shape clip
-        </Text>
+        <Text type="supporting" color="secondary" className="text-[9px]">{t("Shape clip")}</Text>
       </div>
     </div>
   );
@@ -208,9 +205,7 @@ export const ShapeSection: React.FC<ShapeSectionProps> = ({ clipId }) => {
     return (
       <div className="p-4 text-center">
         <Square size={24} className="mx-auto mb-2 text-fg-3" />
-        <Text type="supporting" color="secondary">
-          No shape clip selected
-        </Text>
+        <Text type="supporting" color="secondary">{t("No shape clip selected")}</Text>
       </div>
     );
   }
@@ -221,9 +216,7 @@ export const ShapeSection: React.FC<ShapeSectionProps> = ({ clipId }) => {
 
       <Card variant="muted" padding={3}>
         <div className="space-y-2">
-          <Text type="supporting" color="primary" weight="medium">
-            Fill
-          </Text>
+          <Text type="supporting" color="primary" weight="medium">{t("Fill")}</Text>
           <ToolcraftSegmentedControl<"solid" | "shader">
             ariaLabel="Fill Type"
             value={style.fill?.type === "shader" ? "shader" : "solid"}
@@ -273,7 +266,7 @@ export const ShapeSection: React.FC<ShapeSectionProps> = ({ clipId }) => {
             />
           ) : (
             <ColorField
-              label="Color"
+              label={t("Color")}
               value={style.fill?.color || "#3b82f6"}
               onChange={(color) =>
                 handleStyleChange({
@@ -288,7 +281,7 @@ export const ShapeSection: React.FC<ShapeSectionProps> = ({ clipId }) => {
             />
           )}
           <SliderField
-            label="Opacity"
+            label={t("Opacity")}
             value={(style.fill?.opacity || 1) * 100}
             onChange={(opacity) =>
               handleStyleChange({
@@ -308,11 +301,9 @@ export const ShapeSection: React.FC<ShapeSectionProps> = ({ clipId }) => {
 
       <Card variant="muted" padding={3}>
         <div className="space-y-2">
-          <Text type="supporting" color="primary" weight="medium">
-            Stroke
-          </Text>
+          <Text type="supporting" color="primary" weight="medium">{t("Stroke")}</Text>
           <ColorField
-            label="Color"
+            label={t("Color")}
             value={style.stroke?.color || "#1d4ed8"}
             onChange={(color) =>
               handleStyleChange({
@@ -326,7 +317,7 @@ export const ShapeSection: React.FC<ShapeSectionProps> = ({ clipId }) => {
             }
           />
           <NumberInput
-            label="Width"
+            label={t("Width")}
             value={style.stroke?.width || 0}
             onChange={(width) =>
               handleStyleChange({
@@ -362,11 +353,9 @@ export const ShapeSection: React.FC<ShapeSectionProps> = ({ clipId }) => {
       {shapeType === "rectangle" && (
         <Card variant="muted" padding={3}>
           <div className="space-y-2">
-            <Text type="supporting" color="primary" weight="medium">
-              Corners
-            </Text>
+            <Text type="supporting" color="primary" weight="medium">{t("Corners")}</Text>
             <SliderField
-              label="Radius"
+              label={t("Radius")}
               value={style.cornerRadius || 0}
               onChange={(cornerRadius) => handleStyleChange({ cornerRadius })}
               min={0}
@@ -379,11 +368,9 @@ export const ShapeSection: React.FC<ShapeSectionProps> = ({ clipId }) => {
 
       <Card variant="muted" padding={3}>
         <div className="space-y-2">
-          <Text type="supporting" color="primary" weight="medium">
-            Shadow
-          </Text>
+          <Text type="supporting" color="primary" weight="medium">{t("Shadow")}</Text>
           <ColorField
-            label="Color"
+            label={t("Color")}
             value={style.shadow?.color || "#000000"}
             onChange={(color) =>
               handleStyleChange({
@@ -398,7 +385,7 @@ export const ShapeSection: React.FC<ShapeSectionProps> = ({ clipId }) => {
             showAlpha
           />
           <NumberInput
-            label="Offset X"
+            label={t("Offset X")}
             value={style.shadow?.offsetX || 0}
             onChange={(offsetX) =>
               handleStyleChange({
@@ -415,7 +402,7 @@ export const ShapeSection: React.FC<ShapeSectionProps> = ({ clipId }) => {
             unit="px"
           />
           <NumberInput
-            label="Offset Y"
+            label={t("Offset Y")}
             value={style.shadow?.offsetY || 0}
             onChange={(offsetY) =>
               handleStyleChange({
@@ -432,7 +419,7 @@ export const ShapeSection: React.FC<ShapeSectionProps> = ({ clipId }) => {
             unit="px"
           />
           <SliderField
-            label="Blur"
+            label={t("Blur")}
             value={style.shadow?.blur || 0}
             onChange={(blur) =>
               handleStyleChange({
@@ -491,7 +478,7 @@ const ShapeShaderFillControls: React.FC<{
   return (
     <div className="space-y-2 rounded border border-border/70 bg-bg-2 p-2">
       <Selector
-        label="Shader Fill"
+        label={t("Shader Fill")}
         isLabelHidden
         size="sm"
         width="100%"

@@ -1,4 +1,5 @@
 import type { JSX } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { useEffect, useRef } from "react";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftIconButton as IconButton } from "@openreel/ui";
@@ -30,7 +31,7 @@ function EmptyState({
       <div className="mb-3 grid h-10 w-10 place-items-center rounded-xl bg-accent-soft text-accent">
         <Sparkles size={18} />
       </div>
-      <div className="text-[13px] font-medium text-fg">Edit by chatting</div>
+      <div className="text-[13px] font-medium text-fg">{t("Edit by chatting")}</div>
       <Text type="supporting" color="secondary" className="mt-1 max-w-[14rem] text-[11px] leading-relaxed text-fg-muted">
         {hasOpenProject
           ? "Describe an edit in plain language and the AI will perform it on your timeline."
@@ -92,9 +93,7 @@ export function ChatPanel({
     <div className="flex h-full flex-col bg-bg-1">
       <header className="flex items-center gap-2 border-b border-border px-3 py-2">
         <Bot size={15} className="shrink-0 text-accent" />
-        <span className="shrink-0 text-[13px] font-medium text-fg">
-          AI Editor
-        </span>
+        <span className="shrink-0 text-[13px] font-medium text-fg">{t("AI Editor")}</span>
         {totalTokens > 0 && (
           <span
             title={`${usage.inputTokens} in · ${usage.outputTokens} out`}
@@ -133,7 +132,7 @@ export function ChatPanel({
           <ProviderModelPicker disabled={busy} />
           {lastTurnCommitted && (
             <IconButton
-              label="Undo last AI turn"
+              label={t("Undo last AI turn")}
               icon={<Undo2 size={14} aria-hidden />}
               size="sm"
               variant="ghost"
@@ -143,7 +142,7 @@ export function ChatPanel({
           )}
           {messages.length > 0 && (
             <IconButton
-              label="Clear conversation"
+              label={t("Clear conversation")}
               icon={<Trash2 size={14} aria-hidden />}
               size="sm"
               variant="ghost"
@@ -154,7 +153,7 @@ export function ChatPanel({
           )}
           {onClose && (
             <IconButton
-              label="Close"
+              label={t("Close")}
               icon={<X size={14} aria-hidden />}
               size="sm"
               variant="ghost"
@@ -181,7 +180,7 @@ export function ChatPanel({
           <div className="flex items-start gap-2 rounded-lg border border-status-error/40 bg-status-error/10 p-2.5 text-[12px] text-status-error">
             <span className="flex-1 break-words">{error}</span>
             <IconButton
-              label="Clear error"
+              label={t("Clear error")}
               icon={<X size={13} aria-hidden />}
               size="sm"
               variant="ghost"

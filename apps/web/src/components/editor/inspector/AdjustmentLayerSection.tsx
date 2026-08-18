@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useMemo, useEffect } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import {
   Layers,
   Plus,
@@ -55,52 +56,52 @@ const EFFECT_PRESETS: Array<{
     id: "saturation",
     name: "Saturation",
     effect: { type: "saturation", params: { value: 1.15 }, enabled: true },
-    controls: [{ param: "value", label: "Saturation", min: 0, max: 3, step: 0.01 }],
+    controls: [{ param: "value", label: t("Saturation"), min: 0, max: 3, step: 0.01 }],
   },
   {
     id: "grayscale",
     name: "Grayscale",
     effect: { type: "grayscale", params: { amount: 1 }, enabled: true },
-    controls: [{ param: "amount", label: "Amount", min: 0, max: 1, step: 0.01, format: "percent" }],
+    controls: [{ param: "amount", label: t("Amount"), min: 0, max: 1, step: 0.01, format: "percent" }],
   },
   {
     id: "sepia",
     name: "Sepia",
     effect: { type: "sepia", params: { amount: 1 }, enabled: true },
-    controls: [{ param: "amount", label: "Amount", min: 0, max: 1, step: 0.01, format: "percent" }],
+    controls: [{ param: "amount", label: t("Amount"), min: 0, max: 1, step: 0.01, format: "percent" }],
   },
   {
     id: "invert",
     name: "Invert",
     effect: { type: "invert", params: { amount: 1 }, enabled: true },
-    controls: [{ param: "amount", label: "Amount", min: 0, max: 1, step: 0.01, format: "percent" }],
+    controls: [{ param: "amount", label: t("Amount"), min: 0, max: 1, step: 0.01, format: "percent" }],
   },
   {
     id: "hue",
     name: "Hue Rotate",
     effect: { type: "hue", params: { rotation: 20 }, enabled: true },
-    controls: [{ param: "rotation", label: "Rotation", min: -180, max: 180, step: 1, format: "degrees" }],
+    controls: [{ param: "rotation", label: t("Rotation"), min: -180, max: 180, step: 1, format: "degrees" }],
   },
   {
     id: "blur",
     name: "Blur",
     effect: { type: "blur", params: { radius: 6 }, enabled: true },
-    controls: [{ param: "radius", label: "Radius", min: 0, max: 40, step: 0.5, format: "pixels" }],
+    controls: [{ param: "radius", label: t("Radius"), min: 0, max: 40, step: 0.5, format: "pixels" }],
   },
   {
     id: "sharpen",
     name: "Sharpen",
     effect: { type: "sharpen", params: { amount: 0.6 }, enabled: true },
-    controls: [{ param: "amount", label: "Amount", min: 0, max: 3, step: 0.05 }],
+    controls: [{ param: "amount", label: t("Amount"), min: 0, max: 3, step: 0.05 }],
   },
   {
     id: "vignette",
     name: "Vignette",
     effect: { type: "vignette", params: { amount: 0.45, midpoint: 0.55, feather: 0.35 }, enabled: true },
     controls: [
-      { param: "amount", label: "Amount", min: 0, max: 1, step: 0.01, format: "percent" },
-      { param: "midpoint", label: "Midpoint", min: 0, max: 1, step: 0.01, format: "percent" },
-      { param: "feather", label: "Feather", min: 0.01, max: 1, step: 0.01, format: "percent" },
+      { param: "amount", label: t("Amount"), min: 0, max: 1, step: 0.01, format: "percent" },
+      { param: "midpoint", label: t("Midpoint"), min: 0, max: 1, step: 0.01, format: "percent" },
+      { param: "feather", label: t("Feather"), min: 0.01, max: 1, step: 0.01, format: "percent" },
     ],
   },
   {
@@ -120,8 +121,8 @@ const EFFECT_PRESETS: Array<{
     name: "Film Grain",
     effect: { type: "grain", params: { amount: 0.08, size: 1 }, enabled: true },
     controls: [
-      { param: "amount", label: "Amount", min: 0, max: 0.5, step: 0.01, format: "percent" },
-      { param: "size", label: "Size", min: 0.5, max: 4, step: 0.1 },
+      { param: "amount", label: t("Amount"), min: 0, max: 0.5, step: 0.01, format: "percent" },
+      { param: "size", label: t("Size"), min: 0.5, max: 4, step: 0.1 },
     ],
   },
 ];
@@ -451,7 +452,7 @@ export const AdjustmentLayerSection: React.FC<AdjustmentLayerSectionProps> = ({
         {isExpanded && (
           <div className="px-2 pb-2 space-y-3">
             <PropertySlider
-              label="Opacity"
+              label={t("Opacity")}
               min={0}
               max={100}
               step={1}
@@ -463,7 +464,7 @@ export const AdjustmentLayerSection: React.FC<AdjustmentLayerSectionProps> = ({
             />
             <div className="grid grid-cols-2 gap-2">
               <PropertySlider
-                label="Start"
+                label={t("Start")}
                 min={0}
                 max={Math.max(project.timeline.duration, layer.startTime + layer.duration)}
                 step={1 / project.settings.frameRate}
@@ -472,7 +473,7 @@ export const AdjustmentLayerSection: React.FC<AdjustmentLayerSectionProps> = ({
                 formatValue={(value) => `${value.toFixed(2)}s`}
               />
               <PropertySlider
-                label="Duration"
+                label={t("Duration")}
                 min={1 / project.settings.frameRate}
                 max={Math.max(project.timeline.duration, layer.duration)}
                 step={1 / project.settings.frameRate}
@@ -488,16 +489,14 @@ export const AdjustmentLayerSection: React.FC<AdjustmentLayerSectionProps> = ({
                 color="secondary"
                 className="flex items-center gap-1 text-[10px]"
               >
-                <Palette size={10} aria-hidden />
-                Blend Mode
-              </Text>
+                <Palette size={10} aria-hidden />{t("Blend Mode")}</Text>
               <Popover
                 isOpen={showBlendModes}
                 onOpenChange={setShowBlendModes}
                 placement="below"
                 alignment="start"
                 width={220}
-                label="Blend mode"
+                label={t("Blend mode")}
                 content={
                   <div className="max-h-48 overflow-y-auto p-1.5">
                     {BLEND_MODES.map((mode) => (
@@ -631,8 +630,8 @@ export const AdjustmentLayerSection: React.FC<AdjustmentLayerSectionProps> = ({
                         }}
                       />
                       <span className="absolute inset-y-0 left-1/2 w-px bg-white/70" />
-                      <span className="absolute bottom-0.5 left-1 text-[7px] font-bold uppercase text-white/75">Before</span>
-                      <span className="absolute bottom-0.5 right-1 text-[7px] font-bold uppercase text-white/90">Effect</span>
+                      <span className="absolute bottom-0.5 left-1 text-[7px] font-bold uppercase text-white/75">{t("Before")}</span>
+                      <span className="absolute bottom-0.5 right-1 text-[7px] font-bold uppercase text-white/90">{t("Effect")}</span>
                     </span>
                     <Text type="supporting" color="primary" className="block truncate text-[9px] font-semibold">
                       {preset.name}
@@ -644,7 +643,7 @@ export const AdjustmentLayerSection: React.FC<AdjustmentLayerSectionProps> = ({
 
             <div className="flex gap-1 pt-2 border-t border-border">
               <Button
-                label="Duplicate"
+                label={t("Duplicate")}
                 icon={<Copy size={10} aria-hidden />}
                 variant="secondary"
                 size="sm"
@@ -652,7 +651,7 @@ export const AdjustmentLayerSection: React.FC<AdjustmentLayerSectionProps> = ({
                 className="flex-1"
               />
               <Button
-                label="Delete"
+                label={t("Delete")}
                 icon={<Trash2 size={10} aria-hidden />}
                 variant="secondary"
                 size="sm"
@@ -675,17 +674,13 @@ export const AdjustmentLayerSection: React.FC<AdjustmentLayerSectionProps> = ({
       >
         <Layers size={16} className="text-primary" aria-hidden />
         <div className="flex flex-1 flex-col gap-0.5">
-          <Text type="body" color="primary" weight="bold" className="block text-[11px]">
-            Adjustment Layers
-          </Text>
-          <Text type="supporting" color="secondary" className="block text-[9px]">
-            Non-destructive effects on clips below
-          </Text>
+          <Text type="body" color="primary" weight="bold" className="block text-[11px]">{t("Adjustment Layers")}</Text>
+          <Text type="supporting" color="secondary" className="block text-[9px]">{t("Non-destructive effects on clips below")}</Text>
         </div>
       </Card>
 
       <Button
-        label="Add Adjustment Layer"
+        label={t("Add Adjustment Layer")}
         icon={<Plus size={14} aria-hidden />}
         variant={currentTrack ? "primary" : "secondary"}
         size="md"
@@ -705,9 +700,7 @@ export const AdjustmentLayerSection: React.FC<AdjustmentLayerSectionProps> = ({
 
       {allLayers.length > trackLayers.length && (
         <div className="space-y-2 pt-2 border-t border-border">
-          <Text type="supporting" color="secondary" weight="bold">
-            Other Layers
-          </Text>
+          <Text type="supporting" color="secondary" weight="bold">{t("Other Layers")}</Text>
           <div className="space-y-1.5">
             {allLayers
               .filter((l) => !trackLayers.some((tl) => tl.id === l.id))
@@ -717,9 +710,7 @@ export const AdjustmentLayerSection: React.FC<AdjustmentLayerSectionProps> = ({
       )}
 
       <div className="pt-2 border-t border-border">
-        <Text type="supporting" color="secondary" className="block text-[9px] text-center">
-          Apply color, effects to all clips below
-        </Text>
+        <Text type="supporting" color="secondary" className="block text-[9px] text-center">{t("Apply color, effects to all clips below")}</Text>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { Box, Search, Layout, Clock } from "@/icons/lucide-compat";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftSelectableCard as SelectableCard } from "@openreel/ui";
@@ -91,9 +92,7 @@ export const TemplatesTab: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-12 text-text-muted text-xs">
-        Loading templates...
-      </div>
+      <div className="flex items-center justify-center py-12 text-text-muted text-xs">{t("Loading templates...")}</div>
     );
   }
 
@@ -105,9 +104,9 @@ export const TemplatesTab: React.FC = () => {
           className="absolute left-2.5 top-1/2 -translate-y-1/2 text-text-muted"
         />
         <ToolcraftTextInputControl
-          label="Search templates"
+          label={t("Search templates")}
           isLabelHidden
-          placeholder="Search templates..."
+          placeholder={t("Search templates...")}
           value={searchQuery}
           onChange={setSearchQuery}
           className="w-full pl-8 pr-3 py-2 text-xs bg-background-secondary border border-border rounded-lg text-text-primary placeholder:text-text-muted focus:outline-none focus:border-primary/50"
@@ -116,7 +115,7 @@ export const TemplatesTab: React.FC = () => {
 
       <div className="flex gap-1.5 flex-wrap">
         <SelectableCard
-          label="All"
+          label={t("All")}
           isSelected={selectedCategory === "all"}
           onChange={() => setSelectedCategory("all")}
           onClick={() => setSelectedCategory("all")}
@@ -127,9 +126,7 @@ export const TemplatesTab: React.FC = () => {
               ? "bg-primary/20 border-primary text-primary"
               : "bg-background-tertiary border-border text-text-muted hover:border-primary/50"
           }`}
-        >
-          All
-        </SelectableCard>
+        >{t("All")}</SelectableCard>
         {TEMPLATE_CATEGORIES.slice(0, 6).map((cat) => (
           <SelectableCard
             key={cat.id}
@@ -152,7 +149,7 @@ export const TemplatesTab: React.FC = () => {
 
       <button
         type="button"
-        aria-label="Start a Motion Creator template"
+        aria-label={t("Start a Motion Creator template")}
         className="flex min-h-[72px] w-full min-w-0 items-center gap-3 rounded-lg border border-primary/35 bg-primary/10 p-3 text-left transition-colors hover:bg-primary/15"
         onClick={async () => {
           const composition = await createMotionComposition(
@@ -168,9 +165,7 @@ export const TemplatesTab: React.FC = () => {
           <Box size={18} />
         </span>
         <span className="min-w-0 flex-1 overflow-hidden">
-          <span className="block truncate text-xs font-semibold text-text-primary">
-            Start a Motion Creator template
-          </span>
+          <span className="block truncate text-xs font-semibold text-text-primary">{t("Start a Motion Creator template")}</span>
           <span className="mt-0.5 block overflow-hidden text-ellipsis text-[10px] leading-4 text-text-muted [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2]">
             Ads, app UI demos, lower thirds, social hooks, logo reveals, and end screens.
           </span>
@@ -178,9 +173,7 @@ export const TemplatesTab: React.FC = () => {
       </button>
 
       {filteredTemplates.length === 0 ? (
-        <div className="text-center py-8 text-text-muted text-xs">
-          No templates found
-        </div>
+        <div className="text-center py-8 text-text-muted text-xs">{t("No templates found")}</div>
       ) : (
         <div className="grid grid-cols-2 gap-2">
           {filteredTemplates.map((template) => (
@@ -217,7 +210,7 @@ export const TemplatesTab: React.FC = () => {
               </div>
               {applying === template.id && (
                 <div className="absolute inset-0 bg-background-primary/80 rounded-lg flex items-center justify-center">
-                  <span className="text-[10px] text-primary">Applying...</span>
+                  <span className="text-[10px] text-primary">{t("Applying...")}</span>
                 </div>
               )}
             </Button>

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { Eye, EyeOff, Volume2, VolumeX, Lock, Trash2, Pencil, AlignLeft } from "@/icons/lucide-compat";
 import {
   ToolcraftContextMenu as ContextMenu,
@@ -138,7 +139,7 @@ export const TrackHeader: React.FC<TrackHeaderProps> = ({
             {isRenaming ? (
               <ToolcraftTextInputControl
                 ref={inputRef}
-                label="Track name"
+                label={t("Track name")}
                 isLabelHidden
                 size="sm"
                 width="100%"

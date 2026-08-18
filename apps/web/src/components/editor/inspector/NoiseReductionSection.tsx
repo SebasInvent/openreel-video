@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ChevronDown, Volume2, Wand2, AlertCircle, Check } from "@/icons/lucide-compat";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftCard as Card } from "@openreel/ui";
@@ -769,9 +770,7 @@ export const NoiseReductionSection: React.FC<NoiseReductionSectionProps> = ({
               color="primary"
               weight="bold"
               className="text-[10px]"
-            >
-              Noise Reduction
-            </Text>
+            >{t("Noise Reduction")}</Text>
           </div>
         </ClickableCard>
         <MockToggle
@@ -874,9 +873,7 @@ export const NoiseReductionSection: React.FC<NoiseReductionSectionProps> = ({
                   color="primary"
                   weight="bold"
                   className="text-[10px]"
-                >
-                  Recommendation ready
-                </Text>
+                >{t("Recommendation ready")}</Text>
               </div>
               <Text
                 type="supporting"
@@ -909,19 +906,17 @@ export const NoiseReductionSection: React.FC<NoiseReductionSectionProps> = ({
             padding={2}
             className="space-y-2 border border-border/70 bg-bg-1/60"
           >
-            <Text type="supporting" color="primary" weight="bold" className="text-[9px]">
-              A/B Preview
-            </Text>
+            <Text type="supporting" color="primary" weight="bold" className="text-[9px]">{t("A/B Preview")}</Text>
             <div className="grid grid-cols-2 gap-2">
               <Button
-                label="Hear Original"
+                label={t("Hear Original")}
                 variant={previewingOriginal ? "primary" : "secondary"}
                 size="sm"
                 onClick={() => handleSetPreviewMode("original")}
                 isDisabled={!effectId}
               />
               <Button
-                label="Hear Cleaned"
+                label={t("Hear Cleaned")}
                 variant={!previewingOriginal ? "primary" : "secondary"}
                 size="sm"
                 onClick={() => handleSetPreviewMode("cleaned")}
@@ -932,13 +927,11 @@ export const NoiseReductionSection: React.FC<NoiseReductionSectionProps> = ({
               type="supporting"
               color="secondary"
               className="text-[9px] leading-relaxed"
-            >
-              Preview only. Export still uses the cleaned audio effect chain.
-            </Text>
+            >{t("Preview only. Export still uses the cleaned audio effect chain.")}</Text>
           </Card>
 
           <PropertySlider
-            label="Threshold"
+            label={t("Threshold")}
             value={config.threshold}
             onChange={(value: number) => handleConfigChange("threshold", value)}
             min={-80}
@@ -947,7 +940,7 @@ export const NoiseReductionSection: React.FC<NoiseReductionSectionProps> = ({
           />
 
           <PropertySlider
-            label="Reduction"
+            label={t("Reduction")}
             value={config.reduction * 100}
             onChange={(value: number) =>
               handleConfigChange("reduction", value / 100)
@@ -958,7 +951,7 @@ export const NoiseReductionSection: React.FC<NoiseReductionSectionProps> = ({
           />
 
           <PropertySlider
-            label="Attack"
+            label={t("Attack")}
             value={config.attack ?? 10}
             onChange={(value: number) => handleConfigChange("attack", value)}
             min={0}
@@ -967,7 +960,7 @@ export const NoiseReductionSection: React.FC<NoiseReductionSectionProps> = ({
           />
 
           <PropertySlider
-            label="Release"
+            label={t("Release")}
             value={config.release ?? 100}
             onChange={(value: number) => handleConfigChange("release", value)}
             min={0}
@@ -992,7 +985,7 @@ export const NoiseReductionSection: React.FC<NoiseReductionSectionProps> = ({
                 {analysisProgress.message}
               </Text>
               <ProgressBar
-                label="Noise analysis progress"
+                label={t("Noise analysis progress")}
                 isLabelHidden
                 value={Math.round(analysisProgress.progress * 100)}
                 max={100}
@@ -1016,9 +1009,7 @@ export const NoiseReductionSection: React.FC<NoiseReductionSectionProps> = ({
               type="supporting"
               color="secondary"
               className="block text-[9px] text-center"
-            >
-              Learned noise profile is active on this clip.
-              <br />
+            >{t("Learned noise profile is active on this clip.")}<br />
               Auto-tuned with {activePreset.label.toLowerCase()} and reused for export cleanup.
             </Text>
           )}

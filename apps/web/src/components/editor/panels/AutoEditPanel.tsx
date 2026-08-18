@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useMemo } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { Music, Zap, Loader2 } from "@/icons/lucide-compat";
 import { ToolcraftSegmentedControl } from "@openreel/ui";
 import { ToolcraftButton as Button } from "@openreel/ui";
@@ -183,22 +184,20 @@ export const AutoEditPanel: React.FC<AutoEditPanelProps> = ({ onClose }) => {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Zap size={14} className="text-primary" aria-hidden />
-          <Text type="label" weight="bold" className="text-[11px]">
-            Beat-Synced Auto-Edit
-          </Text>
+          <Text type="label" weight="bold" className="text-[11px]">{t("Beat-Synced Auto-Edit")}</Text>
         </div>
       </div>
 
       {audioClips.length === 0 ? (
         <EmptyState
-          title="Add an audio track to use auto-edit"
+          title={t("Add an audio track to use auto-edit")}
           icon={<Music size={24} className="text-text-muted opacity-50" aria-hidden />}
           isCompact
         />
       ) : (
         <>
           <Selector
-            label="Audio Source"
+            label={t("Audio Source")}
             value={selectedAudioClipId}
             onChange={setSelectedAudioClipId}
             options={audioClipOptions}
@@ -207,9 +206,7 @@ export const AutoEditPanel: React.FC<AutoEditPanelProps> = ({ onClose }) => {
           />
 
           <div className="space-y-2">
-            <Text type="supporting" color="secondary" weight="bold" display="block" className="text-[10px]">
-              Cut Mode
-            </Text>
+            <Text type="supporting" color="secondary" weight="bold" display="block" className="text-[10px]">{t("Cut Mode")}</Text>
             <ToolcraftSegmentedControl<CutMode>
               ariaLabel="Cut mode"
               value={cutMode}
@@ -225,15 +222,13 @@ export const AutoEditPanel: React.FC<AutoEditPanelProps> = ({ onClose }) => {
 
           <div className="space-y-1.5">
             <div className="flex justify-between">
-              <Text type="supporting" color="secondary" weight="bold" className="text-[10px]">
-                Sensitivity
-              </Text>
+              <Text type="supporting" color="secondary" weight="bold" className="text-[10px]">{t("Sensitivity")}</Text>
               <Text type="supporting" color="secondary" className="text-[9px]">
                 {Math.round(sensitivity * 100)}%
               </Text>
             </div>
             <ToolcraftSliderControl
-              label="Sensitivity"
+              label={t("Sensitivity")}
               isLabelHidden
               min={0}
               max={1}
@@ -246,15 +241,13 @@ export const AutoEditPanel: React.FC<AutoEditPanelProps> = ({ onClose }) => {
 
           <div className="space-y-1.5">
             <div className="flex justify-between">
-              <Text type="supporting" color="secondary" weight="bold" className="text-[10px]">
-                Min Clip Duration
-              </Text>
+              <Text type="supporting" color="secondary" weight="bold" className="text-[10px]">{t("Min Clip Duration")}</Text>
               <Text type="supporting" color="secondary" className="text-[9px]">
                 {minClipDuration.toFixed(1)}s
               </Text>
             </div>
             <ToolcraftSliderControl
-              label="Minimum clip duration"
+              label={t("Minimum clip duration")}
               isLabelHidden
               min={0.1}
               max={3}
@@ -290,9 +283,7 @@ export const AutoEditPanel: React.FC<AutoEditPanelProps> = ({ onClose }) => {
 
           {preview && (
             <Card variant="muted" padding={3} className="space-y-2 border border-border">
-              <Text type="label" weight="bold" display="block" className="text-[10px]">
-                Preview
-              </Text>
+              <Text type="label" weight="bold" display="block" className="text-[10px]">{t("Preview")}</Text>
               <div className="grid grid-cols-2 gap-2">
                 <div>
                   <Text type="supporting" color="secondary" className="text-[9px]">
@@ -312,7 +303,7 @@ export const AutoEditPanel: React.FC<AutoEditPanelProps> = ({ onClose }) => {
                 </div>
               </div>
               <Button
-                label="Apply Auto-Edit"
+                label={t("Apply Auto-Edit")}
                 onClick={handleApply}
                 variant="primary"
                 size="sm"

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { t } from "@/integrations/skynet/idioma";
 
 export const RecordingCountdown: React.FC = () => {
   const [count, setCount] = useState(3);
@@ -28,9 +29,7 @@ export const RecordingCountdown: React.FC = () => {
           <div className="flex flex-col items-center gap-4 animate-fade-in">
             <div className="flex items-center gap-3">
               <div className="w-4 h-4 bg-error rounded-full animate-pulse" />
-              <span className="text-2xl font-bold text-white">
-                Recording...
-              </span>
+              <span className="text-2xl font-bold text-white">{t("Recording...")}</span>
             </div>
           </div>
         )}

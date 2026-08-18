@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { Lock, Eye, EyeOff, ShieldCheck, AlertTriangle } from "@/icons/lucide-compat";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftCard as Card } from "@openreel/ui";
@@ -127,11 +128,11 @@ export const MasterPasswordDialog: React.FC<MasterPasswordDialogProps> = ({
             <div className="space-y-2">
               <div className="relative">
                 <ToolcraftTextInputControl
-                  label="Current Password"
+                  label={t("Current Password")}
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={setPassword}
-                  placeholder="Enter current password"
+                  placeholder={t("Enter current password")}
                   hasAutoFocus
                   width="100%"
                   className="pr-10"
@@ -212,11 +213,11 @@ export const MasterPasswordDialog: React.FC<MasterPasswordDialogProps> = ({
               {mode === "change" && (
                 <div className="space-y-2">
                   <ToolcraftTextInputControl
-                    label="Confirm New Password"
+                    label={t("Confirm New Password")}
                     type={showNewPassword ? "text" : "password"}
                     value={confirmPassword}
                     onChange={setConfirmPassword}
-                    placeholder="Repeat new password"
+                    placeholder={t("Repeat new password")}
                     width="100%"
                   />
                 </div>
@@ -248,7 +249,7 @@ export const MasterPasswordDialog: React.FC<MasterPasswordDialogProps> = ({
           <LayoutFooter hasDivider>
             <div className="flex justify-end gap-2">
               <Button
-                label="Cancel"
+                label={t("Cancel")}
                 variant="secondary"
                 onClick={handleClose}
                 isDisabled={loading}

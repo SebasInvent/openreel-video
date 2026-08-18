@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftCard as Card } from "@openreel/ui";
 import { ToolcraftCheckboxInput as CheckboxInput } from "@openreel/ui";
@@ -172,50 +173,42 @@ export const MotionTrackingSection: React.FC<MotionTrackingSectionProps> = ({
       <div className="flex items-center gap-2 p-2 bg-primary/10 rounded-lg border border-primary/30">
         <Target size={16} className="text-primary" />
         <div className="flex flex-1 flex-col gap-0.5">
-          <Text type="supporting" color="primary" weight="medium">
-            Motion Tracking
-          </Text>
-          <Text type="supporting" color="secondary" className="text-[9px]">
-            Track objects to attach elements
-          </Text>
+          <Text type="supporting" color="primary" weight="medium">{t("Motion Tracking")}</Text>
+          <Text type="supporting" color="secondary" className="text-[9px]">{t("Track objects to attach elements")}</Text>
         </div>
       </div>
 
       {!state.isTracking && !hasTrackingData && (
         <>
           <div className="space-y-2">
-            <Text type="supporting" color="secondary" weight="medium">
-              Tracking Region
-            </Text>
+            <Text type="supporting" color="secondary" weight="medium">{t("Tracking Region")}</Text>
             <div className="grid grid-cols-2 gap-2">
               <RegionInput
-                label="X Position"
+                label={t("X Position")}
                 value={region.x}
                 onChange={(x) => setRegion({ ...region, x })}
               />
               <RegionInput
-                label="Y Position"
+                label={t("Y Position")}
                 value={region.y}
                 onChange={(y) => setRegion({ ...region, y })}
               />
               <RegionInput
-                label="Width"
+                label={t("Width")}
                 value={region.width}
                 onChange={(width) => setRegion({ ...region, width })}
               />
               <RegionInput
-                label="Height"
+                label={t("Height")}
                 value={region.height}
                 onChange={(height) => setRegion({ ...region, height })}
               />
             </div>
-            <Text type="supporting" color="secondary" className="text-center text-[9px]">
-              Draw region in preview or enter coordinates
-            </Text>
+            <Text type="supporting" color="secondary" className="text-center text-[9px]">{t("Draw region in preview or enter coordinates")}</Text>
           </div>
 
           <Button
-            label="Advanced Options"
+            label={t("Advanced Options")}
             size="sm"
             variant="ghost"
             icon={showAdvanced ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
@@ -226,9 +219,7 @@ export const MotionTrackingSection: React.FC<MotionTrackingSectionProps> = ({
           {showAdvanced && (
             <Card variant="muted" padding={3} className="space-y-3">
               <div className="space-y-1.5">
-                <Text type="supporting" color="secondary" weight="medium">
-                  Algorithm
-                </Text>
+                <Text type="supporting" color="secondary" weight="medium">{t("Algorithm")}</Text>
                 <div className="space-y-1">
                   {ALGORITHMS.map((algo) => (
                     <Button
@@ -244,7 +235,7 @@ export const MotionTrackingSection: React.FC<MotionTrackingSectionProps> = ({
               </div>
 
               <PropertySlider
-                label="Confidence Threshold"
+                label={t("Confidence Threshold")}
                 min={30}
                 max={95}
                 step={5}
@@ -255,7 +246,7 @@ export const MotionTrackingSection: React.FC<MotionTrackingSectionProps> = ({
               />
 
               <PropertySlider
-                label="Path Smoothing"
+                label={t("Path Smoothing")}
                 min={0}
                 max={10}
                 step={1}
@@ -268,7 +259,7 @@ export const MotionTrackingSection: React.FC<MotionTrackingSectionProps> = ({
           )}
 
           <Button
-            label="Start Tracking"
+            label={t("Start Tracking")}
             size="md"
             variant="primary"
             icon={<Target size={14} />}
@@ -283,12 +274,10 @@ export const MotionTrackingSection: React.FC<MotionTrackingSectionProps> = ({
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-              <Text type="supporting" color="primary" weight="medium">
-                Tracking in Progress
-              </Text>
+              <Text type="supporting" color="primary" weight="medium">{t("Tracking in Progress")}</Text>
             </div>
             <IconButton
-              label="Cancel Tracking"
+              label={t("Cancel Tracking")}
               icon={<X size={14} />}
               size="sm"
               variant="ghost"
@@ -298,7 +287,7 @@ export const MotionTrackingSection: React.FC<MotionTrackingSectionProps> = ({
 
           <div className="space-y-1">
             <div className="flex items-center justify-between text-[10px]">
-              <Text type="supporting" color="secondary">Analyzing frames...</Text>
+              <Text type="supporting" color="secondary">{t("Analyzing frames...")}</Text>
               <Text type="supporting" color="primary" className="font-mono">
                 {Math.round(state.progress)}%
               </Text>
@@ -323,9 +312,7 @@ export const MotionTrackingSection: React.FC<MotionTrackingSectionProps> = ({
       {state.error && (
         <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-[10px] text-red-400">
           <div className="flex items-center gap-2 font-medium mb-1">
-            <AlertTriangle size={12} />
-            Tracking Failed
-          </div>
+            <AlertTriangle size={12} />{t("Tracking Failed")}</div>
           <Text type="supporting" className="text-[9px] text-red-300/80">
             {state.error}
           </Text>
@@ -337,9 +324,7 @@ export const MotionTrackingSection: React.FC<MotionTrackingSectionProps> = ({
           <div className="flex items-center gap-2 p-2 bg-green-500/10 border border-green-500/30 rounded-lg">
             <Check size={14} className="text-green-400" />
             <div className="flex flex-1 flex-col gap-0.5">
-              <Text type="supporting" weight="medium" className="text-[10px] text-green-400">
-                Tracking Complete
-              </Text>
+              <Text type="supporting" weight="medium" className="text-[10px] text-green-400">{t("Tracking Complete")}</Text>
               {state.trackingData && (
                 <Text type="supporting" className="text-[9px] text-green-300/70">
                   {state.trackingData.keyframes.length} keyframes captured
@@ -357,17 +342,15 @@ export const MotionTrackingSection: React.FC<MotionTrackingSectionProps> = ({
               weight="medium"
               className="flex items-center gap-2"
             >
-              <Move size={12} />
-              Position Offset
-            </Text>
+              <Move size={12} />{t("Position Offset")}</Text>
             <div className="grid grid-cols-2 gap-2">
               <RegionInput
-                label="X Offset"
+                label={t("X Offset")}
                 value={offsetX}
                 onChange={(value) => handleOffsetChange("x", value)}
               />
               <RegionInput
-                label="Y Offset"
+                label={t("Y Offset")}
                 value={offsetY}
                 onChange={(value) => handleOffsetChange("y", value)}
               />
@@ -375,12 +358,10 @@ export const MotionTrackingSection: React.FC<MotionTrackingSectionProps> = ({
           </div>
 
           <div className="space-y-2">
-            <Text type="supporting" color="secondary" weight="medium">
-              Transform Options
-            </Text>
+            <Text type="supporting" color="secondary" weight="medium">{t("Transform Options")}</Text>
             <div className="grid grid-cols-2 gap-2">
               <CheckboxInput
-                label="Scale"
+                label={t("Scale")}
                 value={applyScale}
                 labelIcon={<Maximize2 size={10} aria-hidden />}
                 onChange={(value) => {
@@ -391,7 +372,7 @@ export const MotionTrackingSection: React.FC<MotionTrackingSectionProps> = ({
                 }}
               />
               <CheckboxInput
-                label="Rotation"
+                label={t("Rotation")}
                 value={applyRotation}
                 labelIcon={<RotateCcw size={10} aria-hidden />}
                 onChange={(value) => {
@@ -406,7 +387,7 @@ export const MotionTrackingSection: React.FC<MotionTrackingSectionProps> = ({
 
           {!isApplied ? (
             <Button
-              label="Apply Tracking to Clip"
+              label={t("Apply Tracking to Clip")}
               size="md"
               variant="secondary"
               onClick={handleApplyTracking}
@@ -416,12 +397,10 @@ export const MotionTrackingSection: React.FC<MotionTrackingSectionProps> = ({
             <div className="space-y-2">
               <div className="flex items-center gap-2 p-2 bg-primary/10 border border-primary/20 rounded-lg">
                 <Check size={12} className="text-primary" />
-                <Text type="supporting" color="primary" className="text-[10px]">
-                  Tracking Applied
-                </Text>
+                <Text type="supporting" color="primary" className="text-[10px]">{t("Tracking Applied")}</Text>
               </div>
               <Button
-                label="Remove Tracking"
+                label={t("Remove Tracking")}
                 size="sm"
                 variant="destructive"
                 onClick={handleRemoveTracking}
@@ -431,7 +410,7 @@ export const MotionTrackingSection: React.FC<MotionTrackingSectionProps> = ({
           )}
 
           <Button
-            label="Re-track with Different Settings"
+            label={t("Re-track with Different Settings")}
             size="sm"
             variant="ghost"
             icon={<RefreshCw size={10} />}
@@ -442,9 +421,7 @@ export const MotionTrackingSection: React.FC<MotionTrackingSectionProps> = ({
       )}
 
       <div className="pt-2 border-t border-border">
-        <Text type="supporting" color="secondary" className="text-center text-[9px]">
-          Track objects to pin graphics, text, or effects
-        </Text>
+        <Text type="supporting" color="secondary" className="text-center text-[9px]">{t("Track objects to pin graphics, text, or effects")}</Text>
       </div>
     </div>
   );

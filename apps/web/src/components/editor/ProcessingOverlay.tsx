@@ -1,4 +1,5 @@
 import React from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { Loader2, CheckCircle, XCircle, Clock } from "@/icons/lucide-compat";
 import { ToolcraftCard as Card } from "@openreel/ui";
 import { ToolcraftProgressBar as ProgressBar } from "@openreel/ui";
@@ -103,9 +104,7 @@ export const ProcessingOverlay: React.FC = () => {
             <Loader2 size={20} className="text-blue-400 animate-spin" aria-hidden />
           </div>
           <div>
-            <Text as="h3" type="label" weight="bold" display="block">
-              Processing Effects
-            </Text>
+            <Text as="h3" type="label" weight="bold" display="block">{t("Processing Effects")}</Text>
             <Text type="supporting" color="secondary" display="block">
               {activeTasks.length} task{activeTasks.length !== 1 ? "s" : ""} in
               progress
@@ -115,15 +114,13 @@ export const ProcessingOverlay: React.FC = () => {
 
         <div className="mb-4">
           <div className="flex items-center justify-between mb-1">
-            <Text type="supporting" color="secondary" className="text-[10px]">
-              Overall Progress
-            </Text>
+            <Text type="supporting" color="secondary" className="text-[10px]">{t("Overall Progress")}</Text>
             <Text type="supporting" color="secondary" className="text-[10px] font-mono">
               {progress}%
             </Text>
           </div>
           <ProgressBar
-            label="Overall progress"
+            label={t("Overall progress")}
             isLabelHidden
             value={progress}
             max={100}
@@ -139,9 +136,7 @@ export const ProcessingOverlay: React.FC = () => {
           </div>
         </div>
 
-        <Text type="supporting" color="secondary" display="block" justify="center" className="mt-4 text-[10px]">
-          Please wait while effects are being applied...
-        </Text>
+        <Text type="supporting" color="secondary" display="block" justify="center" className="mt-4 text-[10px]">{t("Please wait while effects are being applied...")}</Text>
       </Card>
     </div>
   );

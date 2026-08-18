@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useMemo, useEffect } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { Search, Loader2, Layers } from "@/icons/lucide-compat";
 import { ToolcraftText as Text } from "@openreel/ui";
 import { ToolcraftTextInputControl } from "@openreel/ui";
@@ -161,7 +162,7 @@ export const TemplateGallery: React.FC<TemplateGalleryProps> = ({
           <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl" />
           <Loader2 className="relative w-10 h-10 text-primary animate-spin" />
         </div>
-        <Text type="supporting" color="secondary" className="text-sm text-text-muted mt-6">Loading templates...</Text>
+        <Text type="supporting" color="secondary" className="text-sm text-text-muted mt-6">{t("Loading templates...")}</Text>
       </div>
     );
   }
@@ -175,11 +176,11 @@ export const TemplateGallery: React.FC<TemplateGalleryProps> = ({
             className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted z-10"
           />
           <ToolcraftTextInputControl
-            label="Search templates"
+            label={t("Search templates")}
             isLabelHidden
             value={searchQuery}
             onChange={setSearchQuery}
-            placeholder="Search templates..."
+            placeholder={t("Search templates...")}
             className="pl-11 bg-background-tertiary border-border rounded-xl text-text-primary"
           />
         </div>
@@ -196,12 +197,8 @@ export const TemplateGallery: React.FC<TemplateGalleryProps> = ({
           <div className="w-14 h-14 rounded-2xl bg-background-tertiary flex items-center justify-center mb-4">
             <Layers size={24} className="text-text-muted" />
           </div>
-          <Text type="supporting" color="primary" weight="medium" className="text-base text-text-primary mb-1">
-            No templates found
-          </Text>
-          <Text type="supporting" color="secondary" className="text-sm text-text-muted">
-            Try adjusting your search or filter
-          </Text>
+          <Text type="supporting" color="primary" weight="medium" className="text-base text-text-primary mb-1">{t("No templates found")}</Text>
+          <Text type="supporting" color="secondary" className="text-sm text-text-muted">{t("Try adjusting your search or filter")}</Text>
         </div>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

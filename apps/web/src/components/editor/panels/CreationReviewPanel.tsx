@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftIconButton as IconButton } from "@openreel/ui";
 import { Boxes, AlertTriangle, CheckCircle2, Info, X } from "@/icons/lucide-compat";
 import type { MotionComposition } from "@openreel/core/motion/types";
@@ -73,11 +74,11 @@ export const CreationReviewPanel: React.FC<CreationReviewPanelProps> = ({ onClos
       <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
         <div className="flex items-center gap-2">
           <Boxes className="h-4 w-4 text-white/80" />
-          <span className="text-sm font-semibold text-white/90">Creation Review</span>
+          <span className="text-sm font-semibold text-white/90">{t("Creation Review")}</span>
         </div>
         {onClose && (
           <IconButton
-            label="Close creation review"
+            label={t("Close creation review")}
             icon={<X className="h-4 w-4" aria-hidden />}
             variant="ghost"
             size="sm"

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { Flag, Plus, Trash2, Edit2, Check, X } from "@/icons/lucide-compat";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftCard as Card } from "@openreel/ui";
@@ -70,15 +71,13 @@ export const MarkersPanel: React.FC = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Flag size={14} className="text-fg-2" aria-hidden />
-          <Text type="body" color="primary" weight="bold" className="text-xs">
-            Markers
-          </Text>
+          <Text type="body" color="primary" weight="bold" className="text-xs">{t("Markers")}</Text>
           <Text type="supporting" color="secondary" className="text-xs">
             ({markers.length})
           </Text>
         </div>
         <Button
-          label="Add"
+          label={t("Add")}
           icon={<Plus size={12} aria-hidden />}
           variant="primary"
           size="sm"
@@ -89,12 +88,8 @@ export const MarkersPanel: React.FC = () => {
       {markers.length === 0 ? (
         <div className="py-8 text-center text-fg-3 text-xs">
           <Flag size={32} className="mx-auto mb-2 opacity-30" aria-hidden />
-          <Text type="supporting" color="secondary" className="block">
-            No markers yet
-          </Text>
-          <Text type="supporting" color="secondary" className="text-[10px] mt-1 block">
-            Press M at playhead to add markers
-          </Text>
+          <Text type="supporting" color="secondary" className="block">{t("No markers yet")}</Text>
+          <Text type="supporting" color="secondary" className="text-[10px] mt-1 block">{t("Press M at playhead to add markers")}</Text>
         </div>
       ) : (
         <div className="max-h-96 overflow-y-auto pr-1">
@@ -119,13 +114,13 @@ export const MarkersPanel: React.FC = () => {
                 {editingId === marker.id ? (
                   <div className="flex-1 space-y-2">
                     <ToolcraftTextInputControl
-                      label="Marker label"
+                      label={t("Marker label")}
                       isLabelHidden
                       size="sm"
                       width="100%"
                       value={editLabel}
                       onChange={setEditLabel}
-                      placeholder="Marker label"
+                      placeholder={t("Marker label")}
                     />
                     <div className="flex gap-1">
                       {PRESET_COLORS.map((color) => (
@@ -145,7 +140,7 @@ export const MarkersPanel: React.FC = () => {
                     </div>
                     <div className="flex gap-1">
                       <Button
-                        label="Save"
+                        label={t("Save")}
                         icon={<Check size={12} aria-hidden />}
                         variant="primary"
                         size="sm"
@@ -153,7 +148,7 @@ export const MarkersPanel: React.FC = () => {
                         className="flex-1"
                       />
                       <Button
-                        label="Cancel"
+                        label={t("Cancel")}
                         icon={<X size={12} aria-hidden />}
                         variant="secondary"
                         size="sm"

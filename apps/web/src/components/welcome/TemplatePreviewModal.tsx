@@ -1,4 +1,5 @@
 import { useState, useCallback, useMemo } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { useAnalytics, AnalyticsEvents } from "../../hooks/useAnalytics";
 import {
   Play,
@@ -236,9 +237,7 @@ export const TemplatePreviewModal: React.FC<TemplatePreviewModalProps> = ({
 
               {template.scenes && template.scenes.length > 0 && (
                 <div className="space-y-2">
-                  <Text type="label" color="secondary" weight="medium" className="text-xs text-text-muted uppercase tracking-wide">
-                    Scenes
-                  </Text>
+                  <Text type="label" color="secondary" weight="medium" className="text-xs text-text-muted uppercase tracking-wide">{t("Scenes")}</Text>
                   <div className="flex flex-wrap gap-2">
                     {template.scenes.map((scene) => (
                       <div
@@ -263,9 +262,7 @@ export const TemplatePreviewModal: React.FC<TemplatePreviewModalProps> = ({
             </div>
 
             <div className="space-y-4">
-              <Text type="label" color="primary" weight="medium" className="text-sm text-text-primary">
-                Customize Template
-              </Text>
+              <Text type="label" color="primary" weight="medium" className="text-sm text-text-primary">{t("Customize Template")}</Text>
 
               {groupedPlaceholders.main.length > 0 && (
                 <div className="space-y-4">
@@ -334,7 +331,7 @@ export const TemplatePreviewModal: React.FC<TemplatePreviewModalProps> = ({
         }
         footer={
         <LayoutFooter>
-          <Button label="Cancel" variant="ghost" onClick={onClose} />
+          <Button label={t("Cancel")} variant="ghost" onClick={onClose} />
           <Button
             label={isApplying ? "Applying..." : "Use Template"}
             icon={isApplying ? (

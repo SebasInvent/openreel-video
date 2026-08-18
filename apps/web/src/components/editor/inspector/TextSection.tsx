@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useState } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftSegmentedControl } from "@openreel/ui";
 import { ToolcraftCard as Card } from "@openreel/ui";
 import { ToolcraftFileDropControl as FileInput } from "@openreel/ui";
@@ -149,11 +150,9 @@ const FontSelector: React.FC<{
 
   return (
     <div className="flex items-center justify-between">
-      <Text type="supporting" color="secondary">
-        Font
-      </Text>
+      <Text type="supporting" color="secondary">{t("Font")}</Text>
       <Selector
-        label="Font"
+        label={t("Font")}
         isLabelHidden
         size="sm"
         width={160}
@@ -309,9 +308,7 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId, clipIds }) => 
     return (
       <div className="p-4 text-center">
         <Type size={24} className="mx-auto mb-2 text-fg-3" />
-        <Text type="supporting" color="secondary">
-          No text clip selected
-        </Text>
+        <Text type="supporting" color="secondary">{t("No text clip selected")}</Text>
       </div>
     );
   }
@@ -337,13 +334,13 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId, clipIds }) => 
         </Card>
       ) : (
         <ToolcraftTextAreaControl
-          label="Text Content"
+          label={t("Text Content")}
           size="sm"
           width="100%"
           rows={4}
           value={text}
           onChange={handleTextChange}
-          placeholder="Enter text..."
+          placeholder={t("Enter text...")}
           style={{ fontFamily: style.fontFamily }}
         />
       )}
@@ -355,17 +352,17 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId, clipIds }) => 
             onChange={(fontFamily) => handleStyleChange({ fontFamily })}
           />
           <FileInput
-            label="Custom Font"
+            label={t("Custom Font")}
             isLabelHidden
             width="100%"
             mode="input"
             value={fontFile}
             accept={FONT_FILE_ACCEPT}
-            placeholder="Upload custom font"
+            placeholder={t("Upload custom font")}
             onChange={handleCustomFontSelect}
           />
           <NumberInput
-            label="Size"
+            label={t("Size")}
             value={style.fontSize}
             onChange={(fontSize) => handleStyleChange({ fontSize })}
             min={8}
@@ -373,12 +370,10 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId, clipIds }) => 
             unit="px"
           />
           <div className="flex items-center justify-between">
-            <Text type="supporting" color="secondary">
-              Style
-            </Text>
+            <Text type="supporting" color="secondary">{t("Style")}</Text>
             <div className="flex gap-1">
               <IconButton
-                label="Bold"
+                label={t("Bold")}
                 icon={<Bold size={12} />}
                 size="sm"
                 variant={allBold ? "primary" : "secondary"}
@@ -389,7 +384,7 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId, clipIds }) => 
                 }
               />
               <IconButton
-                label="Italic"
+                label={t("Italic")}
                 icon={<Italic size={12} />}
                 size="sm"
                 variant={allItalic ? "primary" : "secondary"}
@@ -400,7 +395,7 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId, clipIds }) => 
                 }
               />
               <IconButton
-                label="Underline"
+                label={t("Underline")}
                 icon={<Underline size={12} />}
                 size="sm"
                 variant={
@@ -419,9 +414,7 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId, clipIds }) => 
       </Card>
 
       <div className="flex items-center justify-between">
-        <Text type="supporting" color="secondary">
-          Text Align
-        </Text>
+        <Text type="supporting" color="secondary">{t("Text Align")}</Text>
         <ToggleButtonGroup
           options={[
             { value: "left", icon: <AlignLeft size={12} />, label: "Left" },
@@ -443,30 +436,26 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId, clipIds }) => 
 
       <Card variant="muted" padding={3}>
         <div className="space-y-2">
-          <Text type="supporting" color="primary" weight="medium">
-            Position on Canvas
-          </Text>
+          <Text type="supporting" color="primary" weight="medium">{t("Position on Canvas")}</Text>
           <div className="flex items-center justify-between">
-            <Text type="supporting" color="secondary">
-              Align to Canvas
-            </Text>
+            <Text type="supporting" color="secondary">{t("Align to Canvas")}</Text>
             <div className="flex gap-1">
               <IconButton
-                label="Center Horizontally"
+                label={t("Center Horizontally")}
                 icon={<AlignHorizontalJustifyCenter size={12} />}
                 size="sm"
                 variant="secondary"
                 onClick={handleCenterHorizontal}
               />
               <IconButton
-                label="Center Vertically"
+                label={t("Center Vertically")}
                 icon={<AlignVerticalJustifyCenter size={12} />}
                 size="sm"
                 variant="secondary"
                 onClick={handleCenterVertical}
               />
               <IconButton
-                label="Center Both"
+                label={t("Center Both")}
                 icon={<Crosshair size={12} />}
                 size="sm"
                 variant="primary"
@@ -480,12 +469,12 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId, clipIds }) => 
       <Card variant="muted" padding={3}>
         <div className="space-y-2">
           <ColorField
-            label="Text Color"
+            label={t("Text Color")}
             value={style.color}
             onChange={(color) => handleStyleChange({ color })}
           />
           <ColorField
-            label="Background"
+            label={t("Background")}
             value={style.backgroundColor || "transparent"}
             onChange={(backgroundColor) => handleStyleChange({ backgroundColor })}
             showAlpha
@@ -496,16 +485,14 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId, clipIds }) => 
 
       <Card variant="muted" padding={3}>
         <div className="space-y-2">
-          <Text type="supporting" color="primary" weight="medium">
-            Stroke
-          </Text>
+          <Text type="supporting" color="primary" weight="medium">{t("Stroke")}</Text>
           <ColorField
-            label="Color"
+            label={t("Color")}
             value={style.strokeColor || "#000000"}
             onChange={(strokeColor) => handleStyleChange({ strokeColor })}
           />
           <NumberInput
-            label="Width"
+            label={t("Width")}
             value={style.strokeWidth || 0}
             onChange={(strokeWidth) => handleStyleChange({ strokeWidth })}
             min={0}
@@ -517,17 +504,15 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId, clipIds }) => 
 
       <Card variant="muted" padding={3}>
         <div className="space-y-2">
-          <Text type="supporting" color="primary" weight="medium">
-            Shadow
-          </Text>
+          <Text type="supporting" color="primary" weight="medium">{t("Shadow")}</Text>
           <ColorField
-            label="Color"
+            label={t("Color")}
             value={style.shadowColor || "#000000"}
             onChange={(shadowColor) => handleStyleChange({ shadowColor })}
             showAlpha
           />
           <NumberInput
-            label="Offset X"
+            label={t("Offset X")}
             value={style.shadowOffsetX || 0}
             onChange={(shadowOffsetX) => handleStyleChange({ shadowOffsetX })}
             min={-50}
@@ -535,7 +520,7 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId, clipIds }) => 
             unit="px"
           />
           <NumberInput
-            label="Offset Y"
+            label={t("Offset Y")}
             value={style.shadowOffsetY || 0}
             onChange={(shadowOffsetY) => handleStyleChange({ shadowOffsetY })}
             min={-50}
@@ -543,7 +528,7 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId, clipIds }) => 
             unit="px"
           />
           <NumberInput
-            label="Blur"
+            label={t("Blur")}
             value={style.shadowBlur || 0}
             onChange={(shadowBlur) => handleStyleChange({ shadowBlur })}
             min={0}
@@ -556,7 +541,7 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId, clipIds }) => 
       <Card variant="muted" padding={3}>
         <div className="space-y-2">
           <NumberInput
-            label="Line Height"
+            label={t("Line Height")}
             value={style.lineHeight || 1.2}
             onChange={(lineHeight) => handleStyleChange({ lineHeight })}
             min={0.5}
@@ -564,7 +549,7 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId, clipIds }) => 
             step={0.1}
           />
           <NumberInput
-            label="Letter Spacing"
+            label={t("Letter Spacing")}
             value={style.letterSpacing || 0}
             onChange={(letterSpacing) => handleStyleChange({ letterSpacing })}
             min={-10}
@@ -604,7 +589,7 @@ const TextShaderControls: React.FC<{
     () =>
       groupShaderDefsByCollection(
         materialDefs,
-        [{ value: "", label: "None" }],
+        [{ value: "", label: t("None") }],
       ),
     [materialDefs],
   );
@@ -646,11 +631,9 @@ const TextShaderControls: React.FC<{
   return (
     <Card variant="muted" padding={3}>
       <div className="space-y-2">
-        <Text type="supporting" color="primary" weight="medium">
-          Text Material
-        </Text>
+        <Text type="supporting" color="primary" weight="medium">{t("Text Material")}</Text>
         <Selector
-          label="Text Material"
+          label={t("Text Material")}
           isLabelHidden
           size="sm"
           width="100%"
@@ -663,12 +646,12 @@ const TextShaderControls: React.FC<{
           selectedId={shader?.shaderId}
           onSelect={handleShaderSelect}
           sample="text"
-          label="Text material previews"
+          label={t("Text material previews")}
         />
         {shader && def ? (
           <>
             <NumberInput
-              label="Progress"
+              label={t("Progress")}
               value={shader.progress ?? DEFAULT_TEXT_SHADER_PROGRESS}
               onChange={(progress) =>
                 onChange({
@@ -790,7 +773,7 @@ const Text3DControls: React.FC<Text3DControlsProps> = ({ clipId, clipIds }) => {
         {enabled && (
           <>
             <NumberInput
-              label="Depth"
+              label={t("Depth")}
               value={text3d?.depth ?? DEFAULT_TEXT_3D.depth}
               onChange={(depth) => apply({ depth })}
               min={1}
@@ -799,7 +782,7 @@ const Text3DControls: React.FC<Text3DControlsProps> = ({ clipId, clipIds }) => {
               unit="px"
             />
             <NumberInput
-              label="Bevel Thickness"
+              label={t("Bevel Thickness")}
               value={text3d?.bevelThickness ?? DEFAULT_TEXT_3D.bevelThickness}
               onChange={(bevelThickness) => apply({ bevelThickness })}
               min={0}
@@ -807,7 +790,7 @@ const Text3DControls: React.FC<Text3DControlsProps> = ({ clipId, clipIds }) => {
               step={0.1}
             />
             <NumberInput
-              label="Bevel Size"
+              label={t("Bevel Size")}
               value={text3d?.bevelSize ?? DEFAULT_TEXT_3D.bevelSize}
               onChange={(bevelSize) => apply({ bevelSize })}
               min={0}
@@ -815,7 +798,7 @@ const Text3DControls: React.FC<Text3DControlsProps> = ({ clipId, clipIds }) => {
               step={0.1}
             />
             <NumberInput
-              label="Bevel Segments"
+              label={t("Bevel Segments")}
               value={text3d?.bevelSegments ?? DEFAULT_TEXT_3D.bevelSegments}
               onChange={(bevelSegments) =>
                 apply({ bevelSegments: Math.max(1, Math.round(bevelSegments)) })
@@ -836,7 +819,7 @@ const Text3DControls: React.FC<Text3DControlsProps> = ({ clipId, clipIds }) => {
             {(text3d?.material ?? "physical") === "physical" && (
               <>
                 <NumberInput
-                  label="Metalness"
+                  label={t("Metalness")}
                   value={text3d?.metalness ?? DEFAULT_TEXT_3D.metalness}
                   onChange={(metalness) =>
                     apply({ metalness: Math.max(0, Math.min(1, metalness)) })
@@ -846,7 +829,7 @@ const Text3DControls: React.FC<Text3DControlsProps> = ({ clipId, clipIds }) => {
                   step={0.05}
                 />
                 <NumberInput
-                  label="Roughness"
+                  label={t("Roughness")}
                   value={text3d?.roughness ?? DEFAULT_TEXT_3D.roughness}
                   onChange={(roughness) =>
                     apply({ roughness: Math.max(0, Math.min(1, roughness)) })

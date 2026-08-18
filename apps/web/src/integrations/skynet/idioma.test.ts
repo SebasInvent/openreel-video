@@ -8,7 +8,7 @@
  */
 
 import { describe, expect, it } from "vitest";
-import { cuantasTraducidas, t } from "./idioma";
+import { cuantasTraducidas, traducir as t } from "./idioma";
 
 describe("lo no traducido NO se rompe", () => {
   it("devuelve el original cuando no hay traducción", () => {

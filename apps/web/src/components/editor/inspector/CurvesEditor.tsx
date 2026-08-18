@@ -5,6 +5,7 @@ import React, {
   useMemo,
   useEffect,
 } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftClickableCard as ClickableCard } from "@openreel/ui";
 import { ToolcraftText as Text } from "@openreel/ui";
@@ -433,7 +434,7 @@ export const CurvesEditor: React.FC<CurvesEditorProps> = ({
           Click to add point • Double-click to remove
         </Text>
         <Button
-          label="Reset"
+          label={t("Reset")}
           icon={<RotateCcw size={10} />}
           variant="ghost"
           size="sm"

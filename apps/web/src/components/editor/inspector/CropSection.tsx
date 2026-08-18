@@ -1,4 +1,5 @@
 import React from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftButton as Button } from "@openreel/ui";
 import { ToolcraftCard as Card } from "@openreel/ui";
 import { ToolcraftText as Text } from "@openreel/ui";
@@ -61,7 +62,7 @@ export const CropSection: React.FC<CropSectionProps> = ({ clip }) => {
             </div>
           </Card>
           <Button
-            label="Reset Crop"
+            label={t("Reset Crop")}
             icon={<RotateCcw size={12} />}
             variant="secondary"
             size="sm"

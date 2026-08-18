@@ -1,4 +1,5 @@
 import { useState, useCallback, useMemo } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import {
   Copy,
   Download,
@@ -171,8 +172,8 @@ export const ScriptViewDialog: React.FC<ScriptViewDialogProps> = ({
       <Layout
         header={
           <DialogHeader
-            title="Project JSON"
-            subtitle="Export or import project as JSON"
+            title={t("Project JSON")}
+            subtitle={t("Export or import project as JSON")}
             onOpenChange={(open) => !open && onClose()}
             startContent={<FileCode size={20} className="text-primary" aria-hidden />}
           />
@@ -186,7 +187,7 @@ export const ScriptViewDialog: React.FC<ScriptViewDialogProps> = ({
             onChange={setActiveTab}
             options={[
               { value: "export", label: "Export JSON" },
-              { value: "import", label: "Import" },
+              { value: "import", label: t("Import") },
             ]}
           />
         </div>
@@ -211,7 +212,7 @@ export const ScriptViewDialog: React.FC<ScriptViewDialogProps> = ({
                       onClick={handleCopy}
                     />
                     <Button
-                      label="Download JSON"
+                      label={t("Download JSON")}
                       variant="secondary"
                       size="sm"
                       icon={<Download size={16} aria-hidden />}
@@ -240,9 +241,7 @@ export const ScriptViewDialog: React.FC<ScriptViewDialogProps> = ({
               ) : (
                 <div className="flex-1 flex flex-col items-center justify-center gap-3 p-8 text-center">
                   <FileCode size={40} className="text-text-muted" />
-                  <Text type="body" color="secondary">
-                    No project data to export.
-                  </Text>
+                  <Text type="body" color="secondary">{t("No project data to export.")}</Text>
                 </div>
               )}
             </>
@@ -251,7 +250,7 @@ export const ScriptViewDialog: React.FC<ScriptViewDialogProps> = ({
           {activeTab === "import" && (
             <div className="flex-1 flex flex-col gap-4 p-4 overflow-auto">
               <FileInput
-                label="Project JSON file"
+                label={t("Project JSON file")}
                 isLabelHidden
                 value={null}
                 onChange={(picked) => {
@@ -269,7 +268,7 @@ export const ScriptViewDialog: React.FC<ScriptViewDialogProps> = ({
                 }}
                 accept=".json,application/json"
                 mode="dropzone"
-                placeholder="Drop a JSON file here or click to browse"
+                placeholder={t("Drop a JSON file here or click to browse")}
                 description="Accepts .json project files"
                 width="100%"
               />
@@ -283,7 +282,7 @@ export const ScriptViewDialog: React.FC<ScriptViewDialogProps> = ({
                     {importJson.length.toLocaleString()} characters loaded
                   </Text>
                   <Button
-                    label="Clear"
+                    label={t("Clear")}
                     variant="secondary"
                     size="sm"
                     onClick={() => {
@@ -317,9 +316,7 @@ export const ScriptViewDialog: React.FC<ScriptViewDialogProps> = ({
                   {validation.errors.length > 0 && (
                     <Card variant="muted" padding={3} className="space-y-1 border border-error/30 bg-error/10">
                       <div className="flex items-center gap-2 text-error font-medium text-sm">
-                        <AlertCircle size={16} />
-                        Errors
-                      </div>
+                        <AlertCircle size={16} />{t("Errors")}</div>
                       <ul className="list-disc list-inside text-xs text-error/80 space-y-0.5">
                         {validation.errors.map((err, i) => (
                           <li key={i}>{err}</li>
@@ -331,9 +328,7 @@ export const ScriptViewDialog: React.FC<ScriptViewDialogProps> = ({
                   {validation.warnings.length > 0 && (
                     <Card variant="muted" padding={3} className="space-y-1 border border-warning/30 bg-warning/10">
                       <div className="flex items-center gap-2 text-warning font-medium text-sm">
-                        <AlertTriangle size={16} />
-                        Warnings
-                      </div>
+                        <AlertTriangle size={16} />{t("Warnings")}</div>
                       <ul className="list-disc list-inside text-xs text-warning/80 space-y-0.5">
                         {validation.warnings.map((warning, i) => (
                           <li key={i}>{warning}</li>
@@ -360,7 +355,7 @@ export const ScriptViewDialog: React.FC<ScriptViewDialogProps> = ({
               {/* Import button */}
               {importJson && (
                 <Button
-                  label="Import Project"
+                  label={t("Import Project")}
                   icon={<Upload size={16} aria-hidden />}
                   variant="primary"
                   onClick={handleImport}

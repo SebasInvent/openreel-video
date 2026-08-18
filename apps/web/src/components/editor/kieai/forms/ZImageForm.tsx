@@ -1,4 +1,5 @@
 import { ToolcraftButton as Button } from "@openreel/ui";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftCard as Card } from "@openreel/ui";
 import { ToolcraftSelectControl as Selector } from "@openreel/ui";
 import { ToolcraftText as Text } from "@openreel/ui";
@@ -24,18 +25,18 @@ export function ZImageForm({ value, onChange, onSubmit, isLoading }: Props) {
       </Card>
 
       <ToolcraftTextAreaControl
-        label="Prompt"
+        label={t("Prompt")}
         isRequired
         value={value.prompt}
         onChange={(prompt) => onChange({ ...value, prompt })}
-        placeholder="Describe the image you want to generate..."
+        placeholder={t("Describe the image you want to generate...")}
         maxLength={1000}
         rows={4}
         width="100%"
       />
 
       <Selector
-        label="Aspect Ratio"
+        label={t("Aspect Ratio")}
         value={value.aspect_ratio}
         onChange={(aspect_ratio) =>
           onChange({ ...value, aspect_ratio: aspect_ratio as ZImageInput["aspect_ratio"] })

@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo } from "react";
+import { t } from "@/integrations/skynet/idioma";
 import { ToolcraftClickableCard as ClickableCard } from "@openreel/ui";
 import { ToolcraftSelectControl as Selector } from "@openreel/ui";
 import { ToolcraftText as Text } from "@openreel/ui";
@@ -148,9 +149,7 @@ export const SVGSection: React.FC<SVGSectionProps> = ({ clipId }) => {
 
   if (!svgClip) {
     return (
-      <Text type="supporting" color="secondary" className="py-8 text-center text-xs">
-        No SVG clip selected
-      </Text>
+      <Text type="supporting" color="secondary" className="py-8 text-center text-xs">{t("No SVG clip selected")}</Text>
     );
   }
 
@@ -158,9 +157,7 @@ export const SVGSection: React.FC<SVGSectionProps> = ({ clipId }) => {
     <div className="space-y-4">
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <Text type="supporting" color="secondary" className="text-[10px]">
-            Mode
-          </Text>
+          <Text type="supporting" color="secondary" className="text-[10px]">{t("Mode")}</Text>
           <div className="flex gap-1">
             {(["none", "tint", "replace"] as const).map((mode) => (
               <ClickableCard
@@ -182,12 +179,12 @@ export const SVGSection: React.FC<SVGSectionProps> = ({ clipId }) => {
         {colorStyle.colorMode !== "none" && (
           <>
             <ColorField
-              label="Color"
+              label={t("Color")}
               value={colorStyle.tintColor || "#ffffff"}
               onChange={handleTintColorChange}
             />
             <PropertySlider
-              label="Opacity"
+              label={t("Opacity")}
               value={colorStyle.tintOpacity || 1}
               onChange={handleTintOpacityChange}
               min={0}
@@ -201,7 +198,7 @@ export const SVGSection: React.FC<SVGSectionProps> = ({ clipId }) => {
 
       <div className="space-y-3">
         <Selector
-          label="Entry Animation"
+          label={t("Entry Animation")}
           size="sm"
           width="100%"
           value={entryAnimation?.type || "none"}
@@ -216,7 +213,7 @@ export const SVGSection: React.FC<SVGSectionProps> = ({ clipId }) => {
 
         {entryAnimation && entryAnimation.type !== "none" && (
           <PropertySlider
-            label="Duration"
+            label={t("Duration")}
             value={entryAnimation.duration}
             onChange={handleEntryDurationChange}
             min={0.1}
@@ -229,7 +226,7 @@ export const SVGSection: React.FC<SVGSectionProps> = ({ clipId }) => {
 
       <div className="space-y-4">
         <Selector
-          label="Exit Animation"
+          label={t("Exit Animation")}
           size="sm"
           width="100%"
           value={exitAnimation?.type || "none"}
@@ -244,7 +241,7 @@ export const SVGSection: React.FC<SVGSectionProps> = ({ clipId }) => {
 
         {exitAnimation && exitAnimation.type !== "none" && (
           <PropertySlider
-            label="Duration"
+            label={t("Duration")}
             value={exitAnimation.duration}
             onChange={handleExitDurationChange}
             min={0.1}
