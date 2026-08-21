@@ -11,6 +11,7 @@ import { initCustomFonts } from "./components/editor/inspector/font-options";
 import { setEncoderBackendFactory } from "@openreel/core";
 import { NativeFFmpegBackend } from "./services/native-ffmpeg-backend";
 import { escucharTraspasos } from "./integrations/skynet/entrada";
+import { escucharOpenReelV2 } from "./integrations/skynet/entradaV2";
 
 const DesktopApp = React.lazy(() =>
   import("./desktop/DesktopApp").then((module) => ({
@@ -42,6 +43,7 @@ void initCustomFonts();
 // El punto de entrada de SkyNet. Sin `VITE_SKYNET_ORIGENES` queda registrado pero no acepta a
 // nadie: la lista de orígenes permitidos está vacía y no hay comodín. Ver `integrations/skynet`.
 escucharTraspasos();
+escucharOpenReelV2();
 
 const root = document.getElementById("root")!;
 
