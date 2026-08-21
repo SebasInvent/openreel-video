@@ -40,9 +40,19 @@ reemplazar el proyecto abierto y hacerle bajar una URL que ella elija.
 
 Se lee en tiempo de CONSTRUCCIÓN (es `VITE_`), así que cambiarla exige volver a desplegar.
 
+El valor de producción se declara con orígenes completos, nunca dominios parciales:
+
+```text
+https://skynet.codigoenigma.com,http://localhost:3000
+```
+
+Una preview de SkyNet no entra por parecido de dominio: se agrega su origen exacto durante la
+prueba coordinada y se retira después. El contrato v2 comprueba además que el mensaje venga de
+`window.parent`; un origen permitido por sí solo no alcanza.
+
 ## Del otro lado
 
 SkyNet apunta acá con `NEXT_PUBLIC_EDITOR_VIDEO_URL`. Sin ella su panel lo dice y no manda nada.
-El contrato entre las dos mitades vive en `apps/web/src/integrations/skynet/contrato.ts` y su
-gemelo `src/lib/estudio/traspasoAlEditor.ts` en SkyNet: si cambia un nombre o la `VERSION`, se
-cambia en los dos.
+El contrato productivo vive en `apps/web/src/integrations/skynet/contratoV2.ts` y su gemelo
+`src/lib/estudio/contratoOpenReel.ts` en SkyNet. El contrato v1 se conserva solo para enlaces
+internos viejos: el producto usa v2 con alcance, revisión, correlación, autosave y render.

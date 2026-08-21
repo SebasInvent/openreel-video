@@ -173,7 +173,7 @@ export function escucharTraspasos(origenes = origenesConfigurados()): () => void
 
     const responder = (resultado: ResultadoDelTraspaso) => {
       // Se responde al origen concreto, nunca a `"*"`: la respuesta dice qué material se montó.
-      (evento.source as WindowProxy | null)?.postMessage(
+      (evento.source as typeof window.parent | null)?.postMessage(
         { tipo: MENSAJE_RESULTADO, resultado },
         { targetOrigin: evento.origin },
       );
